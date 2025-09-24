@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minilibx-linux/mlx.h"
-#include "libft/incs/libft.h"
+#include "mlx.h"
+// #include "libft/incs/libft.h"
 
 int	main(void)
 {
@@ -20,4 +20,5 @@ int	main(void)
 
 	mlx = mlx_init(); //display init
 	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!"); //window init
+	mlx_loop(mlx);
 }
