@@ -11,14 +11,29 @@
 /* ************************************************************************** */
 
 #include "mlx.h"
-// #include "libft/incs/libft.h"
+#include "../libft/incs/libft.h"
+
+typedef struct	s_data
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+
+}				t_data;
 
 int	main(void)
 {
 	void	*mlx;
 	void	*mlx_win;
+	t_data	img;
 
 	mlx = mlx_init(); //display init
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!"); //window init
-	mlx_loop(mlx);
+	if (!mlx)
+		return (1);
+	//mlx_win = mlx_new_window(mlx, 192, 108, "Hello world!"); //window init
+	img.img = mlx_new_image(mlx, 192, 108);
+	// check what's below
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 }
