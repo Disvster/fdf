@@ -13,8 +13,33 @@
 #ifndef FDF_H
 # define FDF_H
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE	1024
+# endif
+
 # include "../libft/incs/libft.h"
 # include <unistd.h>
 # include "mlx.h"
+
+typedef struct s_map
+{
+	int		width;
+	int		height;
+	int		points_total;
+}				t_map;
+
+typedef struct s_point
+{
+	int		x;
+	int		y;
+	int		z;
+	char	*color;
+}				t_point;
+
+typedef struct s_data
+{
+	t_point	*points;
+	t_map	*map;
+}				t_data;
 
 #endif
