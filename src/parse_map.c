@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../incs/fdf.h"
+
 void	print_map(t_data *data);
 
 t_map	map_data_init(int fd)
@@ -37,11 +38,7 @@ t_map	map_data_init(int fd)
 	return (map);
 }
 
-
-// TODO: fazer um gnl aqui a cada y e um split para cada x, com o split vou obter a height e a color
-
-// t_point	*map_read_data(t_point *points, int width, int height, int fd)
-void	*map_read_data(t_data *data, int fd)
+void	*map_read_data(t_data *data, int fd)// FIX: size
 {
 	int		x;
 	int		y;
@@ -56,14 +53,13 @@ void	*map_read_data(t_data *data, int fd)
 	buffer = NULL;
 	while (y <= (data->map->height / 2))
 	{
-		ft_printf("x=%d\n",x);
-		data->points[i].y = y;
-		buffer = get_next_line(fd);
+		buffer = get_next_line(fd);// FIX: 1b still reachable here by gnl->free_stash->substr
 		if (!buffer)
 			return (free_buffer(buffer));
 		while (x <= (data->map->width / 2))
 		{
 			set_point(data, i, x, buffer);
+			data->points[i].y = y;
 			x++;
 			i++;
 		}
@@ -95,10 +91,10 @@ void	parse_map(char *file_name)
 	map_fd = open(file_name, O_RDONLY);
 	data.map = &map_data;
 	data.points = points;
-	// map_read_data(points, map_data.height, map_data.width, map_fd);
 	map_read_data(&data, map_fd);
 	print_map(&data);
 	close(map_fd);
+	free(points);// WARNING:dont forget to free points
 }
 
 void	print_map(t_data *data)
@@ -114,8 +110,8 @@ void	print_map(t_data *data)
 	{
 		while (x < data->map->width)
 		{
-			ft_printf("(%d,%d,%d,%s) ",
-			 data->points[i].x, data->points[i].y, data->points[i].color);
+			ft_printf(" %d,%d,%d ",//,%s) ",
+			 data->points[i].x, data->points[i].y, data->points[i].z);//, data->points[i].color);
 			x++;
 			i++;
 			if (x == data->map->width)

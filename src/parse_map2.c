@@ -12,7 +12,7 @@
 
 #include "../incs/fdf.h"
 
-void	set_point(t_data *data, int i, int x, char *buffer)
+void	set_point(t_data *data, int i, int x, char *buffer)// FIX: size
 {
 	static char	**xline;
 	int			xi;
@@ -22,23 +22,24 @@ void	set_point(t_data *data, int i, int x, char *buffer)
 	{
 		xline = ft_split(buffer, ' ');
 		if (!xline)
-			exit (1);// HACK: need to free here
+			exit (1);// FIX: need to free here
 	}
-	ft_printf("xi=%d\n",xi);
 	data->points[i].x = x;
 	data->points[i].z = ft_atoi(xline[xi]);
-	if (ft_strchr(xline[xi], ','))
+	if (ft_strchr(xline[xi], ',') != NULL)
 	{
 		xline[xi] = ft_strchr(xline[xi], ',');
 		data->points[i].color = ft_strdup(xline[xi]);
 		if (!data->points[i].color)
-			exit (1); // HACK: need to free here
+			exit (1); // FIX: need to free here
 	}
-	ft_printf("x bef split=%d\n",x == (data->map->width / 2));
-	if (i == data->map->points_total)
-		free_split(xline);
 	else
+		data->points[i].color = NULL;
+	if (x == (data->map->width / 2))
+	{
+		free_split(xline);
 		xline = NULL;
+	}
 }
 
 void	*free_buffer(char *buffer)

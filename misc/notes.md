@@ -41,5 +41,7 @@ int main()
 
 and compile with:
 ```sh
-cc src/*.c libmlx.a libmlx_{LINUX/MAC}.a -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+# cc src/*.c libmlx.a libmlx_{LINUX/MAC}.a -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+# in 42 env below
+ccw src/*.c libmlx.a libmlx_Linux.a libft.a -Lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -I incs/ -g 
 ```
