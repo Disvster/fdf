@@ -6,14 +6,13 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 23:36:41 by manmaria          #+#    #+#             */
-/*   Updated: 2025/09/23 23:53:01 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/10/18 00:57:59 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
-#include "../libft/incs/libft.h"
+#include "../incs/fdf.h"
 
-typedef struct s_data
+typedef struct s_datas
 {
 	void	*img;
 	char	*addr;
@@ -21,9 +20,9 @@ typedef struct s_data
 	int		line_length;
 	int		endian;
 
-}				t_data;
+}				t_datas;
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+void	my_mlx_pixel_put(t_datas *data, int x, int y, int color)
 {
 	char	*dst;
 
@@ -35,7 +34,7 @@ int	main(void)
 {
 	void	*mlx;
 	void	*mlx_win;
-	t_data	img;
+	t_datas	img;
 
 	mlx = mlx_init(); //display init
 	if (!mlx)
