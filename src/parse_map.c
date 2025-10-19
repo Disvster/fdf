@@ -14,6 +14,36 @@
 
 void	print_map(t_data *data);
 
+static int	check_sep(char const c, char *sep)
+{
+	int	i;
+
+	i = 0;
+	while (*sep)
+	{
+		if (c == *sep)
+			return (1);
+		sep++;
+	}
+	return (0);
+}
+
+static size_t	count_words_fdf(char const *s, char *sep)
+{
+	size_t	cw;
+
+	cw = 0;
+	while (*s)
+	{
+		while (check_sep(*s, sep) && *s)
+			s++;
+		if (*s)
+			cw++;
+		while (!check_sep(*s, sep) && *s)
+			s++;
+	}
+	return (cw);
+}
 t_map	map_data_init(int fd)
 {
 	t_map	map;
@@ -24,14 +54,17 @@ t_map	map_data_init(int fd)
 	line = get_next_line(fd);
 	if (!line)
 		exit (1);// HACK:
-	map.width = count_words(line, ' ');
+	map.width = count_words_fdf(line, " \n");
 	while (line)
 	{
+		ft_printf("%s", line);
 		map.height++;
 		free(line);
 		line = get_next_line(fd);
 	}
 	free(line);
+	ft_printf("x = %d\n", map.width);// HACK: db
+	ft_printf("y = %d\n", map.height);// HACK: db
 	map.points_total = map.width * map.height;
 	return (map);
 }
@@ -54,7 +87,7 @@ void	*map_read_data(t_data *data, int fd)// FIX: size
 		buffer = get_next_line(fd);// FIX: 1b still reachable here by gnl->free_stash->substr
 		if (!buffer)
 			return (free_buffer(buffer)/*and data */);
-		while (x < (data->map->width / 2))
+		while (x <= (data->map->width / 2))
 		{
 			set_point(data, i, x, buffer);
 			data->points[i].y = y;

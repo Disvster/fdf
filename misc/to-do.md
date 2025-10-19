@@ -2,7 +2,7 @@
 
 ## 19/10/2025
 
-- [ ] .
+- [ ] fix libft makefile re-linking
 
 ## 17(18)/10/2025
 
