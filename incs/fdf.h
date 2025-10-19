@@ -42,7 +42,10 @@ typedef struct s_data
 	t_map	*map;
 }				t_data;
 
-//Map Parsing
+// Test Functions
+void	print_map(t_data *data);
+
+// Map Parsing
 t_map	map_data_init(int fd);
 void	*free_buffer(char *buffer);
 void	set_point(t_data *data, int i, int x, char *buffer);
