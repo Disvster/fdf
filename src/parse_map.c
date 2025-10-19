@@ -23,15 +23,18 @@ t_map	map_data_init(int fd)
 	map.height = 0;
 	line = get_next_line(fd);
 	if (!line)
-		exit (1);// HACK:
+		exit (1);// FIX:
 	map.width = count_words(line, ' ');
 	while (line)
 	{
+		ft_printf("%s", line);// HACK: db
 		map.height++;
 		free(line);
 		line = get_next_line(fd);
 	}
 	free(line);
+	ft_printf("x = %d\n", map.width);// HACK: db
+	ft_printf("y = %d\n", map.height);// HACK: db
 	map.points_total = map.width * map.height;
 	return (map);
 }
@@ -52,7 +55,7 @@ void	*map_read_data(t_data *data, int fd)// FIX: size
 	while (y < (data->map->height / 2))
 	{
 		buffer = get_next_line(fd);// FIX: 1b still reachable here by gnl->free_stash->substr
-		if (!buffer)
+		if (!buffer || ft_strcmp_pf(buffer,"\n"))
 			return (free_buffer(buffer)/*and data */);
 		while (x < (data->map->width / 2))
 		{

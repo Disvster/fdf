@@ -35,7 +35,8 @@ void	set_point(t_data *data, int i, int x, char *buffer)// FIX: size
 	}
 	else
 		data->points[i].color = NULL;
-	if (x == (data->map->width / 2))
+	// if (x == (data->map->width / 2))
+	if (x == (i - x))
 	{
 		free_split(xline);
 		xline = NULL;
