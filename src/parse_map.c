@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 00:43:35 by manmaria          #+#    #+#             */
-/*   Updated: 2025/10/21 22:28:50 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/10/21 23:53:01 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ void	*map_read_data(t_data *data, int fd)// FIX: size
 	x = -1 * (data->map->width / 2);
 	y = -1 * (data->map->height / 2);
 	buffer = NULL;
-	while (y < (data->map->height / 2))
+	while (y <= (data->map->height / 2))
 	{
-		buffer = get_next_line(fd);// FIX: 1b still reachable here by gnl->free_stash->substr
+		buffer = get_next_line(fd);
 		if (!buffer)
 			return (free_buffer(buffer)/*and data */);
 		while ((x + (data->map->width % 2 != 0)) < (data->map->width / 2))

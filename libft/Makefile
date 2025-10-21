@@ -41,7 +41,7 @@ define progress_bar
 endef
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g
 OBJ_DIR = obj/
 INC_DIR = incs/
 NAME = libft.a
