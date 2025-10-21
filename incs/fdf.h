@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 01:31:37 by manmaria          #+#    #+#             */
-/*   Updated: 2025/10/18 01:16:13 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/10/21 22:27:17 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,10 @@ typedef struct s_data
 // Test Functions
 void	print_map(t_data *data);
 
+// Split
+size_t	count_words_fdf(char const *s, char *sep);
+char	**ft_split_fdf(char const *s, char *c);
+
 // Map Parsing
 t_map	map_data_init(int fd);
 void	*free_buffer(char *buffer);
@@ -53,5 +57,6 @@ void	set_point(t_data *data, int i, int x, char *buffer);
 // t_point	*map_read_data(t_point *points, int width, int height, int fd);
 void	*map_read_data(t_data *data, int fd);
 void	parse_map(char *file_name);
+void free_points(t_data *data);
 
 #endif

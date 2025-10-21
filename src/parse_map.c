@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 00:43:35 by manmaria          #+#    #+#             */
-/*   Updated: 2025/10/18 03:40:05 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/10/21 22:28:50 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,7 @@
 
 void	print_map(t_data *data);
 
-static int	check_sep(char const c, char *sep)
-{
-	int	i;
 
-	i = 0;
-	while (*sep)
-	{
-		if (c == *sep)
-			return (1);
-		sep++;
-	}
-	return (0);
-}
-
-static size_t	count_words_fdf(char const *s, char *sep)
-{
-	size_t	cw;
-
-	cw = 0;
-	while (*s)
-	{
-		while (check_sep(*s, sep) && *s)
-			s++;
-		if (*s)
-			cw++;
-		while (!check_sep(*s, sep) && *s)
-			s++;
-	}
-	return (cw);
-}
 t_map	map_data_init(int fd)
 {
 	t_map	map;
@@ -64,6 +35,7 @@ t_map	map_data_init(int fd)
 	}
 	free(line);
 	ft_printf("x = %d\n", map.width);// HACK: db
+	ft_printf("limit = %d\n", map.width / 2);// HACK: db
 	ft_printf("y = %d\n", map.height);// HACK: db
 	map.points_total = map.width * map.height;
 	return (map);
@@ -87,7 +59,7 @@ void	*map_read_data(t_data *data, int fd)// FIX: size
 		buffer = get_next_line(fd);// FIX: 1b still reachable here by gnl->free_stash->substr
 		if (!buffer)
 			return (free_buffer(buffer)/*and data */);
-		while (x <= (data->map->width / 2))
+		while ((x + (data->map->width % 2 != 0)) < (data->map->width / 2))
 		{
 			set_point(data, i, x, buffer);
 			data->points[i].y = y;
@@ -125,7 +97,7 @@ void	parse_map(char *file_name)
 	map_read_data(&data, map_fd);
 	print_map(&data);
 	close(map_fd);
-	free(points);// WARNING:dont forget to free points
+	free_points(&data);// WARNING:dont forget to free points
 }
 
 int	main(int ac, char **av)
