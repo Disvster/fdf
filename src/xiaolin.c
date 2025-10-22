@@ -30,7 +30,12 @@ float	f_partof_number(float nb)
 	if (nb > 0)
 		return (nb - i_partof_number(nb));
 	else
-		return (- nb - i_partof_number(nb));
+		return (- nb + i_partof_number(nb));
+}
+
+float	rf_partof_number(float nb)
+{
+	return (1 - f_partof_number(nb));
 }
 
 #include <stdio.h>
@@ -40,5 +45,6 @@ int	main(void)
 
 	printf("i = %.2f\ni_partof_number(i) = %d\n", i, i_partof_number(i));
 	printf("f_partof_number(i) = %.2f\n", f_partof_number(i));
+	printf("rf_partof_number(i) = %.2f\n", rf_partof_number(i));
 	return (0);
 }
