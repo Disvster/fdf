@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 00:43:35 by manmaria          #+#    #+#             */
-/*   Updated: 2025/10/21 23:53:01 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/10/22 00:26:20 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	*map_read_data(t_data *data, int fd)// FIX: size
 	x = -1 * (data->map->width / 2);
 	y = -1 * (data->map->height / 2);
 	buffer = NULL;
-	while (y <= (data->map->height / 2))
+	while ((y + (data->map->height % 2 != 0)) <= (data->map->height / 2))
 	{
 		buffer = get_next_line(fd);
 		if (!buffer)
@@ -88,7 +88,7 @@ void	parse_map(char *file_name)
 	}
 	map_data = map_data_init(map_fd);
 	close(map_fd);
-	points = malloc(sizeof(t_point) * (map_data.points_total));
+	points = ft_calloc(sizeof(t_point), map_data.points_total);
 	if (!points)
 		return (write(2, "ERROR @ parse_map\n", 18), exit (1));// HACK: 
 	map_fd = open(file_name, O_RDONLY);

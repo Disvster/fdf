@@ -26,7 +26,7 @@ typedef struct s_point
 	int		x;
 	int		y;
 	int		z;
-	char	*color;
+	int		color;
 }				t_point;
 
 typedef struct s_map

@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 22:21:41 by manmaria          #+#    #+#             */
-/*   Updated: 2025/10/21 22:26:37 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/10/22 00:34:41 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static size_t	count_letters_fdf(char const *s, char *c, char **p_s)
 	size_t	letters;
 
 	letters = 0;
-	while (check_sep(*s, c) && *s)
+	while (!check_sep(*s, c) && *s)
 	{
 		letters++;
 		s++;
@@ -71,7 +71,7 @@ char	**ft_split_fdf(char const *s, char *c)
 	save = split;
 	while (*s)
 	{
-		while (!(check_sep(*s, c)) && *s)
+		while (check_sep(*s, c) && *s)
 			s++;
 		if (*s)
 		{
