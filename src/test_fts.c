@@ -23,7 +23,7 @@ void	print_map(t_data *data)
 		x = 0;
 		y++;
 	}
-	ft_printf("total nbr of points -> %d\n", data->map->points_total);
+	ft_printf("\ntotal nbr of points -> %d\n", data->map->points_total);
 	ft_printf("total nbr of coordinates set -> %d\n", i);
 }
 

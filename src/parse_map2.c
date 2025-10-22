@@ -28,9 +28,8 @@ void	set_point(t_data *data, int i, int x, char *buffer)// FIX: size
 	data->points[i].z = ft_atoi(xline[xi]);
 	if (ft_strchr(xline[xi], ',') != NULL)
 	{
-		ft_printf("xline + 1 = %s\n", ft_strchr(xline[xi], ',') + 3);// HACK: db
-		// xline[xi] = ft_strchr(xline[xi], ',') + 3;
-		data->points[i].color = ft_atoi_base(ft_strchr(xline[xi], ',') + 3, "0123456789ABCDEF");
+		data->points[i].color = ft_atoi_base
+			(ft_strchr(xline[xi], ',') + 3, "0123456789ABCDEF");
 		if (!data->points[i].color)
 			return ; // FIX: need to free here
 	}
@@ -41,6 +40,7 @@ void	set_point(t_data *data, int i, int x, char *buffer)// FIX: size
 	}
 }
 
+	// ft_printf("xline + 1 = %s\n", ft_strchr(xline[xi], ',') + 3);// HACK: d
 	// ft_printf("deu free\n");// HACK: db
 	// ft_printf("buffer = %s", buffer);// HACK: db
 	// ft_printf("xi = %d\n", xi);// HACK: db
