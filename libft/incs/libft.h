@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:06:18 by manmaria          #+#    #+#             */
-/*   Updated: 2025/07/23 17:51:38 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/10/22 01:02:37 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ typedef struct s_list
 }					t_list;
 
 int		ft_atoi(const char *nptr);
+int		ft_atoi_base(char *str, char *base);
+long	ft_atol(const char *nptr);
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
 int		ft_isalnum(int c);
