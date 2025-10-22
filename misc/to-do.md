@@ -2,7 +2,12 @@
 
 ## 21/10/2025
 
-- [ ] whatch xiaolin wu algo for drawing lines
+- [ ] understand xiaolin wu algo
+- [ ] understand how to use mlx to draw
+
+## 21/10/2025
+
+- [X] watch xiaolin wu algo for drawing lines
 
 ## 19/10/2025
 
