@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 00:43:35 by manmaria          #+#    #+#             */
-/*   Updated: 2025/10/22 00:26:20 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/10/22 22:46:59 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	*map_read_data(t_data *data, int fd)// FIX: size
 	return (data);
 }
 
-void	parse_map(char *file_name)
+t_data	parse_map(char *file_name)
 {
 	t_point	*points;
 	t_map	map_data;
@@ -89,21 +89,25 @@ void	parse_map(char *file_name)
 	map_data = map_data_init(map_fd);
 	close(map_fd);
 	points = ft_calloc(sizeof(t_point), map_data.points_total);
-	if (!points)
-		return (write(2, "ERROR @ parse_map\n", 18), exit (1));// HACK: db
+	// if (!points) //TODO: protect malloc here
+	// 	return (write(2, "ERROR @ parse_map\n", 18), NULL);// HACK: db
 	map_fd = open(file_name, O_RDONLY);
 	data.map = &map_data;
 	data.points = points;
 	map_read_data(&data, map_fd);
 	print_map(&data);
-	close(map_fd);
-	free_points(&data);// WARNING:dont forget to free points
+	close(map_fd);// TODO: close on error
+	return (data);
 }
 
 int	main(int ac, char **av)
 {
+	t_data data;
+
 	(void)ac;
-	parse_map(av[1]);
+	data = parse_map(av[1]);
+	free_points(&data);// WARNING:dont forget to free points
+	(void)data;
 }
 // passar map_size numa funcao exterior
 // na main{

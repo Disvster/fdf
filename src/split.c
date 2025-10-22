@@ -14,9 +14,6 @@
 
 static int	check_sep(char const c, char *sep)
 {
-	int	i;
-
-	i = 0;
 	while (*sep)
 	{
 		if (c == *sep)

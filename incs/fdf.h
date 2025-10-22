@@ -36,10 +36,20 @@ typedef struct s_map
 	int		points_total;
 }				t_map;
 
+typedef struct	s_img
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_img;
+
 typedef struct s_data
 {
 	t_point	*points;
 	t_map	*map;
+	t_img	*img;
 }				t_data;
 
 // Test Functions
@@ -56,7 +66,7 @@ void	set_point(t_data *data, int i, int x, char *buffer);
 // void	set_point(t_point *point, int x, int y, char *buffer);
 // t_point	*map_read_data(t_point *points, int width, int height, int fd);
 void	*map_read_data(t_data *data, int fd);
-void	parse_map(char *file_name);
-void free_points(t_data *data);
+t_data	parse_map(char *file_name);
+void	free_points(t_data *data);
 
 #endif
