@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 00:43:35 by manmaria          #+#    #+#             */
-/*   Updated: 2025/10/22 22:46:59 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/10/23 20:36:04 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ t_map	map_data_init(int fd)
 	map.points_total = map.width * map.height;
 	return (map);
 }
+	// ft_printf("x = %d\n", map.width);// HACK: db
+	// ft_printf("y = %d\n", map.height);// HACK: db
 	// ft_printf("%s", line);// HACK: db
 	// ft_printf("x = %d\n", map.width);// HACK: db
 	// ft_printf("limit = %d\n", map.width / 2);// HACK: db
@@ -51,15 +53,15 @@ void	*map_read_data(t_data *data, int fd)// FIX: size
 	if (!data)
 		return (NULL/*free_func(data)*/);// TODO: free data 
 	i = 0;
-	x = -1 * (data->map->width / 2);
-	y = -1 * (data->map->height / 2);
+	x = -1 * (data->map.width / 2);
+	y = -1 * (data->map.height / 2);
 	buffer = NULL;
-	while ((y + (data->map->height % 2 != 0)) <= (data->map->height / 2))
+	while (y <= ((data->map.height / 2) + (data->map.height % 2 != 0)))
 	{
 		buffer = get_next_line(fd);
 		if (!buffer)
-			return (free_buffer(buffer)/*and data */); //TODO: free data
-		while ((x + (data->map->width % 2 != 0)) < (data->map->width / 2))
+			return(free_buffer(buffer));//*and data */); //TODO: free data
+		while (x  < ((data->map.width / 2) + (data->map.width % 2 != 0)))
 		{
 			set_point(data, i, x, buffer);
 			data->points[i].y = y;
@@ -67,11 +69,13 @@ void	*map_read_data(t_data *data, int fd)// FIX: size
 			i++;
 		}
 		free_buffer(buffer);
-		x = -1 * (data->map->width / 2);
+		x = -1 * (data->map.width / 2);
 		y++;
 	}
 	return (data);
 }
+			// ft_printf("y = %d\n", data->points[i].y);// HACK: db
+	// ft_printf("total nbr of coordinates set -> %d\n", i);
 
 t_data	parse_map(char *file_name)
 {
@@ -92,23 +96,23 @@ t_data	parse_map(char *file_name)
 	// if (!points) //TODO: protect malloc here
 	// 	return (write(2, "ERROR @ parse_map\n", 18), NULL);// HACK: db
 	map_fd = open(file_name, O_RDONLY);
-	data.map = &map_data;
+	data.map = map_data;
 	data.points = points;
 	map_read_data(&data, map_fd);
-	print_map(&data);
+	// print_map(&data);
 	close(map_fd);// TODO: close on error
 	return (data);
 }
-
-int	main(int ac, char **av)
-{
-	t_data data;
-
-	(void)ac;
-	data = parse_map(av[1]);
-	free_points(&data);// WARNING:dont forget to free points
-	(void)data;
-}
+//
+// int	main(int ac, char **av)
+// {
+// 	t_data data;
+//
+// 	(void)ac;
+// 	data = parse_map(av[1]);
+// 	free_points(&data);// WARNING:dont forget to free points
+// 	(void)data;
+// }
 // passar map_size numa funcao exterior
 // na main{
 	// open(av[1], O_RDONLY);

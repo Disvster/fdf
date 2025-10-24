@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 22:40:06 by manmaria          #+#    #+#             */
-/*   Updated: 2025/10/22 00:41:20 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/10/23 20:21:17 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	set_point(t_data *data, int i, int x, char *buffer)// FIX: size
 	static char	**xline;
 	int			xi;
 
-	xi = (data->map->width / 2) + x;
+	xi = (data->map.width / 2) + x;
 	if (!xline)
 	{
 		xline = ft_split_fdf(buffer, " \n");
