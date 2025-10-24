@@ -24,8 +24,10 @@ void	init_view(t_data *data)
 
 void	project(t_data *data, t_point *points)
 {
-	points->display[0] = (int)((points->x - points->y) * cos(data->view.angle));
-	points->display[1] = (int)((points->x + points->y) * sin(data->view.angle) - points->z);
+	points->display[0] = abs((int)((points->x - points->y) * cos(data->view.angle)));
+	points->display[1] = abs((int)((points->x + points->y) * sin(data->view.angle) - points->z));
+	ft_printf("disp x = %d\n", points->display[0]);
+	ft_printf("disp y = %d\n", points->display[1]);
 }
 // x = (int)((point->world_3d[0] - point->world_3d[1])
 // 			* cos(data->view.angle))

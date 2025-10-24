@@ -99,7 +99,7 @@ t_data	parse_map(char *file_name)
 	data.map = map_data;
 	data.points = points;
 	map_read_data(&data, map_fd);
-	// print_map(&data);
+	print_map(&data);
 	close(map_fd);// TODO: close on error
 	return (data);
 }

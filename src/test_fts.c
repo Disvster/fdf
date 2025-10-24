@@ -13,8 +13,8 @@ void	print_map(t_data *data)
 	{
 		while (x < data->map.width)
 		{
-			ft_printf(" y%d,x%d,z%d,c%d ",
-			 data->points[i].y, data->points[i].x, data->points[i].z, data->points[i].color);
+			ft_printf(" x%d,y%d,z%d,c%d ",
+			 data->points[i].x, data->points[i].y, data->points[i].z, data->points[i].color);
 			x++;
 			i++;
 			if (x == data->map.width)

@@ -43,10 +43,10 @@ void	draw_line(t_data *data, t_img *img)
 			color = data->points[i].color;
 		else
 			color = 0x00FF0000;
-		my_mlx_pixel_put(img->img,
+		my_mlx_pixel_put(img,
 				   data->points[i].display[0],
 				   data->points[i].display[1],
-				   data->points[i].color);
+				   color);
 	}
 }
 
@@ -63,8 +63,8 @@ int	main(int ac, char **av)
 	mlx = mlx_init(); //display init
 	if (!mlx)
 		return (1);
-	mlx_win = mlx_new_window(mlx, 1200, 800, "FdF");
-	img.img = mlx_new_image(mlx, 1200, 800);
+	mlx_win = mlx_new_window(mlx, 500, 500, "FdF");
+	img.img = mlx_new_image(mlx, 500, 500);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 
 	transform(&data);
