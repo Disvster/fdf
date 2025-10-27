@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 01:31:37 by manmaria          #+#    #+#             */
-/*   Updated: 2025/10/23 20:18:50 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/10/26 23:56:50 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ typedef struct s_point
 	int		display[2];
 }				t_point;
 
-typedef struct s_disp
+typedef struct s_line
 {
-}				t_disp;
+}				t_line;
 
 typedef struct s_map
 {
@@ -90,5 +90,9 @@ void	free_points(t_data *data);
 void	init_view(t_data *data);
 void	project(t_data *data, t_point *points);
 void	transform(t_data *data);
+
+void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
+void	draw_line(int x0, int y0, int x1, int y1, t_data *data);
+void	draw_in_image(t_data *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 22:46:05 by manmaria          #+#    #+#             */
-/*   Updated: 2025/10/23 21:53:56 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/10/27 00:08:09 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,26 +30,6 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	draw_line(t_data *data, t_img *img)
-{
-	int	color;
-	int	i;
-
-	color = 0;
-	i = -1;
-	while (++i < data->map.points_total)
-	{
-		if (data->points[i].color != 0)
-			color = data->points[i].color;
-		else
-			color = 0x00FF0000;
-		my_mlx_pixel_put(img,
-				   data->points[i].display[0],
-				   data->points[i].display[1],
-				   color);
-	}
-}
-
 int	main(int ac, char **av)
 {
 	void	*mlx;
@@ -67,8 +47,9 @@ int	main(int ac, char **av)
 	img.img = mlx_new_image(mlx, 1000, 1000);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 
+	data.img = &img;
 	transform(&data);
-	draw_line(&data, &img);
+	draw_in_image(&data);
 
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	//destroy img and window
