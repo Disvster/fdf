@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/fdf.h"
+#include "incs/fdf.h"
 
 typedef struct s_datas
 {
@@ -22,7 +22,7 @@ typedef struct s_datas
 
 }				t_datas;
 
-void	my_mlx_pixel_put(t_datas *data, int x, int y, int color)
+void	myy_mlx_pixel_put(t_datas *data, int x, int y, int color)
 {
 	char	*dst;
 
@@ -42,7 +42,7 @@ int	main(void)
 	mlx_win = mlx_new_window(mlx, 192, 108, "Hello world!"); //window init
 	img.img = mlx_new_image(mlx, 192, 108);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-	my_mlx_pixel_put(&img, 5, 5, 0x00FF0000);
+	myy_mlx_pixel_put(&img, 5, 5, 0x00FF0000);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 40, 23);
 	mlx_loop(mlx);
 }
