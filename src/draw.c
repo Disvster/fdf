@@ -12,22 +12,8 @@
 
 #include "../incs/fdf.h"
 
-
-	// color = 0;
-	// i = -1;
-	// while (++i < data->map.points_total)
-	// {
-	// 	if (data->points[i].color != 0)
-	// 		color = data->points[i].color;
-	// 	else
-	// 		color = 0x00FF0000;
-	// 	my_mlx_pixel_put(img,
-	// 			   data->points[i].display[0],
-	// 			   data->points[i].display[1],
-	// 			   color);
-	// }
 // void	draw_line(int x0, int y0, int x1, int y1, t_data *data)
-// {
+// { //BRENHAM ALGO
 // 	int dx = abs(x1 - x0);
 // 	int dy = abs(y1 - y0);
 // 	int sx = (x0 < x1) ? 1 : -1;

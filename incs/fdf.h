@@ -20,6 +20,7 @@
 # include "../libft/incs/libft.h"
 # include "../minilibx-linux/mlx.h"
 # include <math.h>
+# include <float.h>
 # ifndef IMG_WIDTH 
 # define IMG_WIDTH 1000
 # endif
@@ -46,6 +47,8 @@ typedef struct s_point
 	int		z;
 	int		color;
 	int		display[2];
+	float	t_x;
+	float	t_y;
 }				t_point;
 
 typedef struct s_color
@@ -107,7 +110,8 @@ void	free_points(t_data *data);
 
 // Projection
 void	init_view(t_data *data);
-void	project(t_data *data, t_point *points);
+// void	project(t_data *data, t_point *points);
+void	project(t_data *data, t_point *points, float *min_x, float *min_y);
 void	transform(t_data *data);
 
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
