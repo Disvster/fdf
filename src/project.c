@@ -18,9 +18,9 @@ void	init_view(t_data *data)
 	data->view.beta = 0;
 	data->view.gamma = 0;
 	data->view.zoom = 25;
-	data->view.scale = 30.0;
+	data->view.scale = 20.0;
 	// data->view.angle = 0.523599;
-	data->view.angle = M_PI / 6;
+	data->view.angle = 0.523599;//;M_PI / 6;
 	data->view.off_x = 250;
 	data->view.off_y = 250;
 }

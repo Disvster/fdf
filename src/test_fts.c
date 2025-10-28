@@ -39,8 +39,8 @@ void	print_img(t_data *data)
 	{
 		while (x < data->map.width)
 		{
-			ft_printf(" y%d,x%d ",
-			 data->points[i].display[1], data->points[i].display[0]);
+			ft_printf(" x%d,y%d ",
+			 data->points[i].display[0], data->points[i].display[1]);
 			x++;
 			i++;
 			if (x == data->map.width)

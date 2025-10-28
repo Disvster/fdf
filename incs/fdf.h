@@ -17,10 +17,11 @@
 #  define BUFFER_SIZE	1024
 # endif
 
-# include "../libft/incs/libft.h"
-# include "../minilibx-linux/mlx.h"
+# include <stdio.h>
 # include <math.h>
 # include <float.h>
+# include "../libft/incs/libft.h"
+# include "../minilibx-linux/mlx.h"
 # ifndef IMG_WIDTH 
 # define IMG_WIDTH 1000
 # endif
@@ -63,7 +64,7 @@ typedef struct s_color
 	int		b0;
 	int		b1;
 	int		final;
-	int		lo_opa;
+	float	lo_opa;
 	float	hi_opa;
 	double	t;
 }				t_color;
@@ -125,6 +126,6 @@ int		i_partof_number(float nb);
 float	f_partof_number(float nb);
 float	rf_partof_number(float nb);
 t_color	init_t_color(t_point p0, t_point p1);
-int		get_pixel_color(int old_color, double intensity);
+int		get_pixel_color(int old_color, float intensity);
 
 #endif

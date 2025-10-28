@@ -12,7 +12,7 @@
 
 #include "../incs/fdf.h"
 
-int	get_pixel_color(int old_color, double intensity)
+int	get_pixel_color(int old_color, float intensity)
 {
 	int	r;
 	int	g;
@@ -46,6 +46,7 @@ t_color	init_t_color(t_point p0, t_point p1)
 	t_color	color;
 	
 	ft_bzero(&color, sizeof(t_color));
+	printf("p0.color = %d\np1.color = %d\n", p0.color, p0.color);
 	if (p0.color == 0)
 		p0.color = 16711680;
 	if (p1.color == 0)
@@ -84,10 +85,7 @@ int	i_partof_number(float nb)
 
 float	f_partof_number(float nb)
 {
-	if (nb > 0)
-		return (nb - i_partof_number(nb));
-	else
-		return (- nb + i_partof_number(nb));
+	return (ft_abs_float(nb - i_partof_number(nb)));
 }
 
 float	rf_partof_number(float nb)
