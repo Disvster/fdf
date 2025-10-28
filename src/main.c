@@ -16,14 +16,19 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
 	char	*dst;
 
-	if (x < 0 || y < 0 || x >= 1920 || y >= 1080)
+	if (x < 0 || y < 0)
 	{
 		ft_printf("merdou1\n");
 		return ;
 	}
-	if (!img || !img->addr)
+	if ( x >= IMG_WIDTH || y >= IMG_HEIGHT)
 	{
 		ft_printf("merdou2\n");
+		return ;
+	}
+	if (!img || !img->addr)
+	{
+		ft_printf("merdou3\n");
 		return ;
 	}
 	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
@@ -43,8 +48,8 @@ int	main(int ac, char **av)
 	mlx = mlx_init(); //display init
 	if (!mlx)
 		return (1);
-	mlx_win = mlx_new_window(mlx, 1000, 1000, "FdF");
-	img.img = mlx_new_image(mlx, 1000, 1000);
+	mlx_win = mlx_new_window(mlx, IMG_WIDTH, IMG_HEIGHT, "FdF");
+	img.img = mlx_new_image(mlx, IMG_WIDTH, IMG_HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 
 	data.img = &img;

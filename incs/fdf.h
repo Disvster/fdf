@@ -20,6 +20,12 @@
 # include "../libft/incs/libft.h"
 # include "../minilibx-linux/mlx.h"
 # include <math.h>
+# ifndef IMG_WIDTH 
+# define IMG_WIDTH 1000
+# endif
+# ifndef IMG_HEIGTH 
+# define IMG_HEIGHT 1000
+# endif
 
 typedef struct s_view
 {
@@ -42,9 +48,22 @@ typedef struct s_point
 	int		display[2];
 }				t_point;
 
-typedef struct s_line
+typedef struct s_color
 {
-}				t_line;
+	int		r;
+	int		r0;
+	int		r1;
+	int		g;
+	int		g0;
+	int		g1;
+	int		b;
+	int		b0;
+	int		b1;
+	int		final;
+	int		lo_opa;
+	float	hi_opa;
+	double	t;
+}				t_color;
 
 typedef struct s_map
 {
@@ -92,7 +111,16 @@ void	project(t_data *data, t_point *points);
 void	transform(t_data *data);
 
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
-void	draw_line(int x0, int y0, int x1, int y1, t_data *data);
+void	draw_line(t_point p0, t_point p1, t_data *data);
 void	draw_in_image(t_data *data);
+
+//Xiaolin Utils
+void	ft_swap(int *a, int *b);
+float	ft_abs_float(float nb);
+int		i_partof_number(float nb);
+float	f_partof_number(float nb);
+float	rf_partof_number(float nb);
+t_color	init_t_color(t_point p0, t_point p1);
+int		get_pixel_color(int old_color, double intensity);
 
 #endif

@@ -18,7 +18,7 @@ void	init_view(t_data *data)
 	data->view.beta = 0;
 	data->view.gamma = 0;
 	data->view.zoom = 25;
-	data->view.scale = 10.0;
+	data->view.scale = 20.0;
 	// data->view.angle = 0.523599;
 	data->view.angle = M_PI / 6;
 }
@@ -59,9 +59,9 @@ void	transform(t_data *data)
 		data->points[i].display[0] -= min_x;
 		data->points[i].display[1] -= min_y;
 		data->points[i].display[0] = (int)(data->points[i].display[0]
-		* data->view.scale) + 100;// NOTE: 100 HERE TO TEST
+		* data->view.scale + 200);// NOTE: 100 HERE TO TEST
 		data->points[i].display[1] = (int)(data->points[i].display[1]
-		* data->view.scale) + 100;// NOTE: 100 HERE TO TEST
+		* data->view.scale + 200);// NOTE: 100 HERE TO TEST
 	}
 	print_img(data);
 }
