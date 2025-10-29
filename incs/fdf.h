@@ -64,8 +64,8 @@ typedef struct s_color
 	int		b0;
 	int		b1;
 	int		final;
-	float	lo_opa;
-	float	hi_opa;
+	float	main_opa;
+	float	adja_opa;
 	double	t;
 }				t_color;
 

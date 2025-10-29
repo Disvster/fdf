@@ -12,11 +12,6 @@
 
 #include "../incs/fdf.h"
 
-// void	draw_line_bs(int x0, int y0, int x1, int y1, t_data *data)
-// { //BRENHAM ALGO
-//
-// }
-
 void	draw_line(t_point p0, t_point p1, t_data *data)
 {
 	double	dx;
@@ -56,12 +51,12 @@ void	draw_line(t_point p0, t_point p1, t_data *data)
 		gradient = 1;
 	x = x0;
 	intersect_y = y0;
-    if (dx == 0)//WARNING: check this
-    {
+	if (dx == 0)//WARNING: check this
+	{
 		int y_start = (y0 < y1) ? y0 : y1;
 		int y_end = (y0 < y1) ? y1 : y0;
-        for (int y = y_start; y <= y_end; y++)
-        {
+		for (int y = y_start; y <= y_end; y++)
+		{
 			color.t = (float)(y - y0) / (float)(y1 - y0);
 			color.r = color.r0 + color.t * (color.r1 - color.r0);
 			color.g = color.g0 + color.t * (color.g1 - color.g0);
@@ -71,14 +66,14 @@ void	draw_line(t_point p0, t_point p1, t_data *data)
 				my_mlx_pixel_put(data->img, y, x0, color.final);
 			else
 				my_mlx_pixel_put(data->img, x0, y, color.final);
-			}
-        return;
-    }
+		}
+		return ;
+	}
 	while (x <= x1)
 	{
 		y = i_partof_number(intersect_y);
-		color.hi_opa = rf_partof_number(intersect_y);
-		color.lo_opa = f_partof_number(intersect_y);
+		color.main_opa = rf_partof_number(intersect_y);
+		color.adja_opa = f_partof_number(intersect_y);
 		// if (steep)
 		// 	color.t = (float)(y - y0) / (float)(y1 - y0);
 		// else
@@ -91,19 +86,19 @@ void	draw_line(t_point p0, t_point p1, t_data *data)
 		{
 			if (y >= 0 && y < IMG_WIDTH && x >= 0 && x < IMG_HEIGHT)
 				my_mlx_pixel_put(data->img, y, x,
-						get_pixel_color(color.final, color.hi_opa));
+						get_pixel_color(color.final, color.main_opa));
 			if (y + 1 >= 0 && y + 1 < IMG_WIDTH && x >= 0 && x < IMG_HEIGHT)
 				my_mlx_pixel_put(data->img, y + 1, x,
-						get_pixel_color(color.final, color.lo_opa));
+						get_pixel_color(color.final, color.adja_opa));
 		}
 		else
 		{
 			if (x >= 0 && x < IMG_WIDTH && y >= 0 && y < IMG_HEIGHT)
 				my_mlx_pixel_put(data->img, x, y,
-						get_pixel_color(color.final, color.hi_opa));
+						get_pixel_color(color.final, color.main_opa));
 			if (x >= 0 && x < IMG_WIDTH && y + 1 >= 0 && y + 1 < IMG_HEIGHT)
 				my_mlx_pixel_put(data->img, x, y + 1,
-						get_pixel_color(color.final, color.lo_opa));
+						get_pixel_color(color.final, color.adja_opa));
 		}
 		intersect_y += gradient;
 		x++;
