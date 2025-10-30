@@ -85,6 +85,21 @@ typedef struct s_img
 	int		endian;
 }				t_img;
 
+typedef struct s_line
+{
+	float	delta_x;
+	float	delta_y;
+	float	gradient;
+	float	intersect_y;
+	int		x;
+	int		y;
+	int		x0;
+	int		x1;
+	int		y0;
+	int		y1;
+    int		steep;
+}				t_line;
+
 typedef struct s_data
 {
 	t_view	view;
@@ -116,16 +131,16 @@ void	project(t_data *data, t_point *points, float *min_x, float *min_y);
 void	transform(t_data *data);
 
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
-void	draw_line(t_point p0, t_point p1, t_data *data);
+void	draw_line(t_point *p0, t_point *p1, t_data *data);
 void	draw_in_image(t_data *data);
 
 //Xiaolin Utils
 void	ft_swap(int *a, int *b);
-float	ft_abs_float(float nb);
+float	ft_abs_fl(float nb);
 int		i_partof_number(float nb);
 float	f_partof_number(float nb);
 float	rf_partof_number(float nb);
-t_color	init_t_color(t_point p0, t_point p1);
+t_color	init_t_color(t_point *p0, t_point *p1);
 int		get_pixel_color(int old_color, float intensity);
 
 #endif

@@ -41,23 +41,23 @@ int	get_pixel_color(int old_color, float intensity)
 	return (new_color);
 }
 
-t_color	init_t_color(t_point p0, t_point p1)
+// printf("p0.color = %d\np1.color = %d\n", p0.color, p0.color);// HACK: 
+t_color	init_t_color(t_point *p0, t_point *p1)
 {
 	t_color	color;
 	
 	ft_bzero(&color, sizeof(t_color));
-	printf("p0.color = %d\np1.color = %d\n", p0.color, p0.color);
-	if (p0.color == 0)
-		p0.color = 16711680;
-	if (p1.color == 0)
-		p1.color = 16711680;
-	color.r0 = (p0.color >> 16) & 0xFF;
-	color.g0 = (p0.color >> 8) & 0xFF;
-	color.b0 = p0.color & 0xFF;
+	if (p0->color == 0)
+		p0->color = 16711680;
+	if (p1->color == 0)
+		p1->color = 16711680;
+	color.r0 = (p0->color >> 16) & 0xFF;
+	color.g0 = (p0->color >> 8) & 0xFF;
+	color.b0 = p0->color & 0xFF;
 
-	color.r1 = (p1.color >> 16) & 0xFF;
-	color.g1 = (p1.color >> 8) & 0xFF;
-	color.b1 = p1.color & 0xFF;
+	color.r1 = (p1->color >> 16) & 0xFF;
+	color.g1 = (p1->color >> 8) & 0xFF;
+	color.b1 = p1->color & 0xFF;
 	return (color);
 }
 
@@ -70,7 +70,7 @@ void	ft_swap(int *a, int *b)
 	*b = tmp;
 }
 
-float ft_abs_float(float nb)
+float ft_abs_fl(float nb)
 {
 	if (nb >= 0)
 		return (nb);
@@ -85,7 +85,7 @@ int	i_partof_number(float nb)
 
 float	f_partof_number(float nb)
 {
-	return (ft_abs_float(nb - i_partof_number(nb)));
+	return (ft_abs_fl(nb - i_partof_number(nb)));
 }
 
 float	rf_partof_number(float nb)

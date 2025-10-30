@@ -14,6 +14,7 @@
 
 void	draw_line(t_point p0, t_point p1, t_data *data)
 {
+	//{ these are in line struct
 	double	dx;
 	double	dy;
 	double	gradient;
@@ -25,23 +26,31 @@ void	draw_line(t_point p0, t_point p1, t_data *data)
 	int		x1;
 	int		y0;
 	int		y1;
+	//}
 	t_color	color;
 
 	x0 = p0.display[0];
 	x1 = p1.display[0];
 	y0 = p0.display[1];
 	y1 = p1.display[1];
-	steep = ft_abs_float(y1 - y0) > ft_abs_float(x1 - x0);
+
+	//	HACK: db Print original coordinates
+	printf("Original: (%d,%d) -> (%d,%d)\n", x0, y0, x1, y1);
+
+	steep = ft_abs_fl(y1 - y0) > ft_abs_fl(x1 - x0);
+	printf("Steep: %d\n", steep);// HACK: db
     if (steep)
     {
         ft_swap(&x0, &y0);
         ft_swap(&x1, &y1);
+		printf("After steep swap: (%d,%d) -> (%d,%d)\n", x0, y0, x1, y1);// HACK: db
     }
     if (x0 > x1)
     {
         ft_swap(&x0, &x1);
         ft_swap(&y0, &y1);
         ft_swap(&p0.color, &p1.color);
+		printf("After x-order swap: (%d,%d) -> (%d,%d)\n", x0, y0, x1, y1);// HACK: db
 	}
 	color = init_t_color(p0, p1);
 	dx = x1 - x0;
@@ -49,10 +58,13 @@ void	draw_line(t_point p0, t_point p1, t_data *data)
 	gradient = dy / dx;
 	if (dx == 0.0)
 		gradient = 1;
+	printf("dx=%.2f, dy=%.2f, gradient=%.2f\n", dx, dy, gradient);// HACK: db
 	x = x0;
 	intersect_y = y0;
+
 	if (dx == 0)//WARNING: check this
 	{
+		printf("Vertical line detected\n");// HACK: db
 		int y_start = (y0 < y1) ? y0 : y1;
 		int y_end = (y0 < y1) ? y1 : y0;
 		for (int y = y_start; y <= y_end; y++)
@@ -69,6 +81,8 @@ void	draw_line(t_point p0, t_point p1, t_data *data)
 		}
 		return ;
 	}
+
+	int pixel_count = 0;// HACK: db
 	while (x <= x1)
 	{
 		y = i_partof_number(intersect_y);
@@ -82,6 +96,9 @@ void	draw_line(t_point p0, t_point p1, t_data *data)
 		color.g = color.g0 + color.t * (color.g1 - color.g0);
 		color.b = color.b0 + color.t * (color.b1 - color.b0);
 		color.final = (color.r << 16) | (color.g << 8) | color.b;
+		if (pixel_count < 3)  // HACK: db printf first 3 pixels
+			printf("  x=%d, y=%d, intersect_y=%.2f, hi_opa=%.2f, lo_opa=%.2f\n", 
+				   x, y, intersect_y, color.main_opa, color.adja_opa);
 		if (steep)
 		{
 			if (y >= 0 && y < IMG_WIDTH && x >= 0 && x < IMG_HEIGHT)
@@ -102,7 +119,9 @@ void	draw_line(t_point p0, t_point p1, t_data *data)
 		}
 		intersect_y += gradient;
 		x++;
+		pixel_count++;// HACK: db
 	}
+	printf("Drew %d pixels\n\n", pixel_count);// HACK: db
 }
 
 void	draw_in_image(t_data *data)
