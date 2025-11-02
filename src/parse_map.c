@@ -14,7 +14,6 @@
 
 void	print_map(t_data *data);
 
-
 t_map	map_data_init(int fd)
 {
 	t_map	map;

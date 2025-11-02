@@ -28,6 +28,7 @@ void	set_point(t_data *data, int i, int x, char *buffer)// FIX: size
 	data->points[i].z = ft_atoi(xline[xi]);
 	if (ft_strchr(xline[xi], ',') != NULL)
 	{
+		ft_printf("color = %s\n", ft_strchr(xline[xi], ','));
 		data->points[i].color = ft_atoi_base
 			(ft_strchr(xline[xi], ',') + 3, "0123456789ABCDEF");
 		if (!data->points[i].color)

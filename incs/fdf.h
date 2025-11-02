@@ -131,7 +131,8 @@ void	project(t_data *data, t_point *points, float *min_x, float *min_y);
 void	transform(t_data *data);
 
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
-void	draw_line(t_point *p0, t_point *p1, t_data *data);
+void	draw_line(t_point p0, t_point p1, t_data *data);
+// void	draw_line(t_point *p0, t_point *p1, t_data *data);
 void	draw_in_image(t_data *data);
 
 //Xiaolin Utils

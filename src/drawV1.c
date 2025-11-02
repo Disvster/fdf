@@ -52,7 +52,7 @@ void	draw_line(t_point p0, t_point p1, t_data *data)
         ft_swap(&p0.color, &p1.color);
 		printf("After x-order swap: (%d,%d) -> (%d,%d)\n", x0, y0, x1, y1);// HACK: db
 	}
-	color = init_t_color(p0, p1);
+	color = init_t_color(&p0, &p1);
 	dx = x1 - x0;
 	dy = y1 - y0;
 	gradient = dy / dx;
