@@ -3,14 +3,14 @@
 ## 03/11/2025
 
 * ASAP - max prio:
-- [ ] check norm on everything
+- [X] correct norm on everything
 - [ ] code is not opening every map
 - [ ] segfault on pylone
 - [ ] must center and resize every map
-- [ ] **TRY** to apply xiaowu vertice on lines
+- ~**TRY** to apply xiaowu vertice on lines~
 - [ ] close program safely
 - [ ] set up hooks
-- [ ] exit the map parsing safely
+- [X] exit the map parsing safely
 
 IF I HAVE TIME:
 - [ ] apply rotations
