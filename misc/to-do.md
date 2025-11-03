@@ -2,11 +2,11 @@
 
 ## 03/11/2025
 
-* ASAP max prio:
+* ASAP - max prio:
+- [ ] check norm on everything
 - [ ] code is not opening every map
 - [ ] segfault on pylone
 - [ ] must center and resize every map
-- [ ] check norm on everything
 - [ ] **TRY** to apply xiaowu vertice on lines
 - [ ] close program safely
 - [ ] set up hooks
