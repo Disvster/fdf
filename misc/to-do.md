@@ -1,9 +1,25 @@
 # to-do
 
+## 03/11/2025
+
+* ASAP max prio:
+- [ ] code is not opening every map
+- [ ] segfault on pylone
+- [ ] must center and resize every map
+- [ ] check norm on everything
+- [ ] **TRY** to apply xiaowu vertice on lines
+- [ ] close program safely
+- [ ] set up hooks
+- [ ] exit the map parsing safely
+
+IF I HAVE TIME:
+- [ ] apply rotations
+- [ ] change colours
+
 ## 21/10/2025
 
-- [ ] understand xiaolin wu algo
-- [ ] understand how to use mlx to draw
+- [X] understand xiaolin wu algo
+- [X] understand how to use mlx to draw
 
 ## 21/10/2025
 
@@ -15,9 +31,9 @@
 
 ## 17(18)/10/2025
 
-- [o] parsed map to points into `t_point *data` array
+- [X] parsed map to points into `t_point *data` array
     - [X] 1 byte still reachable from gnl - fixed by calling gnl one more time
-    - [ ] fix size of funcs
+    - [X] fix size of funcs
 
-- [ ] unite points
-- [ ] check why and how I should use math equations
+- [X] unite points
+- [X] check why and how I should use math equations
