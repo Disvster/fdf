@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 01:31:37 by manmaria          #+#    #+#             */
-/*   Updated: 2025/10/26 23:56:50 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/11/03 00:02:02 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE	1024
+# endif
+
+# ifndef BASE_COLOR
+#  define BASE_COLOR	16711680
 # endif
 
 # include <stdio.h>
@@ -66,7 +70,7 @@ typedef struct s_color
 	int		final;
 	float	main_opa;
 	float	adja_opa;
-	double	t;
+	float	inter;
 }				t_color;
 
 typedef struct s_map
@@ -131,8 +135,8 @@ void	project(t_data *data, t_point *points, float *min_x, float *min_y);
 void	transform(t_data *data);
 
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
-void	draw_line(t_point p0, t_point p1, t_data *data);
-// void	draw_line(t_point *p0, t_point *p1, t_data *data);
+// void	draw_line(t_point p0, t_point p1, t_data *data);// HACK: v1
+void	draw_line(t_point *p0, t_point *p1, t_data *data);
 void	draw_in_image(t_data *data);
 
 //Xiaolin Utils
@@ -141,7 +145,13 @@ float	ft_abs_fl(float nb);
 int		i_partof_number(float nb);
 float	f_partof_number(float nb);
 float	rf_partof_number(float nb);
+float	interpolate(int n, int start, int end);
+
+// Colors
+void	set_points_color(t_data *data);
+int		set_height_color(float norm);
+int		set_pixel_opacity(int old_color, float intensity);
+int		get_pixel_color(t_color *color);
 t_color	init_t_color(t_point *p0, t_point *p1);
-int		get_pixel_color(int old_color, float intensity);
 
 #endif

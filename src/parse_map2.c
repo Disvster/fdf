@@ -6,13 +6,13 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 22:40:06 by manmaria          #+#    #+#             */
-/*   Updated: 2025/10/23 20:21:17 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/11/02 18:00:43 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/fdf.h"
 
-void	set_point(t_data *data, int i, int x, char *buffer)// FIX: size
+void	set_point(t_data *data, int i, int x, char *buffer)
 {
 	static char	**xline;
 	int			xi;
@@ -28,7 +28,6 @@ void	set_point(t_data *data, int i, int x, char *buffer)// FIX: size
 	data->points[i].z = ft_atoi(xline[xi]);
 	if (ft_strchr(xline[xi], ',') != NULL)
 	{
-		ft_printf("color = %s\n", ft_strchr(xline[xi], ','));
 		data->points[i].color = ft_atoi_base
 			(ft_strchr(xline[xi], ',') + 3, "0123456789ABCDEF");
 		if (!data->points[i].color)

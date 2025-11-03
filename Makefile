@@ -2,7 +2,8 @@ SHELL :=/bin/bash
 
 # FdF
 SRC_DIR = src/
-SRC =	src/drawV1.c \
+SRC =	src/colors.c \
+		src/draw.c \
 		src/main.c \
 		src/parse_map.c \
 		src/parse_map2.c \

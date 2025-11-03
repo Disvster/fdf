@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   drawV1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 23:35:13 by manmaria          #+#    #+#             */
-/*   Updated: 2025/10/27 00:01:23 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/11/03 00:00:51 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,10 @@ void	draw_line(t_point p0, t_point p1, t_data *data)
 		int y_end = (y0 < y1) ? y1 : y0;
 		for (int y = y_start; y <= y_end; y++)
 		{
-			color.t = (float)(y - y0) / (float)(y1 - y0);
-			color.r = color.r0 + color.t * (color.r1 - color.r0);
-			color.g = color.g0 + color.t * (color.g1 - color.g0);
-			color.b = color.b0 + color.t * (color.b1 - color.b0);
+			color.inter = (float)(y - y0) / (float)(y1 - y0);
+			color.r = color.r0 + color.inter * (color.r1 - color.r0);
+			color.g = color.g0 + color.inter * (color.g1 - color.g0);
+			color.b = color.b0 + color.inter * (color.b1 - color.b0);
 			color.final = (color.r << 16) | (color.g << 8) | color.b;
 			if (steep)
 				my_mlx_pixel_put(data->img, y, x0, color.final);
@@ -85,37 +85,41 @@ void	draw_line(t_point p0, t_point p1, t_data *data)
 	int pixel_count = 0;// HACK: db
 	while (x <= x1)
 	{
-		y = i_partof_number(intersect_y);
-		color.main_opa = rf_partof_number(intersect_y);
-		color.adja_opa = f_partof_number(intersect_y);
+		y = i_partof_number(intersect_y);//FIX:ed
+		color.main_opa = rf_partof_number(intersect_y);//FIX:ed
+		color.adja_opa = f_partof_number(intersect_y);//FIX:ed
 		// if (steep)
 		// 	color.t = (float)(y - y0) / (float)(y1 - y0);
 		// else
-		color.t = (float)(x - x0) / (float)(x1 - x0);
-		color.r = color.r0 + color.t * (color.r1 - color.r0);
-		color.g = color.g0 + color.t * (color.g1 - color.g0);
-		color.b = color.b0 + color.t * (color.b1 - color.b0);
+		//{FIX:ed
+		color.inter = (float)(x - x0) / (float)(x1 - x0);
+		color.r = color.r0 + color.inter * (color.r1 - color.r0);
+		color.g = color.g0 + color.inter * (color.g1 - color.g0);
+		color.b = color.b0 + color.inter * (color.b1 - color.b0);
 		color.final = (color.r << 16) | (color.g << 8) | color.b;
+		//}FIX:ed
+
 		if (pixel_count < 3)  // HACK: db printf first 3 pixels
 			printf("  x=%d, y=%d, intersect_y=%.2f, hi_opa=%.2f, lo_opa=%.2f\n", 
 				   x, y, intersect_y, color.main_opa, color.adja_opa);
+
 		if (steep)
 		{
 			if (y >= 0 && y < IMG_WIDTH && x >= 0 && x < IMG_HEIGHT)
 				my_mlx_pixel_put(data->img, y, x,
-						get_pixel_color(color.final, color.main_opa));
+						set_pixel_opacity(color.final, color.main_opa));
 			if (y + 1 >= 0 && y + 1 < IMG_WIDTH && x >= 0 && x < IMG_HEIGHT)
 				my_mlx_pixel_put(data->img, y + 1, x,
-						get_pixel_color(color.final, color.adja_opa));
+						set_pixel_opacity(color.final, color.adja_opa));
 		}
 		else
 		{
 			if (x >= 0 && x < IMG_WIDTH && y >= 0 && y < IMG_HEIGHT)
 				my_mlx_pixel_put(data->img, x, y,
-						get_pixel_color(color.final, color.main_opa));
+						set_pixel_opacity(color.final, color.main_opa));
 			if (x >= 0 && x < IMG_WIDTH && y + 1 >= 0 && y + 1 < IMG_HEIGHT)
 				my_mlx_pixel_put(data->img, x, y + 1,
-						get_pixel_color(color.final, color.adja_opa));
+						set_pixel_opacity(color.final, color.adja_opa));
 		}
 		intersect_y += gradient;
 		x++;

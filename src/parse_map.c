@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 00:43:35 by manmaria          #+#    #+#             */
-/*   Updated: 2025/10/23 20:36:04 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/11/02 20:26:16 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ t_data	parse_map(char *file_name)
 	data.map = map_data;
 	data.points = points;
 	map_read_data(&data, map_fd);
+	set_points_color(&data);
 	print_map(&data);// HACK: db
 	close(map_fd);// TODO: close on error
 	return (data);
