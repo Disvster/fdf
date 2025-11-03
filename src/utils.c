@@ -23,3 +23,17 @@ int	error_exit(int fd)
 	}
 	return (1);
 }
+
+void	free_function(char **buffer, t_data *data)
+{
+	if (buffer && *buffer)
+	{
+		free(*buffer);
+		*buffer = NULL;
+	}
+	if (data && data->points)
+	{
+		free(data->points);
+		data->points = NULL;
+	}
+}

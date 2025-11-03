@@ -44,6 +44,8 @@ int	main(int ac, char **av)
 
 	(void)ac;
 	data = parse_map(av[1]);
+	
+	print_map(&data);// HACK: db
 
 	mlx = mlx_init(); //display init
 	if (!mlx)

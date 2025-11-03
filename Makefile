@@ -6,10 +6,10 @@ SRC =	src/colors.c \
 		src/draw.c \
 		src/main.c \
 		src/parse_map.c \
-		src/parse_map2.c \
 		src/project.c \
 		src/split.c \
 		src/test_fts.c \
+		src/utils.c \
 		src/xiaolin.c
 SRCS = $(SRC)
 

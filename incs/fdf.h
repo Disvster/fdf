@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/** ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
@@ -109,6 +109,7 @@ typedef struct s_data
 	t_point	*points;
 	t_map	map;
 	t_img	*img;
+	int		fd;
 }				t_data;
 
 // Test Functions
@@ -127,7 +128,7 @@ t_data	parse_map(char *file_name);
 
 // Free funcs
 void	free_function(char **buffer, t_data *data);
-int	error_exit(int fd);
+int		error_exit(int fd);
 
 // Projection
 void	init_view(t_data *data);
