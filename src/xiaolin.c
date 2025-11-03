@@ -12,6 +12,23 @@
 
 #include "../incs/fdf.h"
 
+void	prep_line_coords(t_line *line, t_point *p0, t_point *p1)
+{
+	if (line->x0 == line->x1)
+		return ;
+	if (line->steep)
+	{
+		ft_swap(&line->x0, &line->y0);
+		ft_swap(&line->x1, &line->y1);
+	}
+	if (line->x0 > line->x1)
+	{
+		ft_swap(&line->x0, &line->x1);
+		ft_swap(&line->y0, &line->y1);
+		ft_swap(&p0->color, &p1->color);
+	}
+}
+
 float	ft_abs_fl(float nb)
 {
 	if (nb >= 0)
@@ -33,9 +50,4 @@ float	f_partof_number(float nb)
 float	rf_partof_number(float nb)
 {
 	return (1 - f_partof_number(nb));
-}
-
-float	interpl(int n, int start, int end)
-{
-	return ((float)(n - start) / (float)(end - start));
 }

@@ -38,6 +38,13 @@ t_data	parse_map(char *file_name)
 	return (data);
 }
 
+static void	init_map_read(int *i, int *x, int *y, t_map *map)
+{
+	*i = 0;
+	*x = -1 * (map->width / 2);
+	*y = -1 * (map->height / 2);
+}
+
 void	map_read_data(t_data *data, int fd)
 {
 	int		x;
@@ -47,10 +54,7 @@ void	map_read_data(t_data *data, int fd)
 
 	if (!data)
 		return (free_function(NULL, data), exit(error_exit(fd)));
-	i = 0;
-	x = -1 * (data->map.width / 2);
-	y = -1 * (data->map.height / 2);
-	buffer = NULL;
+	init_map_read(&i, &x, &y, &data->map);
 	while (y <= ((data->map.height / 2) + (data->map.height % 2 != 0)))
 	{
 		buffer = get_next_line(fd);

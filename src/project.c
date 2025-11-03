@@ -19,11 +19,12 @@ void	init_view(t_data *data)
 	data->view.gamma = 0;
 	data->view.zoom = 25;
 	data->view.scale = 20.0;
-	// data->view.angle = 0.523599;
-	data->view.angle = 0.523599;//;M_PI / 6;
+	data->view.angle = 0.523599;
 	data->view.off_x = 250;
 	data->view.off_y = 250;
 }
+	// data->view.angle = M_PI / 6;
+	// data->view.angle = 0.523599;
 
 void	project(t_data *data, t_point *points, float *min_x, float *min_y)
 {
@@ -33,7 +34,6 @@ void	project(t_data *data, t_point *points, float *min_x, float *min_y)
 		*min_x = points->t_x;
 	if (points->t_y < *min_y)
 		*min_y = points->t_y;
-
 }
 
 void	transform(t_data *data)
@@ -55,21 +55,21 @@ void	transform(t_data *data)
 		data->points[i].t_x -= min_x;
 		data->points[i].t_y -= min_y;
 		data->points[i].display[0] = (int)(data->points[i].t_x
-			* data->view.scale + data->view.off_x);
+				* data->view.scale + data->view.off_x);
 		data->points[i].display[1] = (int)(data->points[i].t_y
-			* data->view.scale + data->view.off_y);
+				* data->view.scale + data->view.off_y);
 	}
 	print_img(data);// HACK: db
 }
 
-		// if (data->points[i].display[0] < min_x)
-		// 	min_x = data->points[i].display[0];
-		// if (data->points[i].display[1] < min_y)
-		// 	min_y = data->points[i].display[1];
-		// data->points[i].display[0] -= min_x;
-		// data->points[i].display[1] -= min_y;
-		// data->points[i].display[0] = (int)(px * data->view.scale + data->view.off_x);
-		// data->points[i].display[1] = (int)(py * data->view.scale + data->view.off_y);
+// if (data->points[i].display[0] < min_x)
+// 	min_x = data->points[i].display[0];
+// if (data->points[i].display[1] < min_y)
+// 	min_y = data->points[i].display[1];
+// data->points[i].display[0] -= min_x;
+// data->points[i].display[1] -= min_y;
+// data->points[i].display[0] = (int)(px * data->view.scale + data->view.off_x);
+// data->points[i].display[1] = (int)(py * data->view.scale + data->view.off_y);
 //
 // x = (int)((point->world_3d[0] - point->world_3d[1])
 // 			* cos(data->view.angle))
@@ -80,8 +80,8 @@ void	transform(t_data *data)
 // 	double	px;
 // 	double	py;
 //
-// 	// points->display[0] = (int)(points->x + cos(data->view.angle) * points->z);
-// 	// points->display[1] = (int)(points->x + sin(data->view.angle) * points->z);
+// points->display[0] = (int)(points->x + cos(data->view.angle) * points->z);
+// points->display[1] = (int)(points->x + sin(data->view.angle) * points->z);
 // 	px = ((points->x - points->y) * cos(data->view.angle));
 // 	py = ((points->x + points->y) * sin(data->view.angle) - points->z);
 // 	points->display[0] = (int)(px * data->view.scale + data->view.off_x);

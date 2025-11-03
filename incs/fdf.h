@@ -132,16 +132,16 @@ int		error_exit(int fd);
 
 // Projection
 void	init_view(t_data *data);
-// void	project(t_data *data, t_point *points);
 void	project(t_data *data, t_point *points, float *min_x, float *min_y);
 void	transform(t_data *data);
 
+// Draw Functions
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 void	render_map(t_data *data);
 void	draw_wuaa_line(t_point p0, t_point p1, t_data *data);
 void	draw_wuaa_pixels(t_line *line, t_color *color, t_data *data);
-void	prep_line_coords(t_line *line, t_point *p0, t_point *p1);
 void	draw_vertical_line(t_line *line, t_color *color, t_data *data);
+void	prep_line_coords(t_line *line, t_point *p0, t_point *p1);
 
 //Xiaolin Utils
 void	ft_swap(int *a, int *b);

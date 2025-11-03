@@ -37,3 +37,8 @@ void	free_function(char **buffer, t_data *data)
 		data->points = NULL;
 	}
 }
+
+float	interpl(int n, int start, int end)
+{
+	return ((float)(n - start) / (float)(end - start));
+}

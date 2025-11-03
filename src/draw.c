@@ -12,16 +12,48 @@
 
 #include "../incs/fdf.h"
 
+void	render_map(t_data *data)
+{
+	int	i;
+	int	row;
+	int	col;
+	int	width;
+
+	if (data == NULL || data->map.width == 0 || data->map.height == 0)
+		return ;
+	row = 0;
+	width = data->map.width;
+	while (row < data->map.height)
+	{
+		col = 0;
+		while (col < width)
+		{
+			i = row * width + col;
+			if (col + 1 < width)
+				draw_wuaa_line(data->points[i], data->points[i + 1], data);
+			if (row + 1 < data->map.height)
+				draw_wuaa_line(data->points[i], data->points[i + width], data);
+			col++;
+		}
+		row++;
+	}
+}
+
+static void	init_xiaowu_line_coords(t_line *line, t_point *p0, t_point *p1)
+{
+	line->x0 = p0->display[0];
+	line->x1 = p1->display[0];
+	line->y0 = p0->display[1];
+	line->y1 = p1->display[1];
+}
+
 void	draw_wuaa_line(t_point p0, t_point p1, t_data *data)
 {
 	t_color	color;
 	t_line	line;
 
 	ft_bzero(&line, sizeof(t_line));
-	line.x0 = p0.display[0];
-	line.x1 = p1.display[0];
-	line.y0 = p0.display[1];
-	line.y1 = p1.display[1];
+	init_xiaowu_line_coords(&line, &p0, &p1);
 	line.steep = ft_abs_fl(line.y1 - line.y0) > ft_abs_fl(line.x1 - line.x0);
 	prep_line_coords(&line, &p0, &p1);
 	color = init_t_color(&p0, &p1);
@@ -91,48 +123,4 @@ void	draw_vertical_line(t_line *line, t_color *color, t_data *data)
 		y++;
 	}
 	return ;
-}
-
-void	prep_line_coords(t_line *line, t_point *p0, t_point *p1)
-{
-	if (line->x0 == line->x1)
-		return ;
-	if (line->steep)
-	{
-		ft_swap(&line->x0, &line->y0);
-		ft_swap(&line->x1, &line->y1);
-	}
-	if (line->x0 > line->x1)
-	{
-		ft_swap(&line->x0, &line->x1);
-		ft_swap(&line->y0, &line->y1);
-		ft_swap(&p0->color, &p1->color);
-	}
-}
-
-void	render_map(t_data *data)
-{
-	int	i;
-	int	row;
-	int	col;
-	int	width;
-
-	if (data == NULL || data->map.width == 0 || data->map.height == 0)
-		return ;
-	row = 0;
-	width = data->map.width;
-	while (row < data->map.height)
-	{
-		col = 0;
-		while (col < width)
-		{
-			i = row * width + col;
-			if (col + 1 < width)
-				draw_wuaa_line(data->points[i], data->points[i + 1], data);
-			if (row + 1 < data->map.height)
-				draw_wuaa_line(data->points[i], data->points[i + width], data);
-			col++;
-		}
-		row++;
-	}
 }
