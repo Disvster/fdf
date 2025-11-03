@@ -70,7 +70,6 @@ typedef struct s_color
 	int		final;
 	float	main_opa;
 	float	adja_opa;
-	float	inter;
 }				t_color;
 
 typedef struct s_map
@@ -135,9 +134,11 @@ void	project(t_data *data, t_point *points, float *min_x, float *min_y);
 void	transform(t_data *data);
 
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
-// void	draw_line(t_point p0, t_point p1, t_data *data);// HACK: v1
-void	draw_line(t_point *p0, t_point *p1, t_data *data);
-void	draw_in_image(t_data *data);
+void	render_map(t_data *data);
+void	draw_wuaa_line(t_point p0, t_point p1, t_data *data);
+void	draw_wuaa_pixels(t_line *line, t_color *color, t_data *data);
+void	prep_line_coords(t_line *line, t_point *p0, t_point *p1);
+void	draw_vertical_line(t_line *line, t_color *color, t_data *data);
 
 //Xiaolin Utils
 void	ft_swap(int *a, int *b);
@@ -145,13 +146,13 @@ float	ft_abs_fl(float nb);
 int		i_partof_number(float nb);
 float	f_partof_number(float nb);
 float	rf_partof_number(float nb);
-float	interpolate(int n, int start, int end);
+float	interpl(int n, int start, int end);
 
 // Colors
 void	set_points_color(t_data *data);
 int		set_height_color(float norm);
 int		set_pixel_opacity(int old_color, float intensity);
-int		get_pixel_color(t_color *color);
+int		get_pixel_color(t_color color, float inter);
 t_color	init_t_color(t_point *p0, t_point *p1);
 
 #endif

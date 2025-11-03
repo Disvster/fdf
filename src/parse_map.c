@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 00:43:35 by manmaria          #+#    #+#             */
-/*   Updated: 2025/11/02 20:26:16 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/11/03 05:47:49 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,17 +104,3 @@ t_data	parse_map(char *file_name)
 	close(map_fd);// TODO: close on error
 	return (data);
 }
-//
-// int	main(int ac, char **av)
-// {
-// 	t_data data;
-//
-// 	(void)ac;
-// 	data = parse_map(av[1]);
-// 	free_points(&data);// WARNING:dont forget to free points
-// 	(void)data;
-// }
-// passar map_size numa funcao exterior
-// na main{
-	// open(av[1], O_RDONLY);
-// }

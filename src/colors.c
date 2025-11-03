@@ -64,12 +64,12 @@ int	set_height_color(float norm)
 	return (new_color);
 }
 
-int	get_pixel_color(t_color *color)
+int	get_pixel_color(t_color color, float inter)
 {
-	color->r = color->r0 + color->inter * (color->r1 - color->r0);
-	color->g = color->g0 + color->inter * (color->g1 - color->g0);
-	color->b = color->b0 + color->inter * (color->b1 - color->b0);
-	return ((color->r << 16) | (color->g << 8) | color->b);
+	color.r = color.r0 + inter * (color.r1 - color.r0);
+	color.g = color.g0 + inter * (color.g1 - color.g0);
+	color.b = color.b0 + inter * (color.b1 - color.b0);
+	return ((color.r << 16) | (color.g << 8) | color.b);
 }
 
 int set_pixel_opacity(int old_color, float intensity)

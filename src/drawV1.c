@@ -65,15 +65,21 @@ void	draw_line(t_point p0, t_point p1, t_data *data)
 	if (dx == 0)//WARNING: check this
 	{
 		printf("Vertical line detected\n");// HACK: db
-		int y_start = (y0 < y1) ? y0 : y1;
-		int y_end = (y0 < y1) ? y1 : y0;
+		int y_start = y0;
+		int y_end = y1;
+		if (y0 < y1)//{y_start = line->y1; y_end = line->y0;}
+			ft_swap(&y_start, &y_end);
+		// int y_start = (y0 < y1) ? y0 : y1;
+		// int y_end = (y0 < y1) ? y1 : y0;
 		for (int y = y_start; y <= y_end; y++)
 		{
-			color.inter = (float)(y - y0) / (float)(y1 - y0);
-			color.r = color.r0 + color.inter * (color.r1 - color.r0);
-			color.g = color.g0 + color.inter * (color.g1 - color.g0);
-			color.b = color.b0 + color.inter * (color.b1 - color.b0);
-			color.final = (color.r << 16) | (color.g << 8) | color.b;
+			// color.inter = (float)(y - y0) / (float)(y1 - y0);
+			// color.r = color.r0 + color.inter * (color.r1 - color.r0);
+			// color.g = color.g0 + color.inter * (color.g1 - color.g0);
+			// color.b = color.b0 + color.inter * (color.b1 - color.b0);
+			// color.final = (color.r << 16) | (color.g << 8) | color.b;
+			color.inter = interpolate(y, y0, y1);
+			color.final = get_pixel_color(&color);
 			if (steep)
 				my_mlx_pixel_put(data->img, y, x0, color.final);
 			else
@@ -92,12 +98,14 @@ void	draw_line(t_point p0, t_point p1, t_data *data)
 		// 	color.t = (float)(y - y0) / (float)(y1 - y0);
 		// else
 		//{FIX:ed
-		color.inter = (float)(x - x0) / (float)(x1 - x0);
-		color.r = color.r0 + color.inter * (color.r1 - color.r0);
-		color.g = color.g0 + color.inter * (color.g1 - color.g0);
-		color.b = color.b0 + color.inter * (color.b1 - color.b0);
-		color.final = (color.r << 16) | (color.g << 8) | color.b;
-		//}FIX:ed
+		// color.inter = (float)(x - x0) / (float)(x1 - x0);
+		// color.r = color.r0 + color.inter * (color.r1 - color.r0);
+		// color.g = color.g0 + color.inter * (color.g1 - color.g0);
+		// color.b = color.b0 + color.inter * (color.b1 - color.b0);
+		// color.final = (color.r << 16) | (color.g << 8) | color.b;
+		// //}FIX:ed
+		color.inter = interpolate(y, y0, y1);
+		color.final = get_pixel_color(&color);
 
 		if (pixel_count < 3)  // HACK: db printf first 3 pixels
 			printf("  x=%d, y=%d, intersect_y=%.2f, hi_opa=%.2f, lo_opa=%.2f\n", 

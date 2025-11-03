@@ -6,20 +6,11 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:50:09 by manmaria          #+#    #+#             */
-/*   Updated: 2025/11/02 17:03:56 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/11/03 05:25:55 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/fdf.h"
-
-void	ft_swap(int *a, int *b)
-{
-	int	tmp;
-
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
-}
 
 float	ft_abs_fl(float nb)
 {
@@ -44,17 +35,7 @@ float	rf_partof_number(float nb)
 	return (1 - f_partof_number(nb));
 }
 
-float	interpolate(int n, int start, int end)
+float	interpl(int n, int start, int end)
 {
 	return ((float)(n - start) / (float)(end - start));
 }
-// #include <stdio.h>
-// int	main(void)
-// {
-// 	float i = -0.80;
-//
-// 	printf("i = %.2f\ni_partof_number(i) = %d\n", i, i_partof_number(i));
-// 	printf("f_partof_number(i) = %.2f\n", f_partof_number(i));
-// 	printf("rf_partof_number(i) = %.2f\n", rf_partof_number(i));
-// 	return (0);
-// }

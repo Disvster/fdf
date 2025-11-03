@@ -54,7 +54,7 @@ int	main(int ac, char **av)
 
 	data.img = &img;
 	transform(&data);
-	draw_in_image(&data);
+	render_map(&data);
 
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	//destroy img and window
