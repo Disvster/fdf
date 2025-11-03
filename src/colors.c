@@ -18,7 +18,7 @@ void	set_points_color(t_data *data)
 	int		z_min;
 	int		i;
 	float	norm;
-	
+
 	i = -1;
 	z_max = data->points[i + 1].z;
 	z_min = data->points[i + 1].z;
@@ -32,7 +32,7 @@ void	set_points_color(t_data *data)
 	i = -1;
 	while (++i < data->map.points_total)
 	{
-		norm = (float)(data->points[i].z - z_min) / (float)(z_max - z_min);
+		norm = interpl(data->points[i].z, z_min, z_max);
 		if (data->points[i].color == 0)
 			data->points[i].color = set_height_color(norm);
 	}
@@ -72,16 +72,19 @@ int	get_pixel_color(t_color color, float inter)
 	return ((color.r << 16) | (color.g << 8) | color.b);
 }
 
-int set_pixel_opacity(int old_color, float intensity)
+	// r = (old_color >> 16) & 0xFF;//r is the first 8 bits in old colour
+	// g = (old_color >> 8) & 0xFF;//g is the middle 8  bits in old colour
+	// b = old_color & 0xFF;//b is the last 8 bit in old_colour
+int	set_pixel_opacity(int old_color, float intensity)
 {
 	int	r;
 	int	g;
 	int	b;
 	int	new_color;
-	//0xRRGGBB
-	r = (old_color >> 16) & 0xFF;//r is the first 8 bits in old colour
-	g = (old_color >> 8) & 0xFF;//g is the middle 8  bits in old colour
-	b = old_color & 0xFF;//b is the last 8 bit in old_colour
+
+	r = (old_color >> 16) & 0xFF;
+	g = (old_color >> 8) & 0xFF;
+	b = old_color & 0xFF;
 	r = (int)(r * intensity);
 	g = (int)(g * intensity);
 	b = (int)(b * intensity);
@@ -104,12 +107,11 @@ int set_pixel_opacity(int old_color, float intensity)
 t_color	init_t_color(t_point *p0, t_point *p1)
 {
 	t_color	color;
-	
+
 	ft_bzero(&color, sizeof(t_color));
 	color.r0 = (p0->color >> 16) & 0xFF;
 	color.g0 = (p0->color >> 8) & 0xFF;
 	color.b0 = p0->color & 0xFF;
-
 	color.r1 = (p1->color >> 16) & 0xFF;
 	color.g1 = (p1->color >> 8) & 0xFF;
 	color.b1 = p1->color & 0xFF;

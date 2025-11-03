@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 01:31:37 by manmaria          #+#    #+#             */
-/*   Updated: 2025/11/03 00:02:02 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/11/03 17:23:26 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,12 +120,14 @@ size_t	count_words_fdf(char const *s, char *sep);
 char	**ft_split_fdf(char const *s, char *c);
 
 // Map Parsing
-t_map	map_data_init(int fd);
-void	*free_buffer(char *buffer);
+t_map	map_init_data(int fd);
 void	set_point(t_data *data, int i, int x, char *buffer);
-void	*map_read_data(t_data *data, int fd);
+void	map_read_data(t_data *data, int fd);
 t_data	parse_map(char *file_name);
-void	free_points(t_data *data);
+
+// Free funcs
+void	free_function(char **buffer, t_data *data);
+int	error_exit(int fd);
 
 // Projection
 void	init_view(t_data *data);

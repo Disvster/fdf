@@ -6,15 +6,38 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 00:43:35 by manmaria          #+#    #+#             */
-/*   Updated: 2025/11/03 05:47:49 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/11/03 17:27:33 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/fdf.h"
 
-void	print_map(t_data *data);
+t_data	parse_map(char *file_name)
+{
+	t_point	*points;
+	t_map	map_data;
+	t_data	data;
+	int		map_fd;
 
-t_map	map_data_init(int fd)
+	map_fd = open(file_name, O_RDONLY);
+	if (map_fd == -1)
+		exit (error_exit(map_fd));
+	map_data = map_init_data(map_fd);
+	close(map_fd);
+	points = ft_calloc(sizeof(t_point), map_data.points_total);
+	if (!points)
+		exit (error_exit(map_fd));
+	map_fd = open(file_name, O_RDONLY);
+	data.map = map_data;
+	data.points = points;
+	map_read_data(&data, map_fd);
+	set_points_color(&data);
+	print_map(&data);// HACK: db
+	close(map_fd);
+	return (data);
+}
+
+t_map	map_init_data(int fd)
 {
 	t_map	map;
 	char	*line;
@@ -23,7 +46,7 @@ t_map	map_data_init(int fd)
 	map.height = 0;
 	line = get_next_line(fd);
 	if (!line)
-		exit (1);// HACK:
+		exit (error_exit(fd));
 	map.width = count_words_fdf(line, " \n");
 	while (line)
 	{
@@ -43,7 +66,7 @@ t_map	map_data_init(int fd)
 	// ft_printf("limit = %d\n", map.width / 2);// HACK: db
 	// ft_printf("y = %d\n", map.height);// HACK: db
 
-void	*map_read_data(t_data *data, int fd)// FIX: size
+void	map_read_data(t_data *data, int fd)
 {
 	int		x;
 	int		y;
@@ -51,7 +74,7 @@ void	*map_read_data(t_data *data, int fd)// FIX: size
 	char	*buffer;
 
 	if (!data)
-		return (NULL/*free_func(data)*/);// TODO: free data 
+		return (free_function(NULL, data), exit(error_exit(fd)));
 	i = 0;
 	x = -1 * (data->map.width / 2);
 	y = -1 * (data->map.height / 2);
@@ -60,7 +83,7 @@ void	*map_read_data(t_data *data, int fd)// FIX: size
 	{
 		buffer = get_next_line(fd);
 		if (!buffer)
-			return(free_buffer(buffer));//*and data */); //TODO: free data
+			break ;
 		while (x  < ((data->map.width / 2) + (data->map.width % 2 != 0)))
 		{
 			set_point(data, i, x, buffer);
@@ -68,39 +91,9 @@ void	*map_read_data(t_data *data, int fd)// FIX: size
 			x++;
 			i++;
 		}
-		free_buffer(buffer);
+		free_function(&buffer, NULL);
 		x = -1 * (data->map.width / 2);
 		y++;
 	}
-	return (data);
-}
-			// ft_printf("y = %d\n", data->points[i].y);// HACK: db
-	// ft_printf("total nbr of coordinates set -> %d\n", i);
-
-t_data	parse_map(char *file_name)
-{
-	t_point	*points;
-	t_map	map_data;
-	t_data	data;
-	int		map_fd;
-
-	map_fd = open(file_name, O_RDONLY);
-	if (map_fd == -1)
-	{
-		write(2, "File not found!\n", 17);
-		exit (1);
-	}
-	map_data = map_data_init(map_fd);
-	close(map_fd);
-	points = ft_calloc(sizeof(t_point), map_data.points_total);
-	// if (!points) //TODO: protect malloc here
-	// 	return (write(2, "ERROR @ parse_map\n", 18), NULL);// HACK: db
-	map_fd = open(file_name, O_RDONLY);
-	data.map = map_data;
-	data.points = points;
-	map_read_data(&data, map_fd);
-	set_points_color(&data);
-	print_map(&data);// HACK: db
-	close(map_fd);// TODO: close on error
-	return (data);
+	free_function(&buffer, NULL);
 }

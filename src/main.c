@@ -60,5 +60,5 @@ int	main(int ac, char **av)
 	//destroy img and window
 	mlx_loop(mlx);
 
-	free_points(&data);// WARNING:dont forget to free points
+	free_function(NULL, &data);
 }

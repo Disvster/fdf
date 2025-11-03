@@ -59,16 +59,16 @@ void	set_point(t_data *data, int i, int x, char *buffer)
 		// 	j++;
 		// }
 
-void	*free_buffer(char *buffer)
+void	free_function(char **buffer, t_data *data)
 {
-	if (buffer)
-		free(buffer);
-	buffer = NULL;
-	return (NULL);
-}
-
-void free_points(t_data *data)
-{
-	free(data->points);
-	data->points = NULL;
+	if (buffer && *buffer)
+	{
+		free(*buffer);
+		*buffer = NULL;
+	}
+	if (data && data->points)
+	{
+		free(data->points);
+		data->points = NULL;
+	}
 }
