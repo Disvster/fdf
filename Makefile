@@ -44,7 +44,7 @@ NAME = fdf
 RM = rm -f
 
 all: $(OBJ_DIR) $(LIBX) $(LIBFT) $(NAME)
-	@echo -e "Compilation complete! fdf file generated.             \n"
+	@echo -e "Compilation complete! fdf file generated.                         \n"
 
 print_fdf:
 	@echo -e "\n======  FdF  ======"
