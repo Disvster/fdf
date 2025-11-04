@@ -97,7 +97,7 @@ void	set_point(t_data *data, int i, int x, char *buffer)
 	}
 	if (!xline[xi + 1])
 	{
-		free_split(xline);
+		xline = free_split(xline);
 		xline = NULL;
 	}
 }

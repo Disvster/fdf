@@ -20,8 +20,8 @@ void	init_view(t_data *data)
 	data->view.zoom = 25;
 	data->view.scale = 20.0;
 	data->view.angle = 0.523599;
-	data->view.off_x = 250;
-	data->view.off_y = 250;
+	data->view.off_x = IMG_WIDTH / 2;
+	data->view.off_y = IMG_WIDTH / 2;
 }
 	// data->view.angle = M_PI / 6;
 	// data->view.angle = 0.523599;

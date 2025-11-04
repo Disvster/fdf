@@ -39,7 +39,7 @@ void	render_map(t_data *data)
 	}
 }
 
-static void	init_xiaowu_line_coords(t_line *line, t_point *p0, t_point *p1)
+static void	init_wuaa_line_coords(t_line *line, t_point *p0, t_point *p1)
 {
 	line->x0 = p0->display[0];
 	line->x1 = p1->display[0];
@@ -53,7 +53,7 @@ void	draw_wuaa_line(t_point p0, t_point p1, t_data *data)
 	t_line	line;
 
 	ft_bzero(&line, sizeof(t_line));
-	init_xiaowu_line_coords(&line, &p0, &p1);
+	init_wuaa_line_coords(&line, &p0, &p1);
 	line.steep = ft_abs_fl(line.y1 - line.y0) > ft_abs_fl(line.x1 - line.x0);
 	prep_line_coords(&line, &p0, &p1);
 	color = init_t_color(&p0, &p1);
