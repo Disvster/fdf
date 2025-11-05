@@ -22,6 +22,7 @@ void	init_view(t_data *data)
 	data->view.angle = 0.523599;
 	data->view.off_x = IMG_WIDTH / 2;
 	data->view.off_y = IMG_HEIGHT / 2;
+	// TODO: change z height
 }
 	// data->view.angle = M_PI / 6;
 	// data->view.angle = 0.523599;
@@ -51,9 +52,9 @@ void	transform(t_data *data)
 		project(data, &data->points[i], &min_x, &min_y);
 	i = -1;
 	while (++i < data->map.points_total)
-	{
-		data->points[i].t_x -= min_x;
-		data->points[i].t_y -= min_y;
+	{	//TODO:
+		// data->points[i].t_x -= min_x;
+		// data->points[i].t_y -= min_y;
 		data->points[i].display[0] = (int)(data->points[i].t_x);
 		data->points[i].display[1] = (int)(data->points[i].t_y);
 		// data->points[i].display[0] = (int)(data->points[i].t_x

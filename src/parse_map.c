@@ -55,7 +55,7 @@ void	map_read_data(t_data *data, int fd)
 	if (!data)
 		return (free_function(NULL, data), exit(error_exit(fd)));
 	init_map_read(&i, &x, &y, &data->map);
-	while (y <= ((data->map.height / 2) + (data->map.height % 2 != 0)))
+	while (y < ((data->map.height / 2) + (data->map.height % 2 != 0)))
 	{
 		buffer = get_next_line(fd);
 		if (!buffer)
@@ -85,6 +85,11 @@ void	set_point(t_data *data, int i, int x, char *buffer)
 		xline = ft_split_fdf(buffer, " \n");
 		if (!xline)
 			return (free_function(&buffer, data), exit(error_exit(data->fd)));
+		if (!xline[xi])//FIX: works but fix norm
+		{
+			xline = free_split(xline);
+			return ;
+		}
 	}
 	data->points[i].x = x;
 	data->points[i].z = ft_atoi(xline[xi]);

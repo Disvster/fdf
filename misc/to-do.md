@@ -2,10 +2,17 @@
 
 ## 03/11/2025
 
+- [ ] pylone working but there is a ghost point
+    - [ ] error was on set point, xline was given split after free and should exit
+- [ ] implement z height variable
+- [ ] render_map changed to previous code for testing
+
+## 03/11/2025
+
 * ASAP - max prio:
 - [X] correct norm on everything
 - [ ] code is not opening every map
-- [ ] segfault on pylone
+- [X] segfault on pylone
 - [ ] must center and resize every map
 - ~**TRY** to apply xiaowu vertice on lines~
 - [ ] close program safely
