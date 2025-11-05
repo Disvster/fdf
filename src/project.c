@@ -21,15 +21,15 @@ void	init_view(t_data *data)
 	data->view.scale = 20.0;
 	data->view.angle = 0.523599;
 	data->view.off_x = IMG_WIDTH / 2;
-	data->view.off_y = IMG_WIDTH / 2;
+	data->view.off_y = IMG_HEIGHT / 2;
 }
 	// data->view.angle = M_PI / 6;
 	// data->view.angle = 0.523599;
 
 void	project(t_data *data, t_point *points, float *min_x, float *min_y)
 {
-	points->t_x = ((points->x - points->y) * cos(data->view.angle));
-	points->t_y = ((points->x + points->y) * sin(data->view.angle) - points->z);
+	points->t_x = ((points->x - points->y) * cos(data->view.angle) * data->view.scale + (float)data->view.off_x);
+	points->t_y = ((points->x + points->y) * sin(data->view.angle) * data->view.scale - points->z + (float)data->view.off_y);
 	if (points->t_x < *min_x)
 		*min_x = points->t_x;
 	if (points->t_y < *min_y)
@@ -52,12 +52,14 @@ void	transform(t_data *data)
 	i = -1;
 	while (++i < data->map.points_total)
 	{
-		data->points[i].t_x -= min_x;
-		data->points[i].t_y -= min_y;
-		data->points[i].display[0] = (int)(data->points[i].t_x
-				* data->view.scale + data->view.off_x);
-		data->points[i].display[1] = (int)(data->points[i].t_y
-				* data->view.scale + data->view.off_y);
+		// data->points[i].t_x -= min_x;
+		// data->points[i].t_y -= min_y;
+		data->points[i].display[0] = (int)(data->points[i].t_x);
+		data->points[i].display[1] = (int)(data->points[i].t_y);
+		// data->points[i].display[0] = (int)(data->points[i].t_x
+		// 		* data->view.scale + data->view.off_x);
+		// data->points[i].display[1] = (int)(data->points[i].t_y
+		// 		* data->view.scale + data->view.off_y);
 	}
 	print_img(data);// HACK: db
 }

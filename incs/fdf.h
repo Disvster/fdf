@@ -26,12 +26,9 @@
 # include <float.h>
 # include "../libft/incs/libft.h"
 # include "../minilibx-linux/mlx.h"
-# ifndef IMG_WIDTH 
-# define IMG_WIDTH 1000
-# endif
-# ifndef IMG_HEIGTH 
-# define IMG_HEIGHT 1000
-# endif
+
+# define IMG_WIDTH 1920
+# define IMG_HEIGHT 1080 
 
 typedef struct s_view
 {
