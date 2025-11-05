@@ -52,8 +52,8 @@ void	transform(t_data *data)
 	i = -1;
 	while (++i < data->map.points_total)
 	{
-		// data->points[i].t_x -= min_x;
-		// data->points[i].t_y -= min_y;
+		data->points[i].t_x -= min_x;
+		data->points[i].t_y -= min_y;
 		data->points[i].display[0] = (int)(data->points[i].t_x);
 		data->points[i].display[1] = (int)(data->points[i].t_y);
 		// data->points[i].display[0] = (int)(data->points[i].t_x
