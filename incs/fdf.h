@@ -34,12 +34,13 @@ typedef struct s_view
 {
 	int		off_x;
 	int		off_y;
-	double	alpha;
-	double	beta;
-	double	gamma;
-	double	scale;
-	double	angle;
-	int		zoom;
+	float	alpha;
+	float	beta;
+	float	gamma;
+	float	scale;
+	float	angle;
+	float	z_scale;
+	float	zoom;
 }				t_view;
 
 typedef struct s_point

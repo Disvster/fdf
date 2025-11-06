@@ -55,7 +55,7 @@ void	map_read_data(t_data *data, int fd)
 	if (!data)
 		return (free_function(NULL, data), exit(error_exit(fd)));
 	init_map_read(&i, &x, &y, &data->map);
-	while (y < ((data->map.height / 2) + (data->map.height % 2 != 0)))
+	while (y <= ((data->map.height / 2) + (data->map.height % 2 != 0)))
 	{
 		buffer = get_next_line(fd);
 		if (!buffer)

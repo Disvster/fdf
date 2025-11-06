@@ -14,21 +14,35 @@
 
 void	init_view(t_data *data)
 {
+	int	max_dimension;
+
+	max_dimension = data->map.width;
+	if (data->map.height > max_dimension)
+		max_dimension = data->map.height;
 	data->view.alpha = 0;
 	data->view.beta = 0;
 	data->view.gamma = 0;
-	data->view.zoom = 25;
 	data->view.scale = 20.0;
 	data->view.angle = 0.523599;
 	data->view.off_x = IMG_WIDTH / 2;
 	data->view.off_y = IMG_HEIGHT / 2;
-	// TODO: change z height
+	data->view.z_scale = 5.5;
+	if (max_dimension < 100)
+		data->view.zoom = 1;
+	else if (max_dimension <= 200)
+		data->view.zoom = 0.5f;
+	else
+		data->view.zoom = 0.0125f;
+
 }
 	// data->view.angle = M_PI / 6;
 	// data->view.angle = 0.523599;
 
 void	project(t_data *data, t_point *points, float *min_x, float *min_y)
 {
+	points->x *= data->view.zoom;
+	points->y *= data->view.zoom;
+	points->z = points->z * data->view.zoom * data->view.z_scale;
 	points->t_x = ((points->x - points->y) * cos(data->view.angle)
 			* data->view.scale + (float)data->view.off_x);
 	points->t_y = ((points->x + points->y) * sin(data->view.angle)
