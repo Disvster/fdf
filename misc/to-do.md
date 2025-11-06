@@ -1,11 +1,12 @@
 # to-do
 
-## 03/11/2025
+## 05/11/2025
 
-- [ ] pylone working but there is a ghost point
-    - [ ] error was on set point, xline was given split after free and should exit
+- [X] pylone working but there is a ghost point
+    - [X] error was on set point, xline was given split after free and should exit
+    * post-NOTE: error was on `xi` val calculation. changed xi to static and to increment between func calls
 - [ ] implement z height variable
-- [ ] render_map changed to previous code for testing
+- [X] render_map changed to previous code for testing - post-NOTE: either version works fine so far
 
 ## 03/11/2025
 

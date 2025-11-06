@@ -74,22 +74,22 @@ void	map_read_data(t_data *data, int fd)
 	free_function(&buffer, NULL);
 }
 
-void	set_point(t_data *data, int i, int x, char *buffer)
+void	set_point(t_data *data, int i, int x, char *buffer)// FIX: size
 {
 	static char	**xline;
-	int			xi;
+	static int	xi;
 
-	xi = (data->map.width / 2) + x;
 	if (!xline)
 	{
 		xline = ft_split_fdf(buffer, " \n");
+		xi = 0;
 		if (!xline)
 			return (free_function(&buffer, data), exit(error_exit(data->fd)));
-		if (!xline[xi])//FIX: works but fix norm
-		{
-			xline = free_split(xline);
-			return ;
-		}
+		// if (!xline[xi])//FIX: works but fix norm
+		// {
+		// 	xline = free_split(xline);
+		// 	return ;
+		// }
 	}
 	data->points[i].x = x;
 	data->points[i].z = ft_atoi(xline[xi]);
@@ -100,11 +100,9 @@ void	set_point(t_data *data, int i, int x, char *buffer)
 		if (!data->points[i].color)
 			return (free_function(&buffer, data), exit(error_exit(data->fd)));
 	}
-	if (!xline[xi + 1])
-	{
+	xi++;
+	if (!xline[xi])
 		xline = free_split(xline);
-		xline = NULL;
-	}
 }
 
 t_map	map_init_data(int fd)

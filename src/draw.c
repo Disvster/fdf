@@ -15,36 +15,36 @@
 void	render_map(t_data *data)
 {
 	int	i;
-	// int	row;
-	// int	col;
-	// int	width;
+	int	row;
+	int	col;
+	int	width;
 
 	if (data == NULL || data->map.width == 0 || data->map.height == 0)
 		return ;
-	// row = 0;
-	// width = data->map.width;
-	// while (row < data->map.height)
-	// {
-	// 	col = 0;
-	// 	while (col < width)
-	// 	{
-	// 		i = row * width + col;
-	// 		if (col + 1 < width)
-	// 			draw_wuaa_line(data->points[i], data->points[i + 1], data);
-	// 		if (row + 1 < data->map.height)
-	// 			draw_wuaa_line(data->points[i], data->points[i + width], data);
-	// 		col++;
-	// 	}
-	// 	row++;
-	// }
-	i = -1;
-	while (++i < data->map.points_total)
+	row = 0;
+	width = data->map.width;
+	while (row < data->map.height)
 	{
-		if ((i + 1) % data->map.width != 0 && (i + 1) < data->map.points_total)
-			draw_wuaa_line(data->points[i], data->points[i + 1], data);
-		if (i + data->map.width < data->map.points_total)
-			draw_wuaa_line(data->points[i], data->points[i + data->map.width], data);
+		col = 0;
+		while (col < width)
+		{
+			i = row * width + col;
+			if (col + 1 < width)
+				draw_wuaa_line(data->points[i], data->points[i + 1], data);
+			if (row + 1 < data->map.height)
+				draw_wuaa_line(data->points[i], data->points[i + width], data);
+			col++;
+		}
+		row++;
 	}
+	// i = -1;
+	// while (++i < data->map.points_total)
+	// {
+	// 	if ((i + 1) % data->map.width != 0 && (i + 1) < data->map.points_total)
+	// 		draw_wuaa_line(data->points[i], data->points[i + 1], data);
+	// 	if (i + data->map.width < data->map.points_total)
+	// 		draw_wuaa_line(data->points[i], data->points[i + data->map.width], data);
+	// }
 }
 
 static void	init_wuaa_line_coords(t_line *line, t_point *p0, t_point *p1)

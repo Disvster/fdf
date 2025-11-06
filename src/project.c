@@ -29,8 +29,11 @@ void	init_view(t_data *data)
 
 void	project(t_data *data, t_point *points, float *min_x, float *min_y)
 {
-	points->t_x = ((points->x - points->y) * cos(data->view.angle) * data->view.scale + (float)data->view.off_x);
-	points->t_y = ((points->x + points->y) * sin(data->view.angle) * data->view.scale - points->z + (float)data->view.off_y);
+	points->t_x = ((points->x - points->y) * cos(data->view.angle)
+			* data->view.scale + (float)data->view.off_x);
+	points->t_y = ((points->x + points->y) * sin(data->view.angle)
+			* data->view.scale - points->z + (float)data->view.off_y);
+	// FIX: not using the vars below
 	if (points->t_x < *min_x)
 		*min_x = points->t_x;
 	if (points->t_y < *min_y)
