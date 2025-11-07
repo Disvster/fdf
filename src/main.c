@@ -58,6 +58,7 @@ int	main(int ac, char **av)
 	transform(&data);
 	render_map(&data);
 
+	ft_printf("width = %d, height = %d\n", data.map.width, data.map.height);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	//destroy img and window
 	mlx_loop(mlx);

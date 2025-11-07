@@ -24,6 +24,7 @@ void	init_view(t_data *data)
 	data->view.gamma = 0;
 	data->view.scale = 20.0;
 	data->view.angle = 0.523599;
+	// data->view.angle = M_PI / 6;
 	data->view.off_x = IMG_WIDTH / 2;
 	data->view.off_y = IMG_HEIGHT / 2;
 	data->view.z_scale = 5.5;
@@ -47,6 +48,7 @@ void	project(t_data *data, t_point *points, float *min_x, float *min_y)
 			* data->view.scale + (float)data->view.off_x);
 	points->t_y = ((points->x + points->y) * sin(data->view.angle)
 			* data->view.scale - points->z + (float)data->view.off_y);
+
 	// FIX: not using the vars below
 	if (points->t_x < *min_x)
 		*min_x = points->t_x;
@@ -100,10 +102,10 @@ void	transform(t_data *data)
 // 	double	px;
 // 	double	py;
 //
-// points->display[0] = (int)(points->x + cos(data->view.angle) * points->z);
-// points->display[1] = (int)(points->x + sin(data->view.angle) * points->z);
-// 	px = ((points->x - points->y) * cos(data->view.angle));
-// 	py = ((points->x + points->y) * sin(data->view.angle) - points->z);
-// 	points->display[0] = (int)(px * data->view.scale + data->view.off_x);
-// 	points->display[1] = (int)(py * data->view.scale + data->view.off_y);
-// }
+	// points->t_x = ((points->x - points->y) * cos(data->view.angle)) * data->view.scale + (float)data->view.off_x;
+	// points->t_y = ((points->x + points->y * sin(data->view.angle) - points->z) * data->view.scale + (float)data->view.off_y);
+	// 	px = ((points->x - points->y) * cos(data->view.angle));
+	// 	py = ((points->x + points->y) * sin(data->view.angle) - points->z);
+	// 	points->display[0] = (int)(px * data->view.scale + data->view.off_x);
+	// 	points->display[1] = (int)(py * data->view.scale + data->view.off_y);
+	// }
