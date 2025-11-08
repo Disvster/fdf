@@ -4,8 +4,9 @@
 
 - [ ] set up hooks
 - [ ] code is not opening every map
-- [ ] close program safely
 - [ ] pylone is shifting the X coords to the side
+- [ ] close program safely
+    - [ ] f: check if map is .fdf
 
 ## 05/11/2025
 
