@@ -115,12 +115,15 @@ t_map	map_init_data(int fd)
 	map.width = count_words_fdf(line, " \n");
 	while (line)
 	{
+		ft_printf("%s", line);// HACK: db
 		map.height++;
 		ft_printf("%s", line);// HACK: db
 		free(line);
 		line = get_next_line(fd);
 	}
 	free(line);
+	ft_printf("x = %d\n", map.width);// HACK: db
+	ft_printf("y = %d\n", map.height);// HACK: db
 	map.points_total = map.width * map.height;
 	return (map);
 }
