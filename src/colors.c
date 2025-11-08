@@ -61,6 +61,8 @@ int	set_height_color(float norm)
 	if (b < 0)
 		b = 0;
 	new_color = (r << 16) | (g << 8) | b;
+	if (new_color == 0)
+		new_color = BASE_COLOR;
 	return (new_color);
 }
 
