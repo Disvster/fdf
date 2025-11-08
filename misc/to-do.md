@@ -1,23 +1,27 @@
 # to-do
 
+## 08/11/2025
+
+- [ ] set up hooks
+- [ ] code is not opening every map
+- [ ] close program safely
+- [ ] pylone is shifting the X coords to the side
+
 ## 05/11/2025
 
 - [X] pylone working but there is a ghost point
     - [X] error was on set point, xline was given split after free and should exit
     * post-NOTE: error was on `xi` val calculation. changed xi to static and to increment between func calls
-- [ ] implement z height variable
+- [X] implement z height variable
 - [X] render_map changed to previous code for testing - post-NOTE: either version works fine so far
 
 ## 03/11/2025
 
 * ASAP - max prio:
 - [X] correct norm on everything
-- [ ] code is not opening every map
 - [X] segfault on pylone
-- [ ] must center and resize every map
+- [X] must center and resize every map
 - ~**TRY** to apply xiaowu vertice on lines~
-- [ ] close program safely
-- [ ] set up hooks
 - [X] exit the map parsing safely
 
 IF I HAVE TIME:
