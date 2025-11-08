@@ -1,0 +1,6 @@
+#.gitignore
+*a.out
+*.a
+*.o
+test_maps
+minilibx-linux/test/mlx-test
