@@ -4,6 +4,7 @@ SHELL :=/bin/bash
 SRC_DIR = src/
 SRC =	src/colors.c \
 		src/draw.c \
+		src/hooks.c \
 		src/main.c \
 		src/parse_map.c \
 		src/project.c \

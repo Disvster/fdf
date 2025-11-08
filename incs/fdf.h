@@ -24,11 +24,15 @@
 # include <stdio.h>
 # include <math.h>
 # include <float.h>
+# include <stdbool.h>
 # include "../libft/incs/libft.h"
 # include "../minilibx-linux/mlx.h"
 
-# define IMG_WIDTH 1920
+# define IMG_WIDTH	1920
 # define IMG_HEIGHT 1080 
+# define ESC_KEY	9
+# define K_KEY		45
+# define J_KEY		44
 
 typedef struct s_view
 {
@@ -77,15 +81,6 @@ typedef struct s_map
 	int		points_total;
 }				t_map;
 
-typedef struct s_img
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_img;
-
 typedef struct s_line
 {
 	float	delta_x;
@@ -101,12 +96,25 @@ typedef struct s_line
     int		steep;
 }				t_line;
 
+typedef struct	s_hook
+{
+	bool	k;
+	bool	j;
+}				t_hook;
+
 typedef struct s_data
 {
 	t_view	view;
 	t_point	*points;
 	t_map	map;
-	t_img	*img;
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_length;
+	int		endian;
+	void	*mlx;
+	void	*mlx_win;
+	t_hook	keys;
 	int		fd;
 }				t_data;
 
@@ -122,19 +130,19 @@ char	**ft_split_fdf(char const *s, char *c);
 t_map	map_init_data(int fd);
 void	set_point(t_data *data, int i, int x, char *buffer);
 void	map_read_data(t_data *data, int fd);
-t_data	parse_map(char *file_name);
+void	parse_map(t_data *data, char *file_name);
 
 // Free funcs
 void	free_function(char **buffer, t_data *data);
-int		error_exit(int fd);
+int		error_exit(int fd, char *str);
 
 // Projection
-void	init_view(t_data *data);
+void	fdf_init_view(t_data *data);
 void	project(t_data *data, t_point *points, float *min_x, float *min_y);
 void	transform(t_data *data);
 
-// Draw Functions
-void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
+// Draw
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	render_map(t_data *data);
 void	draw_wuaa_line(t_point p0, t_point p1, t_data *data);
 void	draw_wuaa_pixels(t_line *line, t_color *color, t_data *data);
@@ -155,5 +163,9 @@ int		set_height_color(float norm);
 int		set_pixel_opacity(int old_color, float intensity);
 int		get_pixel_color(t_color color, float inter);
 t_color	init_t_color(t_point *p0, t_point *p1);
+
+//Hooks
+int	key_press(int keycode, t_data *data);
+int	key_release(int keycode, t_data *data);
 
 #endif

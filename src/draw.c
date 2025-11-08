@@ -90,22 +90,22 @@ void	draw_wuaa_pixels(t_line *line, t_color *color, t_data *data)
 	{
 		if (line->y >= 0 && line->y < IMG_WIDTH
 			&& line->x >= 0 && line->x < IMG_HEIGHT)
-			my_mlx_pixel_put(data->img, line->y, line->x,
+			my_mlx_pixel_put(data, line->y, line->x,
 				set_pixel_opacity(color->final, color->main_opa));
 		if (line->y + 1 >= 0 && line->y + 1 < IMG_WIDTH
 			&& line->x >= 0 && line->x < IMG_HEIGHT)
-			my_mlx_pixel_put(data->img, line->y + 1, line->x,
+			my_mlx_pixel_put(data, line->y + 1, line->x,
 				set_pixel_opacity(color->final, color->adja_opa));
 	}
 	else
 	{
 		if (line->x >= 0 && line->x < IMG_WIDTH
 			&& line->y >= 0 && line->y < IMG_HEIGHT)
-			my_mlx_pixel_put(data->img, line->x, line->y,
+			my_mlx_pixel_put(data, line->x, line->y,
 				set_pixel_opacity(color->final, color->main_opa));
 		if (line->x >= 0 && line->x < IMG_WIDTH
 			&& line->y + 1 >= 0 && line->y + 1 < IMG_HEIGHT)
-			my_mlx_pixel_put(data->img, line->x, line->y + 1,
+			my_mlx_pixel_put(data, line->x, line->y + 1,
 				set_pixel_opacity(color->final, color->adja_opa));
 	}
 	line->intersect_y += line->gradient;
@@ -127,7 +127,7 @@ void	draw_vertical_line(t_line *line, t_color *color, t_data *data)
 	{
 		color->final = get_pixel_color(*color, interpl(y, line->y0, line->y1));
 		if (line->x0 >= 0 && line->x0 < IMG_WIDTH && y >= 0 && y < IMG_HEIGHT)
-			my_mlx_pixel_put(data->img, line->x0, y, color->final);
+			my_mlx_pixel_put(data, line->x0, y, color->final);
 		y++;
 	}
 	return ;

@@ -1,46 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/03 17:20:13 by manmaria          #+#    #+#             */
-/*   Updated: 2025/11/08 22:06:34 by manmaria         ###   ########.fr       */
+/*   Created: 2025/11/08 20:07:25 by manmaria          #+#    #+#             */
+/*   Updated: 2025/11/08 22:30:47 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/fdf.h"
 
-int	error_exit(int fd, char *str)
+int	key_press(int keycode, t_data *data)
 {
-	if (fd == -1)
-		perror("File not found!\n");
-	else
+	if (keycode == ESC_KEY)
 	{
-		if (str)
-			perror(str);
-		if (fd > -1)
-			close (fd);
+		free_function(NULL, data);
+		exit(0);
 	}
-	return (1);
+	if (keycode == K_KEY)
+		data->keys.k = true;
+	if (keycode == J_KEY)
+		data->keys.j = true;
+	return (0);
 }
 
-void	free_function(char **buffer, t_data *data)
+int	key_release(int keycode, t_data *data)
 {
-	if (buffer && *buffer)
-	{
-		free(*buffer);
-		*buffer = NULL;
-	}
-	if (data && data->points)
-	{
-		free(data->points);
-		data->points = NULL;
-	}
-}
-
-float	interpl(int n, int start, int end)
-{
-	return ((float)(n - start) / (float)(end - start));
+	if (keycode == K_KEY)
+		data->keys.k = false;
+	if (keycode == J_KEY)
+		data->keys.j = false;
+	return (0);
 }

@@ -6,13 +6,13 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 19:06:27 by manmaria          #+#    #+#             */
-/*   Updated: 2025/10/27 00:04:29 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/11/08 22:25:09 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/fdf.h"
 
-void	init_view(t_data *data)
+void	fdf_init_view(t_data *data)
 {
 	int	max_dimension;
 
@@ -65,7 +65,6 @@ void	transform(t_data *data)
 	i = -1;
 	min_x = FLT_MAX;
 	min_y = FLT_MAX;
-	init_view(data);
 	i = -1;
 	while (++i < data->map.points_total)
 		project(data, &data->points[i], &min_x, &min_y);

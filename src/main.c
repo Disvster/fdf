@@ -6,62 +6,80 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 22:46:05 by manmaria          #+#    #+#             */
-/*   Updated: 2025/10/27 00:08:09 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/11/08 22:26:14 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/fdf.h"
 
-void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
 	if (x < 0 || y < 0)
 	{
-		ft_printf("merdou1\n");
+		ft_printf("merdou1\n");// HACK: db
 		return ;
 	}
 	if ( x >= IMG_WIDTH || y >= IMG_HEIGHT)
 	{
-		ft_printf("merdou2\n");
+		ft_printf("merdou2\n");// HACK: db
 		return ;
 	}
-	if (!img || !img->addr)
+	if (!data || !data->addr)
 	{
-		ft_printf("merdou3\n");
+		ft_printf("merdou3\n");// HACK: db
 		return ;
 	}
-	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
+	dst = data->addr + (y * data->line_length + x * (data->bpp / 8));
 	*(unsigned int *)dst = color;
 }
 
+void	fdf_init_window(t_data	*data)
+{
+	data->mlx = mlx_init();
+	if (!data->mlx)
+		exit(error_exit(-2, "Could not initialize MLX\n"));
+	data->mlx_win = mlx_new_window(data->mlx, IMG_WIDTH, IMG_HEIGHT,
+			"FdF - manmaria");
+	if (!data->mlx_win)
+		exit(error_exit(-2, "Could not create MLX Window\n"));
+	data->img = mlx_new_image(data->mlx, IMG_WIDTH, IMG_HEIGHT);
+	if (!data->img)
+		exit(error_exit(-2, "Could not create MLX Image"));
+	data->addr = mlx_get_data_addr(data->img, &data->bpp,
+			&data->line_length, &data->endian);
+	if (!data->img)
+		exit(error_exit(-2, "Could not get MLX Data Address"));
+}
+
+// TODO:
+// void	ft_clear_image(t_data *data)
+// {
+// 	if (!data || !data->addr)
+// 		return ;
+// 	ft_memset(data->addr, 0, data->w_height * data->line_len);
+// }
+
 int	main(int ac, char **av)
 {
-	void	*mlx;
-	void	*mlx_win;
 	t_data	data;
-	t_img	img;
 
 	(void)ac;
-	data = parse_map(av[1]);
-	
+	ft_bzero(&data, sizeof(t_data));
+	//if ac and av darara ...
+	parse_map(&data, av[1]);
 	print_map(&data);// HACK: db
+	fdf_init_window(&data);
+	fdf_init_view(&data);
 
-	mlx = mlx_init(); //display init
-	if (!mlx)
-		return (1);
-	mlx_win = mlx_new_window(mlx, IMG_WIDTH, IMG_HEIGHT, "FdF");
-	img.img = mlx_new_image(mlx, IMG_WIDTH, IMG_HEIGHT);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-
-	data.img = &img;
 	transform(&data);
 	render_map(&data);
 
-	ft_printf("width = %d, height = %d\n", data.map.width, data.map.height);
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	//destroy img and window
-	mlx_loop(mlx);
+	ft_printf("width = %d, height = %d\n", data.map.width, data.map.height);// HACK: db
+
+	mlx_put_image_to_window(data.mlx, data.mlx_win, data.img, 0, 0);
+	mlx_loop(data.mlx);
 
 	free_function(NULL, &data);
 }
