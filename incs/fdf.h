@@ -31,8 +31,12 @@
 # define IMG_WIDTH	1920
 # define IMG_HEIGHT 1080 
 # define ESC_KEY	9
-# define K_KEY		45
+# define Q_KEY		24
+# define E_KEY		26
+# define H_KEY		43
 # define J_KEY		44
+# define K_KEY		45
+# define L_KEY		46
 
 typedef struct s_view
 {
@@ -98,8 +102,12 @@ typedef struct s_line
 
 typedef struct	s_hook
 {
-	bool	k;
+	bool	h;
 	bool	j;
+	bool	k;
+	bool	l;
+	bool	q;
+	bool	e;
 }				t_hook;
 
 typedef struct s_data
@@ -165,7 +173,8 @@ int		get_pixel_color(t_color color, float inter);
 t_color	init_t_color(t_point *p0, t_point *p1);
 
 //Hooks
-int	key_press(int keycode, t_data *data);
-int	key_release(int keycode, t_data *data);
+int		key_press(int keycode, t_data *data);
+int		key_release(int keycode, t_data *data);
+void	handle_changes(t_data *data);
 
 #endif

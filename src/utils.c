@@ -38,6 +38,14 @@ void	free_function(char **buffer, t_data *data)
 		free(data->points);
 		data->points = NULL;
 	}
+	if (data && data->mlx)
+	{
+		mlx_destroy_image(data->mlx, data->img);
+		mlx_destroy_window(data->mlx, data->mlx_win);
+		mlx_destroy_display(data->mlx);
+		free(data->mlx);
+		data->mlx = NULL;
+	}
 }
 
 float	interpl(int n, int start, int end)

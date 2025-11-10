@@ -54,12 +54,22 @@ void	fdf_init_window(t_data	*data)
 }
 
 // TODO:
-// void	ft_clear_image(t_data *data)
-// {
-// 	if (!data || !data->addr)
-// 		return ;
-// 	ft_memset(data->addr, 0, data->w_height * data->line_len);
-// }
+void	clear_image(t_data *data)
+{
+	if (!data || !data->addr)
+		return ;
+	ft_memset(data->addr, 0, data->map.height * data->map.width);
+}
+
+int	new_render(t_data *data)
+{
+	clear_image(data);
+	handle_changes(data);
+	transform(data);
+	render_map(data);
+	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
+	return (0);
+}
 
 int	main(int ac, char **av)
 {
@@ -72,9 +82,10 @@ int	main(int ac, char **av)
 	print_map(&data);// HACK: db
 	fdf_init_window(&data);
 	fdf_init_view(&data);
-
-	transform(&data);
-	render_map(&data);
+	mlx_hook(data.mlx_win, 2, 1L << 0, key_press, &data);
+	mlx_hook(data.mlx_win, 3, 1L << 1, key_release, &data);
+	mlx_loop_hook(data.mlx, new_render, &data);
+	// mlx_hook(data.mlx_win, 17, 0, ft_close_window, &data);
 
 	ft_printf("width = %d, height = %d\n", data.map.width, data.map.height);// HACK: db
 

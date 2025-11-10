@@ -16,7 +16,6 @@ void	parse_map(t_data *data, char *file_name)
 {
 	t_point	*points;
 	t_map	map_data;
-	// t_data	data;
 	int		map_fd;
 
 	map_fd = open(file_name, O_RDONLY);
@@ -72,7 +71,7 @@ void	map_read_data(t_data *data, int fd)
 	free_function(&buffer, NULL);
 }
 
-void	set_point(t_data *data, int i, int x, char *buffer)// FIX: size
+void	set_point(t_data *data, int i, int x, char *buffer)
 {
 	static char	**xline;
 	static int	xi;
@@ -82,12 +81,8 @@ void	set_point(t_data *data, int i, int x, char *buffer)// FIX: size
 		xline = ft_split_fdf(buffer, " \n");
 		xi = 0;
 		if (!xline)
-			return (free_function(&buffer, data), exit(error_exit(data->fd, "Parsing Error\n")));
-		// if (!xline[xi])//FIX: works but fix norm
-		// {
-		// 	xline = free_split(xline);
-		// 	return ;
-		// }
+			return (free_function(&buffer, data),
+				exit(error_exit(data->fd, "Parsing Error\n")));
 	}
 	data->points[i].x = x;
 	data->points[i].z = ft_atoi(xline[xi]);
@@ -96,7 +91,8 @@ void	set_point(t_data *data, int i, int x, char *buffer)// FIX: size
 		data->points[i].color = ft_atoi_base
 			(ft_strchr(xline[xi], ',') + 3, "0123456789ABCDEF");
 		if (!data->points[i].color)
-			return (free_function(&buffer, data), exit(error_exit(data->fd, "Invalid Color Format\n")));
+			return (free_function(&buffer, data),
+				exit(error_exit(data->fd, "Invalid Color Format\n")));
 	}
 	xi++;
 	if (!xline[xi])
