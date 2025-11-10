@@ -143,6 +143,7 @@ void	parse_map(t_data *data, char *file_name);
 // Free funcs
 void	free_function(char **buffer, t_data *data);
 int		error_exit(int fd, char *str);
+int		fdf_close_window(t_data *data);
 
 // Projection
 void	fdf_init_view(t_data *data);

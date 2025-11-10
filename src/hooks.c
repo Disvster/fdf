@@ -16,7 +16,7 @@ int	key_press(int keycode, t_data *data)
 {
 	if (keycode == ESC_KEY)
 	{
-		free_function(NULL, data);
+		fdf_close_window(data);
 		exit(0);
 	}
 	if (keycode == Q_KEY)
