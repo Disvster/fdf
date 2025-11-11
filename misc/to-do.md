@@ -2,6 +2,13 @@
 
 ## 11/11/2025
 
+- for bonus:
+    - [ ] rotations
+    - [ ] change colors
+    - [ ] draw on the opposite side when map goes out of bounds
+    - [ ] flinging map with mouse
+    - [ ] loading more maps in the same window
+
 - [ ] check if exits are returning the correct number
 
 - here is a list of all the maps that don't work as they should:
@@ -10,13 +17,13 @@
     - [ ] pylone - is shifting the X coords to the side
     - [ ] t1 - invalid color format
     - [ ] t2 - invalid color format
+    ! ALL THESE MAPS HAVE IN COMMON CUSTOM COLORS !
 
 ## 08/11/2025
 
-- [X] set up hooks
-- [ ] code is not opening every map
-- [X] close program safely
 - [ ] check if map is .fdf
+- [X] set up hooks
+- [X] close program safely
 
 ## 05/11/2025
 
@@ -34,10 +41,6 @@
 - [X] must center and resize every map
 - ~**TRY** to apply xiaowu vertice on lines~
 - [X] exit the map parsing safely
-
-IF I HAVE TIME:
-- [ ] apply rotations
-- [ ] change colours
 
 ## 21/10/2025
 
