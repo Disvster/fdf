@@ -1,0 +1,29 @@
+==115265== HEAP SUMMARY:
+==115265==     in use at exit: 488 bytes in 49 blocks
+==115265==   total heap usage: 8,898 allocs, 8,849 frees, 388,862 bytes allocated
+==115265== 
+==115265== 96 bytes in 48 blocks are still reachable in loss record 1 of 2
+==115265==    at 0x48587A8: malloc (vg_replace_malloc.c:446)
+==115265==    by 0x4005051: ft_substr (ft_substr.c:26)
+==115265==    by 0x4004169: ft_split_fdf (src/split.c:76)
+==115265==    by 0x4003ABC: set_point (src/parse_map.c:81)
+==115265==    by 0x4003989: map_read_data (src/parse_map.c:62)
+==115265==    by 0x40037CC: parse_map (src/parse_map.c:33)
+==115265==    by 0x40035FD: main (src/main.c:66)
+==115265== 
+==115265== 392 bytes in 1 blocks are still reachable in loss record 2 of 2
+==115265==    at 0x48587A8: malloc (vg_replace_malloc.c:446)
+==115265==    by 0x4004BEE: ft_calloc (ft_calloc.c:23)
+==115265==    by 0x40040BF: ft_split_fdf (src/split.c:65)
+==115265==    by 0x4003ABC: set_point (src/parse_map.c:81)
+==115265==    by 0x4003989: map_read_data (src/parse_map.c:62)
+==115265==    by 0x40037CC: parse_map (src/parse_map.c:33)
+==115265==    by 0x40035FD: main (src/main.c:66)
+==115265== 
+==115265== LEAK SUMMARY:
+==115265==    definitely lost: 0 bytes in 0 blocks
+==115265==    indirectly lost: 0 bytes in 0 blocks
+==115265==      possibly lost: 0 bytes in 0 blocks
+==115265==    still reachable: 488 bytes in 49 blocks
+==115265==         suppressed: 0 bytes in 0 blocks
+==115265== 

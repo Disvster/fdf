@@ -1,12 +1,22 @@
 # to-do
 
+## 11/11/2025
+
+- [ ] check if exits are returning the correct number
+
+- here is a list of all the maps that don't work as they should:
+    - [ ] elem-fract - wating then doesnt open
+    - [ ] julia - same as above
+    - [ ] pylone - is shifting the X coords to the side
+    - [ ] t1 - invalid color format
+    - [ ] t2 - invalid color format
+
 ## 08/11/2025
 
-- [ ] set up hooks
+- [X] set up hooks
 - [ ] code is not opening every map
-- [ ] pylone is shifting the X coords to the side
-- [ ] close program safely
-    - [ ] f: check if map is .fdf
+- [X] close program safely
+- [ ] check if map is .fdf
 
 ## 05/11/2025
 
