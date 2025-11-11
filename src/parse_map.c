@@ -91,7 +91,7 @@ void	set_point(t_data *data, int i, int x, char *buffer)
 		data->points[i].color = ft_atoi_base
 			(ft_strchr(xline[xi], ',') + 3, "0123456789ABCDEF");
 		if (!data->points[i].color)
-			return (free_function(&buffer, data),
+			return (free_split(xline), free_function(&buffer, data),
 				exit(error_exit(data->fd, "Invalid Color Format\n")));
 	}
 	xi++;

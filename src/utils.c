@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 17:20:13 by manmaria          #+#    #+#             */
-/*   Updated: 2025/11/08 22:06:34 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/11/11 03:05:45 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	error_exit(int fd, char *str)
 		if (fd > -1)
 			close (fd);
 	}
-	return (1);
+	return (0);
 }
 
 void	free_function(char **buffer, t_data *data)
@@ -31,6 +31,15 @@ void	free_function(char **buffer, t_data *data)
 	if (buffer && *buffer)
 	{
 		free(*buffer);
+		if (data)
+		{
+			*buffer = get_next_line(data->fd);
+			while (*buffer)
+			{
+				free(*buffer);
+				*buffer = get_next_line(data->fd);
+			}
+		}
 		*buffer = NULL;
 	}
 	if (data && data->points)
