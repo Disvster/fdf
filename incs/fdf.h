@@ -21,6 +21,7 @@
 #  define BASE_COLOR	16711680
 # endif
 
+# include <X11/keysym.h>
 # include <stdio.h>
 # include <math.h>
 # include <float.h>
@@ -147,7 +148,7 @@ int		fdf_close_window(t_data *data);
 
 // Projection
 void	fdf_init_view(t_data *data);
-void	project(t_data *data, t_point *points, float *min_x, float *min_y);
+void	project(t_data *data, t_point *points);
 void	transform(t_data *data);
 
 // Draw
@@ -177,5 +178,6 @@ t_color	init_t_color(t_point *p0, t_point *p1);
 int		key_press(int keycode, t_data *data);
 int		key_release(int keycode, t_data *data);
 void	handle_changes(t_data *data);
+void	clear_image(t_data *data);
 
 #endif

@@ -38,19 +38,22 @@ void	free_function(char **buffer, t_data *data)
 		free(data->points);
 		data->points = NULL;
 	}
-	fdf_close_window(data);
 }
 
 int	fdf_close_window(t_data *data)
 {
+	free_function(NULL, data);
 	if (data && data->mlx)
 	{
 		mlx_destroy_image(data->mlx, data->img);
 		mlx_destroy_window(data->mlx, data->mlx_win);
 		mlx_destroy_display(data->mlx);
 		if (data && data->mlx)
+		{
 			free(data->mlx);
-		data->mlx = NULL;
+			data->mlx = NULL;
+		}
+		exit(0);
 	}
 	return (0);
 }

@@ -14,39 +14,37 @@
 
 int	key_press(int keycode, t_data *data)
 {
-	if (keycode == ESC_KEY)
-	{
+	if (keycode == 65307)
 		fdf_close_window(data);
-		exit(0);
-	}
-	if (keycode == Q_KEY)
+		// exit(0);
+	if (keycode == XK_q)
 		data->keys.q = true;
-	if (keycode == E_KEY)
+	if (keycode == XK_e)
 		data->keys.e = true;
-	if (keycode == H_KEY)
+	if (keycode == XK_h)
 		data->keys.h = true;
-	if (keycode == J_KEY)
+	if (keycode == XK_j)
 		data->keys.j = true;
-	if (keycode == K_KEY)
+	if (keycode == XK_k)
 		data->keys.k = true;
-	if (keycode == L_KEY)
+	if (keycode == XK_l)
 		data->keys.l = true;
 	return (0);
 }
 
 int	key_release(int keycode, t_data *data)
 {
-	if (keycode == Q_KEY)
+	if (keycode == XK_q)
 		data->keys.q = false;
-	if (keycode == E_KEY)
+	if (keycode == XK_e)
 		data->keys.e = false;
-	if (keycode == H_KEY)
+	if (keycode == XK_h)
 		data->keys.h = false;
-	if (keycode == J_KEY)
+	if (keycode == XK_j)
 		data->keys.j = false;
-	if (keycode == K_KEY)
+	if (keycode == XK_k)
 		data->keys.k = false;
-	if (keycode == L_KEY)
+	if (keycode == XK_l)
 		data->keys.l = false;
 	return (0);
 }
@@ -58,11 +56,28 @@ void	handle_changes(t_data *data)
 	if (data->keys.e)
 		data->view.z_scale += 0.5;
 	if (data->keys.h)
-		data->view.off_x -= 2;
+	{
+		data->view.off_x -= 20;
+		if (data->view.off_x < -(data->map.width))
+			data->view.off_x = IMG_WIDTH;
+	}
 	if (data->keys.l)
-		data->view.off_x += 2;
+	{
+		data->view.off_x += 20;
+		if (data->view.off_x > (IMG_WIDTH + data->map.width * 2))
+			data->view.off_x = 0;
+	}
 	if (data->keys.j)
-		data->view.off_y += 2;
+	{
+		data->view.off_y += 20;
+		if (data->view.off_y > (IMG_HEIGHT + data->map.height * 2))
+			data->view.off_y = 0;
+
+	}
 	if (data->keys.k)
-		data->view.off_x -= 2;
+	{
+		data->view.off_y -= 20;
+		if (data->view.off_y < -(data->map.height))
+			data->view.off_y = IMG_HEIGHT;
+	}
 }
