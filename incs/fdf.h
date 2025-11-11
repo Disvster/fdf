@@ -180,5 +180,6 @@ int		key_press(int keycode, t_data *data);
 int		key_release(int keycode, t_data *data);
 void	handle_changes(t_data *data);
 void	clear_image(t_data *data);
+void	handle_boundaries(t_data *data);
 
 #endif

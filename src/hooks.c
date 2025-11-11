@@ -54,6 +54,11 @@ void	handle_changes(t_data *data)
 		data->view.z_scale -= 0.5;
 	if (data->keys.e)
 		data->view.z_scale += 0.5;
+	handle_boundaries(data);
+}
+
+void	handle_boundaries(t_data *data)
+{
 	if (data->keys.h)
 	{
 		data->view.off_x -= 20;
@@ -71,7 +76,6 @@ void	handle_changes(t_data *data)
 		data->view.off_y += 20;
 		if (data->view.off_y > (IMG_HEIGHT + data->map.height * 2))
 			data->view.off_y = 0;
-
 	}
 	if (data->keys.k)
 	{
