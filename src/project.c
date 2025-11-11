@@ -48,7 +48,6 @@ void	project(t_data *data, t_point *points)
 			* data->view.scale + (float)data->view.off_x);
 	points->t_y = ((x + y) * sin(data->view.angle)
 			* data->view.scale - z + (float)data->view.off_y);
-
 }
 
 void	transform(t_data *data)
