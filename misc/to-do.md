@@ -1,5 +1,11 @@
 # to-do
 
+## 12/11/2025
+
+- [X] maps with colors are get drawn with shitty colors
+- [ ] big maps are taking too long to open
+    - might be because of static variable
+
 ## 11/11/2025
 
 - for bonus:
@@ -12,12 +18,11 @@
 - [ ] check if exits are returning the correct number
 
 - here is a list of all the maps that don't work as they should:
-    - [ ] elem-fract - wating then doesnt open
-    - [ ] julia - same as above
+    - [X] elem-fract - wating then doesnt open
+    - [X] julia - same as above
     - [ ] pylone - is shifting the X coords to the side
-    - [ ] t1 - invalid color format
-    - [ ] t2 - invalid color format
-    ! ALL THESE MAPS HAVE IN COMMON CUSTOM COLORS !
+    - [X] t1 - invalid color format
+    - [X] t2 - invalid color format
 
 ## 08/11/2025
 

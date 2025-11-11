@@ -51,13 +51,17 @@ void	fdf_init_window(t_data	*data)
 int		handle_color_code(char *str, t_data *data)
 {
 	int	res;
+	char *hex;
 
 	res = 0;
-	if (str && str + 4)
+	if (str && str + 3)
 	{
-		res = ft_atoi_base(str + 4, "0123456789ABCDEF");
-		if (res == 0)
-			res = ft_atoi_base(str + 4, "0123456789abcdef");
+		hex = ft_strchr(str, 'x');
+		if (hex)
+			res = ft_atoi_base(&hex[1], "0123456789ABCDEF");
+		hex = ft_strchr(str, 'x');
+		if (res == 0 && hex)
+			res = ft_atoi_base(&hex[1], "0123456789abcdef");
 
 	}
 	if (res != 0)

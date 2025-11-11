@@ -19,8 +19,8 @@ void	set_points_color(t_data *data)
 	int		i;
 	float	norm;
 
-	if (data->map.has_color == true)
-		return ;
+	// if (data->map.has_color == true)
+	// 	return ;
 	i = -1;
 	z_max = data->points[i + 1].z;
 	z_min = data->points[i + 1].z;
@@ -86,9 +86,9 @@ int	set_pixel_opacity(int old_color, float intensity)
 	int	b;
 	int	new_color;
 
-	r = (old_color >> 16) & 0xFF;
-	g = (old_color >> 8) & 0xFF;
-	b = old_color & 0xFF;
+	r = (old_color >> 16) & 255;
+	g = (old_color >> 8) & 255;
+	b = old_color & 255;
 	r = (int)(r * intensity);
 	g = (int)(g * intensity);
 	b = (int)(b * intensity);
@@ -113,11 +113,11 @@ t_color	init_t_color(t_point *p0, t_point *p1)
 	t_color	color;
 
 	ft_bzero(&color, sizeof(t_color));
-	color.r0 = (p0->color >> 16) & 0xFF;
-	color.g0 = (p0->color >> 8) & 0xFF;
-	color.b0 = p0->color & 0xFF;
-	color.r1 = (p1->color >> 16) & 0xFF;
-	color.g1 = (p1->color >> 8) & 0xFF;
-	color.b1 = p1->color & 0xFF;
+	color.r0 = (p0->color >> 16) & 255;
+	color.g0 = (p0->color >> 8) & 255;
+	color.b0 = p0->color & 255;
+	color.r1 = (p1->color >> 16) & 255;
+	color.g1 = (p1->color >> 8) & 255;
+	color.b1 = p1->color & 255;
 	return (color);
 }
