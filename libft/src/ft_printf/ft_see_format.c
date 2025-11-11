@@ -12,7 +12,7 @@
 
 #include "../../incs/ft_printf.h"
 
-void	ft_init(char **return_val, char **base, int spec)
+static void	ft_init(char **return_val, char **base, int spec)
 {
 	*return_val = NULL;
 	if (spec == 'X')
