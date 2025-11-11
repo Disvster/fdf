@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 00:43:35 by manmaria          #+#    #+#             */
-/*   Updated: 2025/11/08 22:14:58 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/11/11 18:43:39 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,8 @@ void	set_point(t_data *data, int i, int x, char *buffer)
 	data->points[i].z = ft_atoi(xline[xi]);
 	if (ft_strchr(xline[xi], ',') != NULL)
 	{
-		data->points[i].color = ft_atoi_base
-			(ft_strchr(xline[xi], ',') + 3, "0123456789ABCDEF");
+		data->points[i].color = handle_color_code(ft_strchr(xline[xi], ','),
+				data);
 		if (!data->points[i].color)
 			return (free_split(xline), free_function(&buffer, data),
 				exit(error_exit(data->fd, "Invalid Color Format\n")));
@@ -117,5 +117,6 @@ t_map	map_init_data(int fd)
 	}
 	free(line);
 	map.points_total = map.width * map.height;
+	map.has_color = false;
 	return (map);
 }

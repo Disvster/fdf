@@ -84,6 +84,7 @@ typedef struct s_map
 	int		width;
 	int		height;
 	int		points_total;
+	bool	has_color;
 }				t_map;
 
 typedef struct s_line
@@ -174,6 +175,7 @@ int		set_height_color(float norm);
 int		set_pixel_opacity(int old_color, float intensity);
 int		get_pixel_color(t_color color, float inter);
 t_color	init_t_color(t_point *p0, t_point *p1);
+int		handle_color_code(char *str, t_data *data);
 
 //Hooks
 int		key_press(int keycode, t_data *data);

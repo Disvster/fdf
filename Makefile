@@ -11,6 +11,7 @@ SRC =	src/colors.c \
 		src/split.c \
 		src/test_fts.c \
 		src/utils.c \
+		src/utils2.c \
 		src/xiaolin.c
 SRCS = $(SRC)
 

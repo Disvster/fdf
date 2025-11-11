@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 19:06:27 by manmaria          #+#    #+#             */
-/*   Updated: 2025/11/08 22:25:09 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/11/11 18:25:51 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	fdf_init_view(t_data *data)
 	if (max_dimension < 100)
 		data->view.zoom = 1;
 	else if (max_dimension <= 200)
-		data->view.zoom = 0.5f;
+		data->view.zoom = 0.35f;
 	else
-		data->view.zoom = 0.0125f;
+		data->view.zoom = 0.125f;
 }
 
 void	project(t_data *data, t_point *points)

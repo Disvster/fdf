@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 17:02:57 by manmaria          #+#    #+#             */
-/*   Updated: 2025/11/03 00:02:10 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/11/11 18:44:44 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	set_points_color(t_data *data)
 	int		i;
 	float	norm;
 
+	if (data->map.has_color == true)
+		return ;
 	i = -1;
 	z_max = data->points[i + 1].z;
 	z_min = data->points[i + 1].z;
