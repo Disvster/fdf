@@ -29,6 +29,7 @@
 # include "../libft/incs/libft.h"
 # include "../minilibx-linux/mlx.h"
 
+# define ERR_MAL	"Memory Error \n"
 # define IMG_WIDTH	1920
 # define IMG_HEIGHT 1080 
 # define ESC_KEY	9
@@ -138,7 +139,8 @@ char	**ft_split_fdf(char const *s, char *c);
 
 // Map Parsing
 t_map	map_init_data(int fd);
-void	set_point(t_data *data, int i, int x, char *buffer);
+void	set_point2(t_data *data, int *pi, char *split, char *buffer);
+// void	set_point(t_data *data, int i, int x, char *buffer);
 void	map_read_data(t_data *data, int fd);
 void	parse_map(t_data *data, char *file_name);
 
