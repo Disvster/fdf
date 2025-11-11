@@ -5,6 +5,10 @@
 - [X] maps with colors are get drawn with shitty colors
 - [ ] big maps are taking too long to open
     - might be because of static variable
+    - [ ] solving this 
+
+- [ ] check if map is .fdf
+- [ ] pylone is not rectangular so it fucks projection
 
 ## 11/11/2025
 
@@ -26,7 +30,6 @@
 
 ## 08/11/2025
 
-- [ ] check if map is .fdf
 - [X] set up hooks
 - [X] close program safely
 
