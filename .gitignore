@@ -4,3 +4,4 @@
 *.o
 test_maps
 minilibx-linux/test/mlx-test
+atoi_base_test.c
