@@ -16,7 +16,6 @@ int	key_press(int keycode, t_data *data)
 {
 	if (keycode == 65307)
 		fdf_close_window(data);
-		// exit(0);
 	if (keycode == XK_q)
 		data->keys.q = true;
 	if (keycode == XK_e)

@@ -19,7 +19,7 @@ CC = clang
 CFLAGS = -O3 -ffast-math -fPIE -Wall -Wextra -Werror
 
 # Base includes for libraries
-BASE_INCLUDES = -I. -I./lib/libft -I./lib/minilibx-linux -I./lib/get_next_line -I./lib/ft_printf
+BASE_INCLUDES = -I. -I./lib/libft -I../../minilibx-linux -I./lib/get_next_line -I./lib/ft_printf
 
 # Separate includes for mandatory and bonus
 MANDATORY_INCLUDES = $(BASE_INCLUDES) -I./mandatory -I./mandatory/includes
@@ -27,7 +27,7 @@ BONUS_INCLUDES = $(BASE_INCLUDES) -I./bonus -I./bonus/includes
 
 # Directories
 LIBFTDIR = lib/libft
-MLXDIR = lib/minilibx-linux
+MLXDIR = ../../minilibx-linux
 GNLDIR = lib/get_next_line
 PRINTFDIR = lib/ft_printf/
 

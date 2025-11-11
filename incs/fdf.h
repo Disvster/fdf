@@ -147,6 +147,7 @@ int		error_exit(int fd, char *str);
 int		fdf_close_window(t_data *data);
 
 // Projection
+void	fdf_init_window(t_data	*data);
 void	fdf_init_view(t_data *data);
 void	project(t_data *data, t_point *points);
 void	transform(t_data *data);

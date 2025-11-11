@@ -24,7 +24,6 @@ void	fdf_init_view(t_data *data)
 	data->view.gamma = 0;
 	data->view.scale = 20.0;
 	data->view.angle = 0.523599;
-	// data->view.angle = M_PI / 6;
 	data->view.off_x = IMG_WIDTH / 2;
 	data->view.off_y = IMG_HEIGHT / 2;
 	data->view.z_scale = 5.5;
@@ -65,31 +64,4 @@ void	transform(t_data *data)
 		data->points[i].display[0] = (int)(data->points[i].t_x);
 		data->points[i].display[1] = (int)(data->points[i].t_y);
 	}
-	print_img(data);// HACK: db
 }
-
-// if (data->points[i].display[0] < min_x)
-// 	min_x = data->points[i].display[0];
-// if (data->points[i].display[1] < min_y)
-// 	min_y = data->points[i].display[1];
-// data->points[i].display[0] -= min_x;
-// data->points[i].display[1] -= min_y;
-// data->points[i].display[0] = (int)(px * data->view.scale + data->view.off_x);
-// data->points[i].display[1] = (int)(py * data->view.scale + data->view.off_y);
-//
-// x = (int)((point->world_3d[0] - point->world_3d[1])
-// 			* cos(data->view.angle))
-// y = (int)((point->world_3d[0] + point->world_3d[1])
-// 			* sin(data->view.angle) - point->world_3d[2]);
-// void	old_project(t_data *data, t_point *points)
-// {
-// 	double	px;
-// 	double	py;
-//
-	// points->t_x = ((points->x - points->y) * cos(data->view.angle)) * data->view.scale + (float)data->view.off_x;
-	// points->t_y = ((points->x + points->y * sin(data->view.angle) - points->z) * data->view.scale + (float)data->view.off_y);
-	// 	px = ((points->x - points->y) * cos(data->view.angle));
-	// 	py = ((points->x + points->y) * sin(data->view.angle) - points->z);
-	// 	points->display[0] = (int)(px * data->view.scale + data->view.off_x);
-	// 	points->display[1] = (int)(py * data->view.scale + data->view.off_y);
-	// }

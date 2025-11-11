@@ -14,6 +14,8 @@ SRC =	src/colors.c \
 		src/xiaolin.c
 SRCS = $(SRC)
 
+TEST_SRC = src/test_fts.c
+
 OBJ_DIR = obj/
 OBJ = $(addprefix $(OBJ_DIR),$(notdir $(SRCS:.c=.o)))
 

@@ -58,6 +58,24 @@ int	fdf_close_window(t_data *data)
 	return (0);
 }
 
+void	fdf_init_window(t_data	*data)
+{
+	data->mlx = mlx_init();
+	if (!data->mlx)
+		exit(error_exit(-2, "Could not initialize MLX\n"));
+	data->mlx_win = mlx_new_window(data->mlx, IMG_WIDTH, IMG_HEIGHT,
+			"FdF - manmaria");
+	if (!data->mlx_win)
+		exit(error_exit(-2, "Could not create MLX Window\n"));
+	data->img = mlx_new_image(data->mlx, IMG_WIDTH, IMG_HEIGHT);
+	if (!data->img)
+		exit(error_exit(-2, "Could not create MLX Image"));
+	data->addr = mlx_get_data_addr(data->img, &data->bpp,
+			&data->line_length, &data->endian);
+	if (!data->addr)
+		exit(error_exit(-2, "Could not get MLX Data Address"));
+}
+
 float	interpl(int n, int start, int end)
 {
 	return ((float)(n - start) / (float)(end - start));

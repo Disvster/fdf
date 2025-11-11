@@ -37,14 +37,6 @@ void	render_map(t_data *data)
 		}
 		row++;
 	}
-	// i = -1;
-	// while (++i < data->map.points_total)
-	// {
-	// 	if ((i + 1) % data->map.width != 0 && (i + 1) < data->map.points_total)
-	// 		draw_wuaa_line(data->points[i], data->points[i + 1], data);
-	// 	if (i + data->map.width < data->map.points_total)
-	// 		draw_wuaa_line(data->points[i], data->points[i + data->map.width], data);
-	// }
 }
 
 static void	init_wuaa_line_coords(t_line *line, t_point *p0, t_point *p1)
