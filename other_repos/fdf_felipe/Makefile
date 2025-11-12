@@ -12,7 +12,7 @@
 NAME = fdf
 BONUS_NAME = fdf_bonus
 
-CC = cc
+CC = clang
 CFLAGS = -Wall -Wextra -Werror -O3 -Iincludes -Ilibft -I$(MLX_DIR) -g
 LFLAGS = -lmlx -lXext -lX11 -lm -lbsd
 
@@ -22,7 +22,7 @@ BONUS_DIR = srcs_bonus
 BONUS_OBJ_DIR = objs_bonus
 
 LIBFT_DIR = ./libft
-MLX_DIR = ./minilibx-linux
+MLX_DIR = ../../minilibx-linux
 
 LIBFT_LIB = $(LIBFT_DIR)/libft.a
 MLX_LIB = $(MLX_DIR)/libmlx_Linux.a
