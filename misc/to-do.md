@@ -1,16 +1,16 @@
 # to-do
 
-## 12/11/2025
+## 11/11/2025
 
 - [X] maps with colors are get drawn with shitty colors
-- [ ] big maps are taking too long to open
+- [X] big maps are taking too long to open
     - might be because of static variable
-    - [ ] solving this 
+    - [X] solving this 
 
 - [ ] check if map is .fdf
 - [ ] pylone is not rectangular so it fucks projection
 
-## 11/11/2025
+## 10/11/2025
 
 - for bonus:
     - [ ] rotations

@@ -13,10 +13,6 @@
 #ifndef FDF_H
 # define FDF_H
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE	1024
-# endif
-
 # ifndef BASE_COLOR
 #  define BASE_COLOR	16711680
 # endif
@@ -86,6 +82,7 @@ typedef struct s_map
 	int		height;
 	int		points_total;
 	bool	has_color;
+	char	py;
 }				t_map;
 
 typedef struct s_line
@@ -137,10 +134,16 @@ void	print_img(t_data *data);
 size_t	count_words_fdf(char const *s, char *sep);
 char	**ft_split_fdf(char const *s, char *c);
 
+// y = -4
+// -23(i913), -22(i914), -21(i915), -20(i916), -19(i917), -18(i918), -17(i919), -16(i920), -15(i921), -14(i922), -13(i923), -12(i924), -11(i925), -10(i926), -9(i927), -8(i928), -7(i929), -6(i930), -5(i931), -4(i932), -3(i933), -2(i934), -1(i935), 0(i936), 1(i937), 2(i938), 3(i939), 4(i940), 5(i941), 6(i942), 7(i943), 8(i944), 9(i945), 10(i946), 11(i947), 12(i948), 13(i949), 14(i950), 15(i951), 16(i952), 17(i953), 18(i954), 19(i955), 20(i956), 21(i957), 22(i958), 23(i959), 
+//
+// y = -3
+// -23(i960),
+
 // Map Parsing
 t_map	map_init_data(int fd);
 void	set_point2(t_data *data, int *pi, char *split, char *buffer);
-// void	set_point(t_data *data, int i, int x, char *buffer);
+void	set_point(t_data *data, int i, int x, char *buffer);
 void	map_read_data(t_data *data, int fd);
 void	parse_map(t_data *data, char *file_name);
 
