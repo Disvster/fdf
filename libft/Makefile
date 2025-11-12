@@ -10,7 +10,7 @@ LIBFTSRC =	ft_putendl_fd.c ft_isprint.c ft_strlcpy.c ft_atoi.c ft_lstclear_bonus
 		ft_putnbr_fd.c ft_lstlast_bonus.c ft_memchr.c ft_strncmp.c \
 		ft_lstadd_front_bonus.c ft_atol.c ft_atoi_base.c ft_abs.c ft_max.c\
 		ft_bzero.c ft_memmove.c ft_substr.c ft_strtrim.c ft_lstnew_bonus.c \
-		ft_strdup.c ft_lstiter_bonus.c ft_strchr.c ft_memcmp.c count_words.c \
+		ft_strdup.c ft_lstiter_bonus.c ft_strchr.c ft_strchrnul.c ft_memcmp.c count_words.c \
 		ft_strnstr.c ft_tolower.c ft_putchar_fd.c ft_isascii.c ft_swap.c
 LIBFT_SRCS = $(addprefix $(LIBFT_DIR)/, $(LIBFTSRC))
 LIBFT_OBJS = $(patsubst $(LIBFT_DIR)/%.c,$(OBJ_DIR)%.o,$(LIBFT_SRCS))

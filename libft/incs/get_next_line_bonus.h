@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_BONUS_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE	3
+#  define BUFFER_SIZE	4096
 # endif
 
 # include <stdlib.h>
