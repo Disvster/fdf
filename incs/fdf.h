@@ -108,6 +108,8 @@ typedef struct	s_hook
 	bool	l;
 	bool	q;
 	bool	e;
+	bool	right;
+	bool	left;
 }				t_hook;
 
 typedef struct s_data
@@ -124,6 +126,8 @@ typedef struct s_data
 	void	*mlx_win;
 	t_hook	keys;
 	int		fd;
+	//BONUS
+	int		nb_maps;
 }				t_data;
 
 // Test Functions
@@ -133,7 +137,6 @@ void	print_img(t_data *data);
 // Split
 size_t	count_words_fdf(char const *s, char *sep);
 char	**ft_split_fdf(char const *s, char *c);
-
 
 // Map Parsing
 t_map	map_init_data(int fd);
@@ -182,5 +185,8 @@ int		key_release(int keycode, t_data *data);
 void	handle_changes(t_data *data);
 void	clear_image(t_data *data);
 void	handle_boundaries(t_data *data);
+
+//BONUS
+int	handle_multiple_maps(int ac, char **av);
 
 #endif
