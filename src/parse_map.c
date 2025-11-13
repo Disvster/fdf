@@ -93,7 +93,8 @@ void	set_point(t_data *data, int i, int x, char *buffer)
 				exit(error_exit(data->fd, "Invalid Color Format\n")));
 	}
 	xi++;
-	if (!xline[xi] || (((ft_abs(x) + i) > data->map.points_total) && data->map.py))
+	if (!xline[xi] || (((ft_abs(x) + i) > data->map.points_total)
+			&& data->map.py))
 		xline = free_split(xline);
 }
 
@@ -116,7 +117,6 @@ t_map	map_init_data(int fd)
 			map.py += 1;
 		if (line && (int)count_words_fdf(line, " \n") > map.width)
 			map.width = (int)count_words_fdf(line, " \n");
-
 	}
 	free(line);
 	map.points_total = map.width * map.height + map.py;

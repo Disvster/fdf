@@ -19,8 +19,6 @@ void	set_points_color(t_data *data)
 	int		i;
 	float	norm;
 
-	// if (data->map.has_color == true)
-	// 	return ;
 	i = -1;
 	z_max = data->points[i + 1].z;
 	z_min = data->points[i + 1].z;
@@ -39,6 +37,8 @@ void	set_points_color(t_data *data)
 			data->points[i].color = set_height_color(norm);
 	}
 }
+	// if (data->map.has_color == true)
+	// 	return ;
 
 int	set_height_color(float norm)
 {

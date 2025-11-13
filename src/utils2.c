@@ -48,10 +48,10 @@ void	fdf_init_window(t_data	*data)
 		exit(error_exit(-2, "Could not get MLX Data Address"));
 }
 
-int		handle_color_code(char *str, t_data *data)
+int	handle_color_code(char *str, t_data *data)
 {
-	int	res;
-	char *hex;
+	int		res;
+	char	*hex;
 
 	res = 0;
 	if (str && str + 3)
@@ -68,9 +68,10 @@ int		handle_color_code(char *str, t_data *data)
 		hex = ft_strchr(str, 'x');
 		if (res == 0 && hex)
 			res = ft_atoi_base(&hex[1], "0123456789abcdef");
-
 	}
 	if (res != 0)
 		data->map.has_color = true;
 	return (res);
 }
+
+

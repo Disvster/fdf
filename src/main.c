@@ -61,7 +61,7 @@ int	main(int ac, char **av)
 {
 	t_data	data;
 
-	(void)ac;
+	// (void)ac;
 	ft_bzero(&data, sizeof(t_data));
 	parse_map(&data, av[1]);
 	fdf_init_window(&data);
