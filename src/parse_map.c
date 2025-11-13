@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 00:43:35 by manmaria          #+#    #+#             */
-/*   Updated: 2025/11/11 18:43:39 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/11/13 02:52:58 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,64 +42,6 @@ static void	init_map_read(int *i, int *x, int *y, t_map *map)
 	*y = -1 * (map->height / 2);
 }
 
-// void	map_read_data(t_data *data, int fd)
-// {
-// 	int		x;
-// 	int		y;
-// 	int		i;
-// 	int		j;
-// 	char	*buffer;
-// 	char	**split;
-//
-// 	if (!data)
-// 		return (free_function(NULL, data), exit(error_exit(fd, NULL)));
-// 	init_map_read(&i, &x, &y, &data->map);
-// 	while (1)
-// 	{
-// 		buffer = get_next_line(fd);
-// 		if (!buffer)
-// 			break ;
-// 		split = ft_split_fdf(buffer, " \n");
-// 		if (!split)
-// 			return (free_function(&buffer, data),
-// 			exit(error_exit(fd, ERR_MAL)));
-// 		j = 0;
-// 		ft_printf("\ny = %d\n", y);// HACK: db
-// 		while (split[j] != 0 && ft_strncmp(split[j], "\n", ft_strlen(split[j])))
-// 		{
-// 			data->points[i].y = y;
-// 			data->points[i].x = x;
-// 			set_point2(data, &i, split[j], buffer);
-// 			x++;
-// 			j++;
-// 			ft_printf("%d(i%d), ", x, i);// HACK: db
-// 		}
-// 		free_split(split);
-// 		free_function(&buffer, NULL);
-// 		x = -1 * (data->map.width / 2);
-// 		y++;
-// 	}
-// 	// print_map(data);
-// 	free_function(&buffer, NULL);
-// }
-//
-// void	set_point2(t_data *data, int *pi, char *split, char *buffer)
-// {
-// 	int	i;
-//
-// 	i = *pi;
-// 	data->points[i].z = ft_atoi(split);
-// 	if (ft_strchr(split, ',') != NULL)
-// 	{
-// 		data->points[i].color = handle_color_code(ft_strchr(split, ','),
-// 				data);
-// 		if (!data->points[i].color)
-// 			return (free_split(&split), free_function(&buffer, data),
-// 				exit(error_exit(data->fd, "Invalid Color Format\n")));
-// 	}
-// 	*pi = i + 1;
-// }
-
 void	map_read_data(t_data *data, int fd)
 {
 	int		x;
@@ -107,26 +49,18 @@ void	map_read_data(t_data *data, int fd)
 	int		i;
 	char	*buffer;
 
-	if (!data)
-		return (free_function(NULL, data), exit(error_exit(fd, NULL)));
 	init_map_read(&i, &x, &y, &data->map);
 	while (1)
 	{
 		buffer = get_next_line(fd);
 		if (!buffer)
 			break ;
-		ft_printf("\ny = %d\n", y);// HACK: db
-		// size_t cw = count_words_fdf(buffer, " \n");
 		while (x <= (data->map.width - 1) / 2)
-		// for (size_t j = 0; j < cw; j++)
 		{
-			set_point(data, i, x, buffer);
 			data->points[i].y = y;
+			set_point(data, i, x, buffer);
 			x++;
-			ft_printf("%d, ", x);// HACK: db
 			i++;
-			// if (i == 960 && data->map.py)
-			// 	break ;
 		}
 		free_function(&buffer, NULL);
 		x = -1 * (data->map.width / 2);
@@ -159,7 +93,7 @@ void	set_point(t_data *data, int i, int x, char *buffer)
 				exit(error_exit(data->fd, "Invalid Color Format\n")));
 	}
 	xi++;
-	if (!xline[xi])
+	if (!xline[xi] || (((ft_abs(x) + i) > data->map.points_total) && data->map.py))
 		xline = free_split(xline);
 }
 
@@ -180,6 +114,8 @@ t_map	map_init_data(int fd)
 		line = get_next_line(fd);
 		if (line && (int)count_words_fdf(line, " \n") < map.width)
 			map.py += 1;
+		if (line && (int)count_words_fdf(line, " \n") > map.width)
+			map.width = (int)count_words_fdf(line, " \n");
 
 	}
 	free(line);
