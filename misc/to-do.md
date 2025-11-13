@@ -1,5 +1,12 @@
 # to-do
 
+
+## 12/11/2025
+
+- [ ] check if map is .fdf
+- [ ] check all the maps
+- [ ] create bonus branch
+
 ## 11/11/2025
 
 - [X] maps with colors are get drawn with shitty colors
@@ -7,8 +14,7 @@
     - might be because of static variable
     - [X] solving this 
 
-- [ ] check if map is .fdf
-- [ ] pylone is not rectangular so it fucks projection
+- [X] pylone is not rectangular so it fucks projection
 
 ## 10/11/2025
 
@@ -19,12 +25,12 @@
     - [ ] flinging map with mouse
     - [ ] loading more maps in the same window
 
-- [ ] check if exits are returning the correct number
+- [X] check if exits are returning the correct number
 
 - here is a list of all the maps that don't work as they should:
     - [X] elem-fract - wating then doesnt open
     - [X] julia - same as above
-    - [ ] pylone - is shifting the X coords to the side
+    - [X] pylone - is shifting the X coords to the side UPDATE: it stays like that idc
     - [X] t1 - invalid color format
     - [X] t2 - invalid color format
 
