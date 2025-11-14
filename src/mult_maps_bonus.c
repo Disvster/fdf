@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/fdf_bonus.h"
+#include "../incs/fdf_bonus.h"
+#include "../incs/fdf.h"
 
 int		key_press_bonus(int	keycode, t_dlist *node)
 {

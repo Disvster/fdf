@@ -12,13 +12,22 @@ SRC =	src/colors.c \
 		src/test_fts.c \
 		src/utils.c \
 		src/utils2.c \
-		src/xiaolin.c
+		src/xiaolin.c \
+		src/mult_maps_bonus.c \
+		src/list_utils_bonus.c
 SRCS = $(SRC)
+
+BONUS_DIR = src/bonus
+BONUS_SRC = list_utils.c mult_maps.c
+BONUS_SRCS = $(addprefix $(BONUS_DIR)/, $(BONUS_SRC))
+
 
 TEST_SRC = src/test_fts.c
 
 OBJ_DIR = obj/
 OBJ = $(addprefix $(OBJ_DIR),$(notdir $(SRCS:.c=.o)))
+
+BONUS_OBJS = $(patsubst $(BONUS_DIR)/%.c,$(OBJ_DIR)%.o,$(LIBFT_SRCS))
 
 # LIBFT
 LIBFT = libft/libft.a
@@ -46,13 +55,20 @@ CC = clang
 CFLAGS = -Wall -Werror -Wextra -g -Imlx_linux
 L_CFLAGS = -L/usr/lib -Lmlx_linux -lXext -lX11 -lm -lz 
 NAME = fdf
+NAME_BONUS = fdf_bonus
 RM = rm -f
 
 all: $(OBJ_DIR) $(LIBX) $(LIBFT) $(NAME)
 	@echo -e "Compilation complete! fdf file generated.                         \n"
 
+bonus: $(OBJ_DIR) $(BONUS_OBJS) $(LIBX) $(LIBFT) $(NAME_BONUS)
+	@echo -e "Compilation complete! fdf file generated.                         \n"
+
 print_fdf:
 	@echo -e "\n======  FdF  ======"
+
+print_fdf_bonus:
+	@echo -e "\n======  FdF Bonus  ======"
 
 print_libx:
 	@echo -e "\n=====  MiniLibX  ====="
@@ -75,8 +91,15 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -c $< -o $@ -I $(INCS_DIR)
 	$(progress_bar)
 
+$(BONUS_OBJS): $(BONUS_SRCS)%.c | $(OBJ_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@ -I $(INCS_DIR)
+	$(progress_bar)
+
 $(NAME): print_fdf $(LIBFT) $(LIBX) $(OBJ) 
 	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(LIBX) $(L_CFLAGS) -o $(NAME)
+
+$(NAME_BONUS): print_fdf_bonus $(LIBFT) $(LIBX) $(OBJ) $(BONUS_OBJS)
+	@$(CC) $(CFLAGS) $(OBJ) $(BONUS_OBJ) $(LIBFT) $(LIBX) $(L_CFLAGS) -o $(NAME_BONUS)
 
 clean: $(OBJ_DIR)
 	@make --no-print-directory print_libx
