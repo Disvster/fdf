@@ -1,11 +1,15 @@
 # to-do
 
 
+## 14/11/2025
+
+- [ ] BONUS: list are implemented but hooks are not working and there are two windows being opened
+
 ## 12/11/2025
 
 - [ ] check if map is .fdf
-- [ ] check all the maps
-- [ ] create bonus branch
+- [X] check all the maps
+- [X] create bonus branch
 
 ## 11/11/2025
 
@@ -23,7 +27,7 @@
     - [ ] change colors
     - [ ] draw on the opposite side when map goes out of bounds
     - [ ] flinging map with mouse
-    - [ ] loading more maps in the same window
+    - [X] loading more maps in the same window
 
 - [X] check if exits are returning the correct number
 
