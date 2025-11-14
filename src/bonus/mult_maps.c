@@ -6,11 +6,11 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 20:45:09 by manmaria          #+#    #+#             */
-/*   Updated: 2025/11/13 23:23:20 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/11/14 19:41:37 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/fdf_bonus.h"
+#include "../../incs/fdf_bonus.h"
 
 // TODO: bonus com listas ligadas
 //		 em vez de usar um array de data's
@@ -57,12 +57,12 @@ void	init_img_bonus(t_data *data)
 		exit(error_exit(-2, "Could not get MLX Data Address"));
 }
 
-void	handle_changes_bonus(t_data *data)
-{
-	if (data->keys
-}
+// void	handle_changes_bonus(t_data *data)
+// {
+// 	if (data->keys
+// }
 
-void	*init_array(int ac, char **av)
+void	*init_data_array(int ac, char **av)
 {
 	t_data	*data;
 	int		id;
@@ -82,15 +82,44 @@ void	*init_array(int ac, char **av)
 	return (data);
 }
 
+t_dlist	*create_maplist(t_data *data, int n_maps)
+{
+	t_dlist	*maplist;
+	t_dlist	*new_node;
+	int		id;
+
+	id = 0;
+	maplist = NULL;
+	while (id < n_maps)
+	{
+		new_node = dlist_new_node(&data[id]);
+		if (!new_node)
+			return (NULL);
+		if (!maplist)
+			maplist = new_node;
+		dlist_add_last(&maplist, new_node);
+		id++;
+	}
+	return (maplist);
+}
+
 int	handle_multiple_maps(int ac, char **av)
 {
 	int		numb_maps;
+	t_data	mlx_win;
 	t_data	*data;
+	t_dlist	*maplist;
 
 	numb_maps = ac - 1;
-	data = init_array(ac, av);
+	ft_bzero(&mlx_win, sizeof(t_data));
+	data = init_data_array(ac, av);
 	if (!data)
 		return (1);
-	fdf_init_window(&data[0]);
+	maplist = create_maplist(data, numb_maps);
+	if (!maplist)
+		return (1);
+	fdf_init_window(&mlx_win);
+
+	fdf_dlist_clear(&maplist, &bonusfdf_close_window);
 	return (0);
 }
