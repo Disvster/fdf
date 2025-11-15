@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 22:46:05 by manmaria          #+#    #+#             */
-/*   Updated: 2025/11/13 20:49:03 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/11/15 17:42:38 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,10 @@ int	main(int ac, char **av)
 		parse_map(&data, av[1]);
 		fdf_init_window(&data);
 		fdf_init_view(&data);
-		mlx_loop_hook(data.mlx, new_render, &data);
 		mlx_hook(data.mlx_win, 2, 1L << 0, key_press, &data);
 		mlx_hook(data.mlx_win, 3, 1L << 1, key_release, &data);
 		mlx_hook(data.mlx_win, 17, 0, fdf_close_window, &data);
+		mlx_loop_hook(data.mlx, new_render, &data);
 		mlx_loop(data.mlx);
 		free_function(NULL, &data);
 	}

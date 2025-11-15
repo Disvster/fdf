@@ -12,22 +12,25 @@ SRC =	src/colors.c \
 		src/test_fts.c \
 		src/utils.c \
 		src/utils2.c \
-		src/xiaolin.c \
-		src/mult_maps_bonus.c \
-		src/list_utils_bonus.c
+		src/xiaolin.c
 SRCS = $(SRC)
 
-BONUS_DIR = src/bonus
-BONUS_SRC = list_utils.c mult_maps.c
+BONUS_DIR = src/bonus/
+BONUS_SRC = list_utils.c \
+			list_utils2.c \
+			utils_bonus.c \
+			hooks_bonus.c \
+			mult_maps.c
 BONUS_SRCS = $(addprefix $(BONUS_DIR)/, $(BONUS_SRC))
 
 
 TEST_SRC = src/test_fts.c
 
 OBJ_DIR = obj/
+BONUS_OBJ_DIR = obj/
 OBJ = $(addprefix $(OBJ_DIR),$(notdir $(SRCS:.c=.o)))
 
-BONUS_OBJS = $(patsubst $(BONUS_DIR)/%.c,$(OBJ_DIR)%.o,$(LIBFT_SRCS))
+BONUS_OBJS = $(addprefix $(OBJ_DIR),$(notdir $(BONUS_SRCS:.c=.o)))
 
 # LIBFT
 LIBFT = libft/libft.a
@@ -58,7 +61,7 @@ NAME = fdf
 NAME_BONUS = fdf_bonus
 RM = rm -f
 
-all: $(OBJ_DIR) $(LIBX) $(LIBFT) $(NAME)
+all: $(OBJ_DIR) $(BONUS_OBJ_DIR) $(LIBX) $(LIBFT) $(NAME)
 	@echo -e "Compilation complete! fdf file generated.                         \n"
 
 bonus: $(OBJ_DIR) $(BONUS_OBJS) $(LIBX) $(LIBFT) $(NAME_BONUS)
@@ -91,12 +94,12 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -c $< -o $@ -I $(INCS_DIR)
 	$(progress_bar)
 
-$(BONUS_OBJS): $(BONUS_SRCS)%.c | $(OBJ_DIR)
+$(BONUS_OBJ_DIR)%.o: $(BONUS_DIR)%.c | $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -c $< -o $@ -I $(INCS_DIR)
 	$(progress_bar)
 
-$(NAME): print_fdf $(LIBFT) $(LIBX) $(OBJ) 
-	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(LIBX) $(L_CFLAGS) -o $(NAME)
+$(NAME): print_fdf $(LIBFT) $(LIBX) $(OBJ) $(BONUS_OBJS)
+	@$(CC) $(CFLAGS) $(OBJ) $(BONUS_OBJS) $(LIBFT) $(LIBX) $(L_CFLAGS) -o $(NAME)
 
 $(NAME_BONUS): print_fdf_bonus $(LIBFT) $(LIBX) $(OBJ) $(BONUS_OBJS)
 	@$(CC) $(CFLAGS) $(OBJ) $(BONUS_OBJ) $(LIBFT) $(LIBX) $(L_CFLAGS) -o $(NAME_BONUS)

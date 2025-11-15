@@ -6,21 +6,26 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 18:58:35 by manmaria          #+#    #+#             */
-/*   Updated: 2025/11/14 20:16:22 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/11/15 18:24:18 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/fdf_bonus.h"
 
-t_dlist	*dlist_new_node(void *content)
+t_dlist	*dlist_new_node(void *content, t_data *window)
 {
 	t_dlist	*new_node;
-	
+	t_data	*temp;
+
 	new_node = malloc(sizeof(t_dlist));
 	if (!new_node)
 		return (NULL);
+	temp = content;
+	temp->mlx = window->mlx;
+	temp->mlx_win = window->mlx_win;
+	init_img_bonus(temp);
 	new_node->prev = NULL;
-	new_node->data = content;
+	new_node->data = temp;
 	new_node->next = NULL;
 	return (new_node);
 }
@@ -42,7 +47,7 @@ void	dlist_add_first(t_dlist **head, t_dlist *node)
 void	dlist_add_last(t_dlist **head, t_dlist *node)
 {
 	t_dlist	*last;
-	
+
 	if (!*head)
 		*head = node;
 	else
@@ -53,6 +58,7 @@ void	dlist_add_last(t_dlist **head, t_dlist *node)
 	}
 }
 
+//del is bonus_close_window
 void	fdf_dlist_clear(t_dlist **lst, void (*del)(t_data *))
 {
 	t_dlist	*tmp;
@@ -61,47 +67,20 @@ void	fdf_dlist_clear(t_dlist **lst, void (*del)(t_data *))
 	if (!lst || !del)
 		return ;
 	node = *lst;
+	if (node->prev)
+		node = dlist_get_head(*lst);
 	while (node)
 	{
 		tmp = node->next;
-		del(node->data);
-		free(node);
+		if (!tmp)
+			fdf_close_window_bonus(node->data);
+		else
+		{
+			del(node->data);
+			free(node);
+		}
 		node = tmp;
 	}
 	*lst = NULL;
 	exit(0);
-}
-
-t_dlist	*dlist_get_tail(t_dlist *n)
-{
-    if (!n)
-		return (NULL);
-    while (n->next)
-        n = n->next;
-    return (n);
-}
-
-t_dlist	*dlist_get_head(t_dlist *n)
-{
-    if (!n)
-		return (NULL);
-    while (n->prev)
-        n = n->prev;
-    return (n);
-}
-
-void	bonus_close_window(t_data *data)
-{
-	free_function(NULL, data);
-	if (data && data->mlx)
-	{
-		mlx_destroy_image(data->mlx, data->img);
-		mlx_destroy_window(data->mlx, data->mlx_win);
-		mlx_destroy_display(data->mlx);
-		if (data && data->mlx)
-		{
-			free(data->mlx);
-			data->mlx = NULL;
-		}
-	}
 }
