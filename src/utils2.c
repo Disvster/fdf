@@ -59,7 +59,6 @@ int	handle_color_code(char *str, t_data *data)
 		hex = ft_strchr(str, 'X');
 		if (hex)
 			res = ft_atoi_base(&hex[1], "0123456789ABCDEF");
-		hex = ft_strchr(str, 'X');
 		if (res == 0 && hex)
 			res = ft_atoi_base(&hex[1], "0123456789abcdef");
 		hex = ft_strchr(str, 'x');
@@ -73,5 +72,3 @@ int	handle_color_code(char *str, t_data *data)
 		data->map.has_color = true;
 	return (res);
 }
-
-
