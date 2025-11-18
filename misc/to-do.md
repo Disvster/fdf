@@ -1,5 +1,12 @@
 # to-do
 
+## 18/11/2025
+
+- [ ] on error like file not found I should free everything before (or not even) exit
+    - I'm not freeing memory from previously created maps
+    - see `valgrind --leak-check=full --show-leak-kinds=all ./fdf test_maps/elem.fdf test_maps/basictest.fdf test_maps/10-2` <- lacks `.fdf`
+- [X] solved still reachable in fdf_dlist_clear (init_data_array ptr)
+
 
 ## 14/11/2025
 
