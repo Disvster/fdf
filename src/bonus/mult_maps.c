@@ -72,9 +72,9 @@ int	new_render_bonus(t_dlist *node)
 	return (0);
 }
 
-int	hook_exit(t_dlist *node)
+int	hook_exit(t_dlist **node)
 {
-	fdf_dlist_clear(&node, bonus_wipe_image);
+	fdf_dlist_clear(node, bonus_wipe_image);
 	return (1);
 }
 

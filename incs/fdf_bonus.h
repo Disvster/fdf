@@ -43,7 +43,5 @@ void	init_win_bonus(t_data *data);
 
 t_dlist	*create_maplist(t_data *data, t_data *window, int n_maps);
 int		new_render_bonus(t_dlist *node);
-int		hook_exit(t_dlist *node);
-
 
 #endif

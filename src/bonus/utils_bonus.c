@@ -17,9 +17,12 @@ int	fdf_close_window_bonus(t_data *data)
 	free_function(NULL, data);
 	if (data && data->mlx)
 	{
-		mlx_destroy_image(data->mlx, data->img);
-		mlx_destroy_window(data->mlx, data->mlx_win);
-		mlx_destroy_display(data->mlx);
+		if (data && data->mlx && data->img)
+			mlx_destroy_image(data->mlx, data->img);
+		if (data && data->mlx && data->mlx_win)
+			mlx_destroy_window(data->mlx, data->mlx_win);
+		if (data && data->mlx)
+			mlx_destroy_display(data->mlx);
 		if (data && data->mlx)
 		{
 			free(data->mlx);
@@ -29,13 +32,35 @@ int	fdf_close_window_bonus(t_data *data)
 	return (0);
 }
 
+static void	free_function_b(char **buffer, t_data **data)
+{
+	if (buffer && *buffer)
+	{
+		free(*buffer);
+		if (data)
+		{
+			*buffer = get_next_line((*data)->fd);
+			while (*buffer)
+			{
+				free(*buffer);
+				*buffer = get_next_line((*data)->fd);
+			}
+		}
+		*buffer = NULL;
+	}
+	if (data && (*data)->points)
+	{
+		free((*data)->points);
+		(*data)->points = NULL;
+	}
+}
+
 void	bonus_wipe_image(t_data *data)
 {
-	if (data && data->mlx)
+	if (data && data->mlx && data->img)
 	{
 		mlx_destroy_image(data->mlx, data->img);
-		free(data->mlx);
-		free_function(NULL, data);
+		free_function_b(NULL, &data);
 	}
 }
 

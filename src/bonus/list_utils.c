@@ -58,29 +58,33 @@ void	dlist_add_last(t_dlist **head, t_dlist *node)
 	}
 }
 
-//del is bonus_close_window
+//del is bonus_wipe_image
 void	fdf_dlist_clear(t_dlist **lst, void (*del)(t_data *))
 {
 	t_dlist	*tmp;
 	t_dlist	*node;
+	t_data	*base_ptr;
 
 	if (!lst || !del)
 		return ;
 	node = *lst;
 	if (node->prev)
 		node = dlist_get_head(*lst);
+	base_ptr = node->data;
 	while (node)
 	{
 		tmp = node->next;
+		del(node->data);
 		if (!tmp)
-			fdf_close_window_bonus(node->data);
-		else
-		{
-			del(node->data);
+			fdf_close_window_bonus(node->window);
+		if (node)
 			free(node);
-		}
+		node = NULL;
 		node = tmp;
 	}
+	if (base_ptr)
+		free(base_ptr);
+	base_ptr = NULL;
 	*lst = NULL;
 	exit(0);
 }
