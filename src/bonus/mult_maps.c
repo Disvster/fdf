@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 20:45:09 by manmaria          #+#    #+#             */
-/*   Updated: 2025/11/19 18:07:37 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/11/19 22:49:35 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,17 @@ t_dlist	*create_maplist(t_data *data, t_data *window, int n_maps)
 	return (maplist);
 }
 
-int	new_render_bonus(t_dlist *node)
+int	new_render_bonus(t_dlist **node)
 {
 	t_data	*temp;
 	t_data	*temp2;
 
-	clear_image(node->data);
-	temp = node->data;
-	handle_changes_bonus(&node);
-	if (temp != node->data)
+	clear_image((*node)->data);
+	temp = (*node)->data;
+	handle_changes_bonus(node);
+	if (temp != (*node)->data)
 		clear_image(temp);
-	temp2 = node->data;
+	temp2 = (*node)->data;
 	transform(temp2);
 	render_map(temp2);
 	mlx_put_image_to_window(temp2->mlx, temp2->mlx_win, temp2->img, 0, 0);
@@ -92,10 +92,10 @@ int	handle_multiple_maps(int ac, char **av)
 	maplist = create_maplist(data, &window, numb_maps);
 	if (!maplist)
 		return (1);
-	mlx_hook(window.mlx_win, 2, 1L << 0, key_press_bonus, maplist);
-	mlx_hook(window.mlx_win, 3, 1L << 1, key_release_bonus, maplist);
-	mlx_hook(window.mlx_win, 17, 0, hook_exit, maplist);
-	mlx_loop_hook(window.mlx, new_render_bonus, maplist);
+	mlx_hook(window.mlx_win, 2, 1L << 0, key_press_bonus, &maplist);
+	mlx_hook(window.mlx_win, 3, 1L << 1, key_release_bonus, &maplist);
+	mlx_hook(window.mlx_win, 17, 0, hook_exit, &maplist);
+	mlx_loop_hook(window.mlx, new_render_bonus, &maplist);
 	mlx_loop(window.mlx);
 	fdf_dlist_clear(&maplist, bonus_wipe_image);
 	return (0);
