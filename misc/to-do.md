@@ -1,5 +1,9 @@
 # to-do
 
+## 19/11/2025
+
+- [X] fix arrow hooks behaviour
+
 ## 18/11/2025
 
 - [ ] on error like file not found I should free everything before (or not even) exit
@@ -10,7 +14,7 @@
 
 ## 14/11/2025
 
-- [ ] BONUS: list are implemented but hooks are not working and there are two windows being opened
+- [X] BONUS: list are implemented but hooks are not working properly,  ~~and there are two windows being opened~~
 
 ## 12/11/2025
 
