@@ -3,6 +3,7 @@
 ## 19/11/2025
 
 - [ ] fix arrow hooks behaviour
+- [ ] try floats instead of doubles, this will make the fractols more clear
 
 ## 18/11/2025
 
