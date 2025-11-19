@@ -12,7 +12,7 @@
 
 #include "../../incs/fdf_bonus.h"
 
-int		key_press_bonus(int	keycode, t_dlist *node)
+int	key_press_bonus(int keycode, t_dlist *node)
 {
 	t_data	*data;
 
@@ -38,7 +38,7 @@ int		key_press_bonus(int	keycode, t_dlist *node)
 	return (0);
 }
 
-int		key_release_bonus(int keycode, t_dlist *node)
+int	key_release_bonus(int keycode, t_dlist *node)
 {
 	t_data	*data;
 
@@ -110,7 +110,6 @@ void	handle_changes_bonus(t_dlist **node)
 	if (dtmp1->keys.e)
 		dtmp2->view.z_scale += 0.5;
 	*node = temp;
-
 }
 //
 // void	handle_boundaries_bonus(t_data *data)

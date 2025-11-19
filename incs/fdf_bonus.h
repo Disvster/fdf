@@ -15,12 +15,12 @@
 
 # include "fdf.h"
 
-typedef	struct	s_dlist
+typedef struct s_dlist
 {
-	struct	s_dlist	*prev;
+	struct s_dlist	*prev;
 	void			*data;
 	t_data			*window;
-	struct	s_dlist	*next;
+	struct s_dlist	*next;
 
 }				t_dlist;
 
@@ -34,7 +34,7 @@ void	bonus_wipe_image(t_data *data);
 int		fdf_close_window_bonus(t_data *data);
 
 void	handle_changes_bonus(t_dlist **node);
-int		key_press_bonus(int	keycode, t_dlist *node);
+int		key_press_bonus(int keycode, t_dlist *node);
 int		key_release_bonus(int keycode, t_dlist *node);
 
 void	*init_data_array(int ac, char **av);

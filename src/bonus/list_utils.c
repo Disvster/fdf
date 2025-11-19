@@ -79,7 +79,6 @@ void	fdf_dlist_clear(t_dlist **lst, void (*del)(t_data *))
 			fdf_close_window_bonus(node->window);
 		if (node)
 			free(node);
-		node = NULL;
 		node = tmp;
 	}
 	if (base_ptr)

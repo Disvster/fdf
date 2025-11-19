@@ -1,4 +1,4 @@
-/** ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 01:31:37 by manmaria          #+#    #+#             */
-/*   Updated: 2025/11/03 17:23:26 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/11/19 22:30:42 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,11 @@
 # include <X11/keysym.h>
 # include <stdio.h>
 # include <math.h>
-# include <float.h>
+// # include <float.h>
 # include <stdbool.h>
 # include "../libft/incs/libft.h"
 # include "../minilibx-linux/mlx.h"
 
-# define ERR_MAL	"Memory Error \n"
 # define IMG_WIDTH	1920
 # define IMG_HEIGHT 1080 
 # define ESC_KEY	9
@@ -97,10 +96,10 @@ typedef struct s_line
 	int		x1;
 	int		y0;
 	int		y1;
-    int		steep;
+	int		steep;
 }				t_line;
 
-typedef struct	s_hook
+typedef struct s_hook
 {
 	bool	h;
 	bool	j;
@@ -188,6 +187,6 @@ void	clear_image(t_data *data);
 void	handle_boundaries(t_data *data);
 
 //BONUS
-int	handle_multiple_maps(int ac, char **av);
+int		handle_multiple_maps(int ac, char **av);
 
 #endif
