@@ -2,7 +2,7 @@
 
 ## 19/11/2025
 
-- [X] fix arrow hooks behaviour
+- [ ] fix arrow hooks behaviour
 
 ## 18/11/2025
 
