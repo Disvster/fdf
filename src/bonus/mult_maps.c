@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 20:45:09 by manmaria          #+#    #+#             */
-/*   Updated: 2025/11/15 18:18:51 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/11/19 18:07:37 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,7 @@ void	*init_data_array(int ac, char **av)
 	while (av[id + 1])
 	{
 		parse_map(&(data[id]), av[id + 1]);
-		// fdf_init_window(&(data[id]));
 		fdf_init_view(&(data[id]));
-		// init_img_bonus(&(data[id]));
 		id++;
 	}
 	return (data);

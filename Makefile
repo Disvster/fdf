@@ -6,6 +6,7 @@ SRC =	src/colors.c \
 		src/draw.c \
 		src/hooks.c \
 		src/main.c \
+		check_files.c \
 		src/parse_map.c \
 		src/project.c \
 		src/split.c \

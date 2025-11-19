@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 22:46:05 by manmaria          #+#    #+#             */
-/*   Updated: 2025/11/15 17:42:38 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/11/19 19:04:34 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ int	main(int ac, char **av)
 {
 	t_data	data;
 
+	if (check_valid_files(ac, av) == 0)
+		return (1);
 	ft_bzero(&data, sizeof(t_data));
 	if (ac > 2)
 		return (handle_multiple_maps(ac, av));

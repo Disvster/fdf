@@ -143,6 +143,7 @@ t_map	map_init_data(int fd);
 void	set_point(t_data *data, int i, int x, char *buffer);
 void	map_read_data(t_data *data, int fd);
 void	parse_map(t_data *data, char *file_name);
+int		check_valid_files(int ac, char **av);
 
 // Free funcs
 void	free_function(char **buffer, t_data *data);

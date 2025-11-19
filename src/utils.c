@@ -15,11 +15,11 @@
 int	error_exit(int fd, char *str)
 {
 	if (fd == -1)
-		perror("File not found!\n");
+		ft_putstr_fd("File not found\n", 2);
 	else
 	{
 		if (str)
-			perror(str);
+			ft_putstr_fd(str, 2);
 		if (fd > -1)
 			close (fd);
 	}
