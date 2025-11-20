@@ -81,7 +81,6 @@ typedef struct s_map
 	int		width;
 	int		height;
 	int		points_total;
-	bool	has_color;
 	char	py;
 }				t_map;
 
@@ -89,7 +88,7 @@ typedef struct s_line
 {
 	float	delta_x;
 	float	delta_y;
-	float	gradient;
+	double	gradient;
 	float	intersect_y;
 	int		x;
 	int		y;

@@ -16,11 +16,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
-	if (x < 0 || y < 0 || x >= 1920 || y >= 1080)
-		return ;
-	if (!data || !data->addr)
-		return ;
-	dst = data->addr + (y * data->line_length + x * (data->bpp / 8));
+	dst = data->addr + (y * data->line_length + x * (data->bpp >> 3));
 	*(unsigned int *)dst = color;
 }
 
