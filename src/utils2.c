@@ -53,6 +53,7 @@ int	handle_color_code(char *str, t_data *data)
 	int		res;
 	char	*hex;
 
+	(void)data;
 	res = 0;
 	if (str && str + 3)
 	{
@@ -68,7 +69,5 @@ int	handle_color_code(char *str, t_data *data)
 		if (res == 0 && hex)
 			res = ft_atoi_base(&hex[1], "0123456789abcdef");
 	}
-	if (res != 0)
-		data->map.has_color = true;
 	return (res);
 }

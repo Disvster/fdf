@@ -40,8 +40,8 @@ define progress_bar
   echo -ne "Compiling: [$$BAR] ($$COUNT/$(TOTAL_C))\r"
 endef
 
-CC = cc
-CFLAGS = -Wall -Werror -Wextra -g
+CC = clang
+CFLAGS = -Wall -Werror -Wextra -g -O3
 OBJ_DIR = obj/
 INC_DIR = incs/
 NAME = libft.a

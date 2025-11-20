@@ -52,7 +52,6 @@ void	draw_wuaa_line(t_point p0, t_point p1, t_data *data)
 	t_color	color;
 	t_line	line;
 
-	ft_bzero(&line, sizeof(t_line));
 	init_wuaa_line_coords(&line, &p0, &p1);
 	line.steep = ft_abs_fl(line.y1 - line.y0) > ft_abs_fl(line.x1 - line.x0);
 	prep_line_coords(&line, &p0, &p1);
