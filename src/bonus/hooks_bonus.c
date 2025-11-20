@@ -95,15 +95,17 @@ void	handle_changes_bonus(t_dlist **node)
 	temp = *node;
 	dtmp1 = temp->data;
 	if (dtmp1->keys.right)
-	// {
-	// 	clear_image(dtmp1);
+	{
+		// clear_image(dtmp1);
 		fdf_next_map(&temp);
-	// }
+		dtmp1->keys.right = false;
+	}
 	if (dtmp1->keys.left)
-	// {
+	{
 	// 	clear_image(dtmp1);
 		fdf_prev_map(&temp);
-	// }
+		dtmp1->keys.left = false;
+	}
 	dtmp2 = temp->data;
 	if (dtmp1->keys.q)
 		dtmp2->view.z_scale -= 0.5;
