@@ -30,24 +30,24 @@ void	fdf_init_view(t_data *data)
 	if (max_dimension < 100)
 		data->view.zoom = 1;
 	else if (max_dimension <= 200)
-		data->view.zoom = 0.35f;
+		data->view.zoom = 0.35;
 	else
-		data->view.zoom = 0.125f;
+		data->view.zoom = 0.125;
 }
 
 void	project(t_data *data, t_point *points)
 {
-	float	x;
-	float	y;
-	float	z;
+	double	x;
+	double	y;
+	double	z;
 
 	x = points->x * data->view.zoom;
 	y = points->y * data->view.zoom;
 	z = points->z * data->view.zoom * data->view.z_scale;
 	points->t_x = ((x - y) * cos(data->view.angle)
-			* data->view.scale + (float)data->view.off_x);
+			* data->view.scale + (double)data->view.off_x);
 	points->t_y = ((x + y) * sin(data->view.angle)
-			* data->view.scale - z + (float)data->view.off_y);
+			* data->view.scale - z + (double)data->view.off_y);
 }
 
 void	transform(t_data *data)

@@ -17,7 +17,7 @@ void	set_points_color(t_data *data)
 	int		z_max;
 	int		z_min;
 	int		i;
-	float	norm;
+	double	norm;
 
 	i = -1;
 	z_max = data->points[i + 1].z;
@@ -40,7 +40,7 @@ void	set_points_color(t_data *data)
 	// if (data->map.has_color == true)
 	// 	return ;
 
-int	set_height_color(float norm)
+int	set_height_color(double norm)
 {
 	int	r;
 	int	g;
@@ -68,7 +68,7 @@ int	set_height_color(float norm)
 	return (new_color);
 }
 
-int	get_pixel_color(t_color color, float inter)
+int	get_pixel_color(t_color color, double inter)
 {
 	color.r = color.r0 + inter * (color.r1 - color.r0);
 	color.g = color.g0 + inter * (color.g1 - color.g0);
@@ -79,7 +79,7 @@ int	get_pixel_color(t_color color, float inter)
 	// r = (old_color >> 16) & 0xFF;//r is the first 8 bits in old colour
 	// g = (old_color >> 8) & 0xFF;//g is the middle 8  bits in old colour
 	// b = old_color & 0xFF;//b is the last 8 bit in old_colour
-int	set_pixel_opacity(int old_color, float intensity)
+int	set_pixel_opacity(int old_color, double intensity)
 {
 	int	r;
 	int	g;

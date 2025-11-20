@@ -1,13 +1,20 @@
 # to-do
 
+## 20/11/2025
+
+- [ ] colors are fucked
+- [ ] then do norm
+- [ ] then rotations
+- [ ] then it's done
+
 ## 19/11/2025
 
-- [ ] fix arrow hooks behaviour
-- [ ] try floats instead of doubles, this will make the fractols more clear
+- [X] fix arrow hooks behaviour
+- [X] try floats instead of doubles, this will make the fractols more clear (it didnt)
 
 ## 18/11/2025
 
-- [X] on error like file not found I should free everything before (or not even) exit
+- [X] on error like file not found I should free everything before (or not even malloc) and exit
     - I'm not freeing memory from previously created maps
     - see `valgrind --leak-check=full --show-leak-kinds=all ./fdf test_maps/elem.fdf test_maps/basictest.fdf test_maps/10-2` <- lacks `.fdf`
 - [X] solved still reachable in fdf_dlist_clear (init_data_array ptr)
@@ -39,7 +46,8 @@
     - [ ] change colors
     - [ ] draw on the opposite side when map goes out of bounds
     - [ ] flinging map with mouse
-    - [X] loading more maps in the same window
+    - [X] zoom
+    - [X] loading multiple maps in the same window
 
 - [X] check if exits are returning the correct number
 

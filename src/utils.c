@@ -49,7 +49,7 @@ void	free_function(char **buffer, t_data *data)
 	}
 }
 
-float	interpl(int n, int start, int end)
+double	interpl(int n, int start, int end)
 {
-	return ((float)(n - start) / (float)(end - start));
+	return ((double)(n - start) / (double)(end - start));
 }
