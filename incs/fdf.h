@@ -40,13 +40,13 @@ typedef struct s_view
 {
 	int		off_x;
 	int		off_y;
-	float	alpha;
-	float	beta;
-	float	gamma;
-	float	scale;
-	float	angle;
-	float	z_scale;
-	float	zoom;
+	double	alpha;
+	double	beta;
+	double	gamma;
+	double	scale;
+	double	angle;
+	double	z_scale;
+	double	zoom;
 }				t_view;
 
 typedef struct s_point
@@ -56,8 +56,8 @@ typedef struct s_point
 	int		z;
 	int		color;
 	int		display[2];
-	float	t_x;
-	float	t_y;
+	double	t_x;
+	double	t_y;
 }				t_point;
 
 typedef struct s_color
@@ -72,8 +72,8 @@ typedef struct s_color
 	int		b0;
 	int		b1;
 	int		final;
-	float	main_opa;
-	float	adja_opa;
+	double	main_opa;
+	double	adja_opa;
 }				t_color;
 
 typedef struct s_map
@@ -86,10 +86,10 @@ typedef struct s_map
 
 typedef struct s_line
 {
-	float	delta_x;
-	float	delta_y;
+	double	delta_x;
+	double	delta_y;
 	double	gradient;
-	float	intersect_y;
+	double	intersect_y;
 	int		x;
 	int		y;
 	int		x0;
@@ -161,17 +161,17 @@ void	prep_line_coords(t_line *line, t_point *p0, t_point *p1);
 
 //Xiaolin Utils
 void	ft_swap(int *a, int *b);
-float	ft_abs_fl(float nb);
-int		i_partof_number(float nb);
-float	f_partof_number(float nb);
-float	rf_partof_number(float nb);
-float	interpl(int n, int start, int end);
+double	ft_abs_fl(double nb);
+int		i_partof_number(double nb);
+double	f_partof_number(double nb);
+double	rf_partof_number(double nb);
+double	interpl(int n, int start, int end);
 
 // Colors
 void	set_points_color(t_data *data);
-int		set_height_color(float norm);
-int		set_pixel_opacity(int old_color, float intensity);
-int		get_pixel_color(t_color color, float inter);
+int		set_height_color(double norm);
+int		set_pixel_opacity(int old_color, double intensity);
+int		get_pixel_color(t_color color, double inter);
 t_color	init_t_color(t_point *p0, t_point *p1);
 int		handle_color_code(char *str, t_data *data);
 

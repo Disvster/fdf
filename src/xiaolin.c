@@ -29,7 +29,7 @@ void	prep_line_coords(t_line *line, t_point *p0, t_point *p1)
 	}
 }
 
-float	ft_abs_fl(float nb)
+double	ft_abs_fl(double nb)
 {
 	if (nb >= 0)
 		return (nb);
@@ -37,17 +37,17 @@ float	ft_abs_fl(float nb)
 		return (nb * -1);
 }
 
-int	i_partof_number(float nb)
+int	i_partof_number(double nb)
 {
 	return ((int)nb);
 }
 
-float	f_partof_number(float nb)
+double	f_partof_number(double nb)
 {
 	return (ft_abs_fl(nb - i_partof_number(nb)));
 }
 
-float	rf_partof_number(float nb)
+double	rf_partof_number(double nb)
 {
 	return (1 - f_partof_number(nb));
 }
