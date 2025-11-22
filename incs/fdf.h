@@ -13,10 +13,6 @@
 #ifndef FDF_H
 # define FDF_H
 
-# ifndef BASE_COLOR
-#  define BASE_COLOR	16711680
-# endif
-
 # include <X11/keysym.h>
 # include <stdio.h>
 # include <math.h>
@@ -25,15 +21,13 @@
 # include "../libft/incs/libft.h"
 # include "../minilibx-linux/mlx.h"
 
+# define BASE_COLOR	16711680
+// # define BG_COLOR	0x000000	//	black
+// # define BG_COLOR	0xF4BEE0	//	light pink
+// # define BG_COLOR	0x505D53	//	greenish grey
+# define BG_COLOR	0x434277		//	blueish violet
 # define IMG_WIDTH	1920
 # define IMG_HEIGHT 1080 
-# define ESC_KEY	9
-# define Q_KEY		24
-# define E_KEY		26
-# define H_KEY		43
-# define J_KEY		44
-# define K_KEY		45
-# define L_KEY		46
 
 typedef struct s_view
 {
@@ -81,6 +75,7 @@ typedef struct s_map
 	int		height;
 	int		points_total;
 	char	py;
+	bool	has_color;
 }				t_map;
 
 typedef struct s_line
@@ -179,7 +174,7 @@ int		set_height_color(double norm);
 int		set_pixel_opacity(int old_color, double intensity);
 int		get_pixel_color(t_color color, double inter);
 t_color	init_t_color(t_point *p0, t_point *p1);
-int		handle_color_code(char *str, t_data *data);
+int		handle_color_code(char *str);
 
 //Hooks
 int		key_press(int keycode, t_data *data);

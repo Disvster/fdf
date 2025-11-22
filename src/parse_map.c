@@ -86,11 +86,8 @@ void	set_point(t_data *data, int i, int x, char *buffer)
 	data->points[i].z = ft_atoi(xline[xi]);
 	if (ft_strchr(xline[xi], ',') != NULL)
 	{
-		data->points[i].color = handle_color_code(ft_strchr(xline[xi], ','),
-				data);
-		// if (!data->points[i].color)
-		// 	return (free_split(xline), free_function(&buffer, data),
-		// 		exit(error_exit(data->fd, "Invalid Color Format\n")));
+		data->points[i].color = handle_color_code(ft_strchr(xline[xi], ','));
+		data->map.has_color = true;
 	}
 	xi++;
 	if (!xline[xi] || (((ft_abs(x) + i) > data->map.points_total)

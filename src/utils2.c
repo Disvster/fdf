@@ -48,12 +48,11 @@ void	fdf_init_window(t_data	*data)
 		exit(error_exit(-2, "Could not get MLX Data Address"));
 }
 
-int	handle_color_code(char *str, t_data *data)
+int	handle_color_code(char *str)
 {
 	int		res;
 	char	*hex;
 
-	(void)data;
 	res = 0;
 	if (str && str + 3)
 	{

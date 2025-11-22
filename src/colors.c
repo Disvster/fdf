@@ -33,12 +33,12 @@ void	set_points_color(t_data *data)
 	while (++i < data->map.points_total)
 	{
 		norm = interpl(data->points[i].z, z_min, z_max);
-		if (data->points[i].color == 0)
+		if (data->points[i].color == 0 && data->map.has_color == false)
 			data->points[i].color = set_height_color(norm);
+		// else
+		// 	printf("color = %x\n", data->points[i].color);
 	}
 }
-	// if (data->map.has_color == true)
-	// 	return ;
 
 int	set_height_color(double norm)
 {
@@ -73,6 +73,18 @@ int	get_pixel_color(t_color color, double inter)
 	color.r = color.r0 + inter * (color.r1 - color.r0);
 	color.g = color.g0 + inter * (color.g1 - color.g0);
 	color.b = color.b0 + inter * (color.b1 - color.b0);
+	if (color.r > 255)
+		color.r = 255;
+	if (color.r < 0)
+		color.r = 0;
+	if (color.g > 255)
+		color.g = 255;
+	if (color.g < 0)
+		color.g = 0;
+	if (color.b > 255)
+		color.b = 255;
+	if (color.b < 0)
+		color.b = 0;
 	return ((color.r << 16) | (color.g << 8) | color.b);
 }
 
@@ -89,9 +101,9 @@ int	set_pixel_opacity(int old_color, double intensity)
 	r = (old_color >> 16) & 255;
 	g = (old_color >> 8) & 255;
 	b = old_color & 255;
-	r = (int)(r * intensity);
-	g = (int)(g * intensity);
-	b = (int)(b * intensity);
+	r = (int)(r * intensity + ((BG_COLOR >> 16) & 255) * (1.0 - intensity));
+	g = (int)(g * intensity + ((BG_COLOR >> 8) & 255) * (1.0 - intensity));
+	b = (int)(b * intensity + (BG_COLOR & 255) * (1.0 - intensity));
 	if (r > 255)
 		r = 255;
 	if (r < 0)

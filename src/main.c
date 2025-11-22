@@ -35,12 +35,9 @@ void	draw_background(t_data *data, int color)
 
 void	clear_image(t_data *data)
 {
-	int	background_color;
-
 	if (!data || !data->addr)
 		return ;
-	background_color = 0x000000;
-	draw_background(data, background_color);
+	draw_background(data, BG_COLOR);
 }
 
 int	new_render(t_data *data)
