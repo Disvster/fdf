@@ -56,6 +56,7 @@ endef
 INCS_DIR = incs/
 # CC = cc
 CC = clang
+# CFLAGS = -Wall -Werror -Wextra -g -Imlx_linux
 CFLAGS = -Wall -Werror -Wextra -g -Imlx_linux -O3
 L_CFLAGS = -L/usr/lib -Lmlx_linux -lXext -lX11 -lm -lz 
 NAME = fdf

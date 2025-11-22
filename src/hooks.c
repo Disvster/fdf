@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 20:07:25 by manmaria          #+#    #+#             */
-/*   Updated: 2025/11/08 22:30:47 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/11/20 21:36:44 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ int	key_press(int keycode, t_data *data)
 		data->keys.k = true;
 	if (keycode == XK_l)
 		data->keys.l = true;
+	if (keycode == XK_i)
+		data->keys.i = true;
+	if (keycode == XK_o)
+		data->keys.o = true;
+	if (keycode == XK_r)
+		data->keys.r = true;
 	return (0);
 }
 
@@ -45,6 +51,12 @@ int	key_release(int keycode, t_data *data)
 		data->keys.k = false;
 	if (keycode == XK_l)
 		data->keys.l = false;
+	if (keycode == XK_i)
+		data->keys.i = false;
+	if (keycode == XK_o)
+		data->keys.o = false;
+	if (keycode == XK_r)
+		data->keys.r = false;
 	return (0);
 }
 
@@ -54,6 +66,12 @@ void	handle_changes(t_data *data)
 		data->view.z_scale -= 0.5;
 	if (data->keys.e)
 		data->view.z_scale += 0.5;
+	if (data->keys.o)
+		data->view.zoom -= 0.005;
+	if (data->keys.i)
+		data->view.zoom += 0.005;
+	if (data->keys.r)
+		fdf_init_view(data);
 	handle_boundaries(data);
 }
 

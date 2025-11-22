@@ -120,6 +120,5 @@ t_map	map_init_data(int fd)
 	}
 	free(line);
 	map.points_total = map.width * map.height + map.py;
-	map.has_color = false;
 	return (map);
 }

@@ -40,6 +40,7 @@ define progress_bar
   echo -ne "Compiling: [$$BAR] ($$COUNT/$(TOTAL_C))\r"
 endef
 
+# CC = cc
 CC = clang
 CFLAGS = -Wall -Werror -Wextra -g -O3
 OBJ_DIR = obj/
@@ -49,7 +50,7 @@ AR = ar rcs
 RM = rm -f
 
 all: $(OBJ_DIR) $(NAME)
-	@echo -e "Compilation complete! libft.a file generated.        "
+	@echo -e "Compilation complete! libft.a file generated.             "
 
 $(OBJ_DIR):
 	@mkdir $@

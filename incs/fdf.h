@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 01:31:37 by manmaria          #+#    #+#             */
-/*   Updated: 2025/11/19 22:30:42 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/11/20 21:27:25 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ typedef struct s_map
 	int		width;
 	int		height;
 	int		points_total;
-	bool	has_color;
 	char	py;
 }				t_map;
 
