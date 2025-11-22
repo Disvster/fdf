@@ -87,7 +87,7 @@ $(OBJ_DIR):
 $(LIBX): print_libx
 	@make --no-print-directory -C $(LIBX_DIR) all
 	@make --no-print-directory print_libx
-	@echo -e "Compilation complete! libmlx.a and libmlx_Linux.a files    "
+	@echo -e "Compilation complete! libmlx.a and libmlx_Linux.a files generated."
 
 $(LIBFT): print_libft
 	@make --no-print-directory -C $(LIBFT_DIR)
