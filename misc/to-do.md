@@ -1,6 +1,6 @@
 # to-do
 
-## 20/11/2025
+## 25/11/2025
 
 - colors were fucked because I was not parsing hex code correctly on `handle_color_code()`
     - fixed black artifacts by changing the hardcoded str + 3 logic 
