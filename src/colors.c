@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 17:02:57 by manmaria          #+#    #+#             */
-/*   Updated: 2025/11/11 18:44:44 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/11/26 01:05:33 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,11 @@ void	set_points_color(t_data *data)
 			z_min = data->points[i].z;
 	}
 	i = -1;
-	while (++i < data->map.points_total)
+	while (++i < data->map.points_total && data->map.has_color == false)
 	{
 		norm = interpl(data->points[i].z, z_min, z_max);
-		if (data->points[i].color == 0 && data->map.has_color == false)
+		if (data->points[i].color == 0)
 			data->points[i].color = set_height_color(norm);
-		// else
-		// 	printf("color = %x\n", data->points[i].color);
 	}
 }
 

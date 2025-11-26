@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 01:31:37 by manmaria          #+#    #+#             */
-/*   Updated: 2025/11/20 21:27:25 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/11/26 01:58:09 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@
 // # define BG_COLOR	0x000000	//	black
 // # define BG_COLOR	0xF4BEE0	//	light pink
 // # define BG_COLOR	0x505D53	//	greenish grey
-# define BG_COLOR	0x434277		//	blueish violet
+
+// # define BG_COLOR	0x434277		//	blueish violet
+# define BG_COLOR	0x1A1A2E		// dark purlple
 # define IMG_WIDTH	1920
 # define IMG_HEIGHT 1080 
 
@@ -38,6 +40,9 @@ typedef struct s_view
 	double	gamma;
 	double	scale;
 	double	angle;
+	double	angle_x;
+	double	angle_y;
+	double	angle_z;
 	double	z_scale;
 	double	zoom;
 }				t_view;
@@ -106,6 +111,10 @@ typedef struct s_hook
 	bool	i;
 	bool	o;
 	bool	r;
+	bool	w;
+	bool	a;
+	bool	s;
+	bool	d;
 }				t_hook;
 
 typedef struct s_data
@@ -182,6 +191,10 @@ int		key_release(int keycode, t_data *data);
 void	handle_changes(t_data *data);
 void	clear_image(t_data *data);
 void	handle_boundaries(t_data *data);
+void	handle_rotations(t_data *data);
+
+int		check_sep_fdf(char const c, char *sep);
+int		atoi_base_fdf(char *str, char *base);
 
 //BONUS
 int		handle_multiple_maps(int ac, char **av);

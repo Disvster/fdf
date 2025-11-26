@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 18:15:03 by manmaria          #+#    #+#             */
-/*   Updated: 2025/11/13 02:48:37 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/11/26 01:07:20 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,19 +54,18 @@ int	handle_color_code(char *str)
 	char	*hex;
 
 	res = 0;
-	if (str && str + 3)
+	if (str)
 	{
 		hex = ft_strchr(str, 'X');
 		if (hex)
-			res = ft_atoi_base(&hex[1], "0123456789ABCDEF");
+			res = atoi_base_fdf(&hex[1], "0123456789ABCDEF");
 		if (res == 0 && hex)
-			res = ft_atoi_base(&hex[1], "0123456789abcdef");
+			res = atoi_base_fdf(&hex[1], "0123456789abcdef");
 		hex = ft_strchr(str, 'x');
 		if (res == 0 && hex)
-			res = ft_atoi_base(&hex[1], "0123456789ABCDEF");
-		hex = ft_strchr(str, 'x');
+			res = atoi_base_fdf(&hex[1], "0123456789ABCDEF");
 		if (res == 0 && hex)
-			res = ft_atoi_base(&hex[1], "0123456789abcdef");
+			res = atoi_base_fdf(&hex[1], "0123456789abcdef");
 	}
 	return (res);
 }

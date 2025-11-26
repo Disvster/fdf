@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 23:35:13 by manmaria          #+#    #+#             */
-/*   Updated: 2025/11/03 05:29:05 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/11/26 01:06:33 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	render_map(t_data *data)
 		row++;
 	}
 }
+// if (col + 1 < width)
+// 	my_mlx_pixel_put(data, row, col, data->points[i].color);// HACK: db
 
 static void	init_wuaa_line_coords(t_line *line, t_point *p0, t_point *p1)
 {

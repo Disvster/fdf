@@ -6,13 +6,13 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 22:21:41 by manmaria          #+#    #+#             */
-/*   Updated: 2025/10/22 00:34:41 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/11/26 00:45:09 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/fdf.h"
 
-static int	check_sep(char const c, char *sep)
+int	check_sep_fdf(char const c, char *sep)
 {
 	while (*sep)
 	{
@@ -28,7 +28,7 @@ static size_t	count_letters_fdf(char const *s, char *c, char **p_s)
 	size_t	letters;
 
 	letters = 0;
-	while (!check_sep(*s, c) && *s)
+	while (!check_sep_fdf(*s, c) && *s)
 	{
 		letters++;
 		s++;
@@ -44,11 +44,11 @@ size_t	count_words_fdf(char const *s, char *sep)
 	cw = 0;
 	while (*s)
 	{
-		while (check_sep(*s, sep) && *s)
+		while (check_sep_fdf(*s, sep) && *s)
 			s++;
 		if (*s)
 			cw++;
-		while (!check_sep(*s, sep) && *s)
+		while (!check_sep_fdf(*s, sep) && *s)
 			s++;
 	}
 	return (cw);
@@ -68,7 +68,7 @@ char	**ft_split_fdf(char const *s, char *c)
 	save = split;
 	while (*s)
 	{
-		while (check_sep(*s, c) && *s)
+		while (check_sep_fdf(*s, c) && *s)
 			s++;
 		if (*s)
 		{
