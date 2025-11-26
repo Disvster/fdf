@@ -2,9 +2,20 @@
 
 ## 20/11/2025
 
-- [ ] colors are fucked
+- colors were fucked because I was not parsing hex code correctly on `handle_color_code()`
+    - fixed black artifacts by changing the hardcoded str + 3 logic 
+    - fixed new colors on colored maps (like julia) by creating a new atoi base for fdf
+
+only things missing is:
+- [ ] put rotations on mult_maps
+- [ ] deal with black shadow that appears on some maps maybe?
+- [ ] norm correct everything
+
+## 20/11/2025
+
+- [X] colors are fucked
 - [ ] then do norm
-- [ ] then rotations
+- [X] then rotations
 - [ ] then it's done
 
 ## 19/11/2025
@@ -42,7 +53,7 @@
 ## 10/11/2025
 
 - for bonus:
-    - [ ] rotations
+    - [X] rotations
     - [ ] change colors
     - [ ] draw on the opposite side when map goes out of bounds
     - [ ] flinging map with mouse
