@@ -14,6 +14,7 @@ SRC =	src/colors.c \
 		src/utils.c \
 		src/utils2.c \
 		src/atoi_base_fdf.c \
+		src/changes.c \
 		src/xiaolin.c
 SRCS = $(SRC)
 
