@@ -9,14 +9,14 @@
 only things missing is:
 - [ ] put rotations on mult_maps
 - [ ] deal with black shadow that appears on some maps maybe?
-- [ ] norm correct everything
+- [X] norm correct everything
 
 ## 20/11/2025
 
 - [X] colors are fucked
-- [ ] then do norm
+- [X] then do norm
 - [X] then rotations
-- [ ] then it's done
+- [X] then it's done
 
 ## 19/11/2025
 
