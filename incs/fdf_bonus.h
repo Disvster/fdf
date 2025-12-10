@@ -36,6 +36,8 @@ int		fdf_close_window_bonus(t_data *data);
 void	handle_changes_bonus(t_dlist **node);
 int		key_press_bonus(int keycode, t_dlist **node);
 int		key_release_bonus(int keycode, t_dlist **node);
+void	handle_boundaries_bonus(t_data **newmap, t_data *oldmap);
+void	handle_scale_and_zoom(t_data **newmap, t_data *oldmap);
 
 void	*init_data_array(int ac, char **av);
 void	init_img_bonus(t_data *data);

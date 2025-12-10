@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 01:31:37 by manmaria          #+#    #+#             */
-/*   Updated: 2025/11/26 01:58:09 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/12/10 19:38:47 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,11 @@ int		check_valid_files(int ac, char **av);
 void	free_function(char **buffer, t_data *data);
 int		error_exit(int fd, char *str);
 int		fdf_close_window(t_data *data);
+
+// Rotations
+void	rotate_x(double *y, double *z, double angle);
+void	rotate_y(double *x, double *z, double angle);
+void	rotate_z(double *x, double *y, double angle);
 
 // Projection
 void	fdf_init_window(t_data	*data);

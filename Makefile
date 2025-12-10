@@ -9,6 +9,7 @@ SRC =	src/colors.c \
 		check_files.c \
 		src/parse_map.c \
 		src/project.c \
+		src/rotations.c \
 		src/split.c \
 		src/test_fts.c \
 		src/utils.c \
@@ -22,6 +23,7 @@ BONUS_DIR = src/bonus/
 BONUS_SRC = list_utils.c \
 			list_utils2.c \
 			utils_bonus.c \
+			changes_bonus.c \
 			hooks_bonus.c \
 			mult_maps.c
 BONUS_SRCS = $(addprefix $(BONUS_DIR)/, $(BONUS_SRC))
