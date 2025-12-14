@@ -66,7 +66,7 @@ void	draw_wuaa_line(t_point p0, t_point p1, t_data *data)
 	line.x = line.x0;
 	line.intersect_y = line.y0;
 	if (line.delta_x == 0)
-		draw_vertical_line(&line, &color, data);
+		return (draw_vertical_line(&line, &color, data));
 	while (line.x <= line.x1)
 	{
 		line.y = i_partof_number(line.intersect_y);
