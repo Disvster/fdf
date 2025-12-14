@@ -36,7 +36,7 @@ int	check_valid_files(int ac, char **av)
 			return (error_msg("Invalid map file\n"));
 		fd = open(av[i], O_RDONLY);
 		if (fd == -1)
-			return (error_msg("Invalid file path\n"));
+			return (error_msg("Invalid file path or permissions\n"));
 		close(fd);
 		i++;
 	}
