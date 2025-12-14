@@ -22,6 +22,10 @@ static void	key_press_helper(int keycode, t_data *data)
 		data->keys.s = true;
 	if (keycode == XK_d)
 		data->keys.d = true;
+	if (keycode == XK_c)
+		data->keys.c = true;
+	if (keycode == XK_p)
+		data->keys.p = true;
 }
 
 int	key_press(int keycode, t_data *data)
@@ -60,6 +64,10 @@ static void	key_release_helper(int keycode, t_data *data)
 		data->keys.s = false;
 	if (keycode == XK_d)
 		data->keys.d = false;
+	if (keycode == XK_c)
+		data->keys.c = false;
+	if (keycode == XK_p)
+		data->keys.p = false;
 }
 
 int	key_release(int keycode, t_data *data)

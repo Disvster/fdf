@@ -69,4 +69,10 @@ void	handle_rotations(t_data *data)
 		data->view.angle_x -= speed;
 	if (data->keys.d)
 		data->view.angle_y += speed;
+	if (data->keys.p)
+	{
+		data->view.angle_x = 0.0;
+		data->view.angle_y = 0.0;
+		data->view.angle_z = 0.0;
+	}
 }

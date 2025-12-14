@@ -115,6 +115,8 @@ typedef struct s_hook
 	bool	a;
 	bool	s;
 	bool	d;
+	bool	c;
+	bool	p;
 }				t_hook;
 
 typedef struct s_data
