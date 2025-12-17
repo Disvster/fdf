@@ -14,9 +14,9 @@ INC=/usr/include
 
 
 UNAME = $(shell uname)
-CC	= clang -g
+CC	= cc -g
 ifeq ($(UNAME),FreeBSD)
-	CC = clang -g
+	CC = cc -g
 endif
 
 NAME		= libmlx.a
