@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 22:46:05 by manmaria          #+#    #+#             */
-/*   Updated: 2025/11/20 21:46:25 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/12/17 18:46:32 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	clear_image(t_data *data)
 int	new_render(t_data *data)
 {
 	clear_image(data);
+	handle_changes(data);
 	transform(data);
 	render_map(data);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
@@ -53,19 +54,22 @@ int	main(int ac, char **av)
 {
 	t_data	data;
 
-	if (ac > 2)
-		ft_printf("Multiple parameters detected. Checking first...\n");
 	if (check_valid_files(ac, av) == 0)
 		return (1);
 	ft_bzero(&data, sizeof(t_data));
-	parse_map(&data, av[1]);
-	fdf_init_window(&data);
-	fdf_init_view(&data);
-	mlx_hook(data.mlx_win, 2, 1L << 0, key_press, &data);
-	mlx_hook(data.mlx_win, 3, 1L << 1, key_release, &data);
-	mlx_hook(data.mlx_win, 17, 0, fdf_close_window, &data);
-	mlx_loop_hook(data.mlx, new_render, &data);
-	mlx_loop(data.mlx);
-	free_function(NULL, &data);
+	if (ac > 2)
+		return (handle_multiple_maps(ac, av));
+	else
+	{
+		parse_map(&data, av[1]);
+		fdf_init_window(&data);
+		fdf_init_view(&data);
+		mlx_hook(data.mlx_win, 2, 1L << 0, key_press, &data);
+		mlx_hook(data.mlx_win, 3, 1L << 1, key_release, &data);
+		mlx_hook(data.mlx_win, 17, 0, fdf_close_window, &data);
+		mlx_loop_hook(data.mlx, new_render, &data);
+		mlx_loop(data.mlx);
+		free_function(NULL, &data);
+	}
 	return (0);
 }
