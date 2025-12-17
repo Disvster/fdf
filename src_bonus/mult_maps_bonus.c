@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mult_maps.c                                        :+:      :+:    :+:   */
+/*   mult_maps_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 20:45:09 by manmaria          #+#    #+#             */
-/*   Updated: 2025/11/19 22:49:35 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/12/17 18:46:32 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/fdf_bonus.h"
+#include "../incs/fdf_bonus.h"
 
 void	*init_data_array(int ac, char **av)
 {

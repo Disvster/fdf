@@ -2,40 +2,50 @@ SHELL :=/bin/bash
 
 # FdF
 SRC_DIR = src/
-SRC =	src/colors.c \
-		src/draw.c \
-		src/hooks.c \
-		src/main.c \
+SRC =	atoi_base_fdf.c \
+		changes.c \
 		check_files.c \
-		src/parse_map.c \
-		src/project.c \
-		src/rotations.c \
-		src/split.c \
-		src/test_fts.c \
-		src/utils.c \
-		src/utils2.c \
-		src/atoi_base_fdf.c \
-		src/changes.c \
-		src/xiaolin.c
-SRCS = $(SRC)
+		colors.c \
+		draw.c \
+		hooks.c \
+		main.c \
+		parse_map.c \
+		project.c \
+		rotations.c \
+		split.c \
+		utils.c \
+		utils2.c \
+		xiaolin.c
+SRCS = $(addprefix $(SRC_DIR)/, $(SRC))
 
-BONUS_DIR = src/bonus/
-BONUS_SRC = list_utils.c \
-			list_utils2.c \
-			utils_bonus.c \
+BONUS_DIR = src_bonus/
+BONUS_SRC = atoi_base_fdf_bonus.c \
 			changes_bonus.c \
+			check_files_bonus.c \
+			colors_bonus.c \
+			draw_bonus.c \
 			hooks_bonus.c \
-			mult_maps.c
+			list_changes_bonus.c \
+			list_hooks_bonus.c \
+			list_utils2_bonus.c \
+			list_utils_bonus.c \
+			main_bonus.c \
+			mult_maps_bonus.c \
+			mult_maps_utils_bonus.c \
+			parse_map_bonus.c \
+			project_bonus.c \
+			rotations_bonus.c \
+			split_bonus.c \
+			utils2_bonus.c \
+			utils_bonus.c \
+			xiaolin_bonus.c
 BONUS_SRCS = $(addprefix $(BONUS_DIR)/, $(BONUS_SRC))
 
 
-TEST_SRC = src/test_fts.c
-
 OBJ_DIR = obj/
-BONUS_OBJ_DIR = obj/
+BONUS_OBJ_DIR = obj/bonus/
 OBJ = $(addprefix $(OBJ_DIR),$(notdir $(SRCS:.c=.o)))
-
-BONUS_OBJS = $(addprefix $(OBJ_DIR),$(notdir $(BONUS_SRCS:.c=.o)))
+BONUS_OBJS = $(addprefix $(BONUS_OBJ_DIR),$(notdir $(BONUS_SRCS:.c=.o)))
 
 # LIBFT
 LIBFT = libft/libft.a
@@ -47,15 +57,27 @@ LIBX_DIR = minilibx-linux/
 
 # PROGRESS BAR
 TOTAL_C := $(shell find src/ -type f -name '*.c' -not -path '*/.*' | wc -l)
+TOTAL_BONUS_C := $(shell find src_bonus/ -type f -name '*_bonus.c' -not -path '*/.*' | wc -l)
+
+#		========== PROGRESS BAR SCRIPTS ===========
 
 define	progress_bar
-	@COUNT=$$(find obj -type f -name '*.o' | wc -l); \
+	@COUNT=$$(find obj -maxdepth 1 -type f -name '*.o' | wc -l); \
 	BAR_WIDTH=30; \
 	NUM_HASHES=$$(( COUNT * BAR_WIDTH / $(TOTAL_C) )); \
 	BAR=$$(printf "%-$${BAR_WIDTH}s" "$$(printf '%0.s#' $$(seq 1 $$NUM_HASHES))"); \
 	echo -ne "Compiling: [$$BAR] ($$COUNT/$(TOTAL_C))\r"
 endef
 
+define	progress_bar_bonus
+	@COUNT=$$(find obj/bonus -type f -name '*_bonus.o' | wc -l); \
+	BAR_WIDTH=30; \
+	NUM_HASHES=$$(( COUNT * BAR_WIDTH / $(TOTAL_BONUS_C) )); \
+	BAR=$$(printf "%-$${BAR_WIDTH}s" "$$(printf '%0.s#' $$(seq 1 $$NUM_HASHES))"); \
+	echo -ne "Compiling: [$$BAR] ($$COUNT/$(TOTAL_BONUS_C))\r"
+endef
+
+#		========== PROGRESS BAR SCRIPTS ===========
 
 INCS_DIR = incs/
 CC = cc
@@ -67,11 +89,11 @@ NAME = fdf
 NAME_BONUS = fdf_bonus
 RM = rm -f
 
-all: $(OBJ_DIR) $(BONUS_OBJ_DIR) $(LIBX) $(LIBFT) $(NAME)
+all: $(OBJ_DIR) $(LIBX) $(LIBFT) $(NAME)
 	@echo -e "Compilation complete! fdf file generated.                         \n"
 
-bonus: $(OBJ_DIR) $(BONUS_OBJS) $(LIBX) $(LIBFT) $(NAME_BONUS)
-	@echo -e "Compilation complete! fdf file generated.                         \n"
+bonus: $(BONUS_OBJ_DIR) $(LIBX) $(LIBFT) $(NAME_BONUS)
+	@echo -e "Compilation complete! fdf_bonus file generated.                         \n"
 
 print_fdf:
 	@echo -e "\n======  FdF  ======"
@@ -88,6 +110,9 @@ print_libft:
 $(OBJ_DIR):
 	@mkdir $@
 
+$(BONUS_OBJ_DIR):
+	@mkdir -p $@
+
 $(LIBX): print_libx
 	@make --no-print-directory -C $(LIBX_DIR) all
 	@make --no-print-directory print_libx
@@ -96,19 +121,23 @@ $(LIBX): print_libx
 $(LIBFT): print_libft
 	@make --no-print-directory -C $(LIBFT_DIR)
 
+#		========== COMPILATION ===========
+
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -c $< -o $@ -I $(INCS_DIR)
 	$(progress_bar)
 
 $(BONUS_OBJ_DIR)%.o: $(BONUS_DIR)%.c | $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -c $< -o $@ -I $(INCS_DIR)
-	$(progress_bar)
+	$(progress_bar_bonus)
 
-$(NAME): print_fdf $(LIBFT) $(LIBX) $(OBJ) $(BONUS_OBJS)
-	@$(CC) $(CFLAGS) $(OBJ) $(BONUS_OBJS) $(LIBFT) $(LIBX) $(L_CFLAGS) -o $(NAME)
+#		========== COMPILATION ===========
 
-$(NAME_BONUS): print_fdf_bonus $(LIBFT) $(LIBX) $(OBJ) $(BONUS_OBJS)
-	@$(CC) $(CFLAGS) $(OBJ) $(BONUS_OBJ) $(LIBFT) $(LIBX) $(L_CFLAGS) -o $(NAME_BONUS)
+$(NAME): print_fdf $(LIBFT) $(LIBX) $(OBJ)
+	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(LIBX) $(L_CFLAGS) -o $(NAME)
+
+$(NAME_BONUS): print_fdf_bonus $(LIBFT) $(LIBX) $(BONUS_OBJS)
+	@$(CC) $(CFLAGS) $(BONUS_OBJS) $(LIBFT) $(LIBX) $(L_CFLAGS) -o $(NAME_BONUS)
 
 clean: $(OBJ_DIR)
 	@make --no-print-directory print_libx
@@ -116,7 +145,7 @@ clean: $(OBJ_DIR)
 	@make --no-print-directory print_libft
 	@make --no-print-directory -C $(LIBFT_DIR) clean
 	@make --no-print-directory print_fdf
-	@$(RM) -r $(OBJ_DIR)
+	@$(RM) -rf $(OBJ_DIR)
 	@echo -e "cleaned .o files\n"
 
 fclean: $(OBJ_DIR)
@@ -127,19 +156,13 @@ fclean: $(OBJ_DIR)
 	@make --no-print-directory print_libft
 	@make --no-print-directory -C $(LIBFT_DIR) fclean
 	@make --no-print-directory print_fdf
-	@$(RM) -r $(OBJ_DIR)
+	@$(RM) -rf $(OBJ_DIR)
 	@echo "Cleaned .o files"
 	@$(RM) $(NAME)
-	@echo -e "Cleaned fdf executable\n"
+	@$(RM) $(NAME_BONUS)
+	@echo -e "Cleaned fdf executables\n"
 
 re: fclean $(OBJ_DIR)
 	@make --no-print-directory all
 
-.PHONY: all clean fclean re print_fdf print_libft print_libx
-# # TESTING
-# TEST_PS = test_ps
-# TEST_DIR = src/db/
-# TEST_SRC = src/db/print_stack.c src/db/main.c
-#
-# $(TEST_PS): print_ps $(OBJ) $(LIB)
-# 	@$(CC) $(CFLAGS) $(OBJ) $(LIB) -o $(TEST_PS)
+.PHONY: all clean fclean re print_fdf print_libft print_libx bonus

@@ -1,5 +1,6 @@
 #.gitignore
 fdf
+fdf_bonus
 *a.out
 *.a
 *.o

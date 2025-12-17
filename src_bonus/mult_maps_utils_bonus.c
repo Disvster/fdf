@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_bonus.c                                      :+:      :+:    :+:   */
+/*   mult_maps_utils_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 17:02:01 by manmaria          #+#    #+#             */
-/*   Updated: 2025/11/15 18:24:25 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/12/17 18:46:20 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/fdf_bonus.h"
+#include "../incs/fdf_bonus.h"
 
 int	fdf_close_window_bonus(t_data *data)
 {

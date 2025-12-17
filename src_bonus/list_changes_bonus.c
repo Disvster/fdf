@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   changes_bonus.c                                    :+:      :+:    :+:   */
+/*   list_changes_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 19:48:12 by manmaria          #+#    #+#             */
-/*   Updated: 2025/12/10 19:48:50 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/12/17 18:46:32 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/fdf_bonus.h"
+#include "../incs/fdf_bonus.h"
 
 void	fdf_next_map(t_dlist **node)
 {

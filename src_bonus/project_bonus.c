@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   project.c                                          :+:      :+:    :+:   */
+/*   project_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 19:06:27 by manmaria          #+#    #+#             */
-/*   Updated: 2025/12/10 19:38:53 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/12/17 18:46:32 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	fdf_init_view(t_data *data)
 	else
 		data->view.zoom = 0.05;
 }
+	// data->view.angle_x = 0.5;
+	// data->view.angle_y = -0.5;
 
 void	project(t_data *data, t_point *points)
 {
