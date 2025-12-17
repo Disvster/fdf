@@ -6,35 +6,30 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 01:31:37 by manmaria          #+#    #+#             */
-/*   Updated: 2025/11/20 21:27:25 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/12/10 19:38:47 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# ifndef BASE_COLOR
-#  define BASE_COLOR	16711680
-# endif
-
 # include <X11/keysym.h>
 # include <stdio.h>
 # include <math.h>
-# include <float.h>
+// # include <float.h>
 # include <stdbool.h>
 # include "../libft/incs/libft.h"
 # include "../minilibx-linux/mlx.h"
 
-# define ERR_MAL	"Memory Error \n"
+# define BASE_COLOR	16711680
+// # define BG_COLOR	0x000000	//	black
+// # define BG_COLOR	0xF4BEE0	//	light pink
+// # define BG_COLOR	0x505D53	//	greenish grey
+
+// # define BG_COLOR	0x434277		//	blueish violet
+# define BG_COLOR	0x1A1A2E		// dark purlple
 # define IMG_WIDTH	1920
 # define IMG_HEIGHT 1080 
-# define ESC_KEY	9
-# define Q_KEY		24
-# define E_KEY		26
-# define H_KEY		43
-# define J_KEY		44
-# define K_KEY		45
-# define L_KEY		46
 
 typedef struct s_view
 {
@@ -45,6 +40,9 @@ typedef struct s_view
 	double	gamma;
 	double	scale;
 	double	angle;
+	double	angle_x;
+	double	angle_y;
+	double	angle_z;
 	double	z_scale;
 	double	zoom;
 }				t_view;
@@ -82,6 +80,7 @@ typedef struct s_map
 	int		height;
 	int		points_total;
 	char	py;
+	bool	has_color;
 }				t_map;
 
 typedef struct s_line
@@ -96,10 +95,10 @@ typedef struct s_line
 	int		x1;
 	int		y0;
 	int		y1;
-    int		steep;
+	int		steep;
 }				t_line;
 
-typedef struct	s_hook
+typedef struct s_hook
 {
 	bool	h;
 	bool	j;
@@ -107,9 +106,17 @@ typedef struct	s_hook
 	bool	l;
 	bool	q;
 	bool	e;
+	bool	right;
+	bool	left;
 	bool	i;
 	bool	o;
 	bool	r;
+	bool	w;
+	bool	a;
+	bool	s;
+	bool	d;
+	bool	c;
+	bool	p;
 }				t_hook;
 
 typedef struct s_data
@@ -126,6 +133,8 @@ typedef struct s_data
 	void	*mlx_win;
 	t_hook	keys;
 	int		fd;
+	//BONUS
+	int		nb_maps;
 }				t_data;
 
 // Test Functions
@@ -136,17 +145,22 @@ void	print_img(t_data *data);
 size_t	count_words_fdf(char const *s, char *sep);
 char	**ft_split_fdf(char const *s, char *c);
 
-
 // Map Parsing
 t_map	map_init_data(int fd);
 void	set_point(t_data *data, int i, int x, char *buffer);
 void	map_read_data(t_data *data, int fd);
 void	parse_map(t_data *data, char *file_name);
+int		check_valid_files(int ac, char **av);
 
 // Free funcs
 void	free_function(char **buffer, t_data *data);
 int		error_exit(int fd, char *str);
 int		fdf_close_window(t_data *data);
+
+// Rotations
+void	rotate_x(double *y, double *z, double angle);
+void	rotate_y(double *x, double *z, double angle);
+void	rotate_z(double *x, double *y, double angle);
 
 // Projection
 void	fdf_init_window(t_data	*data);
@@ -176,7 +190,7 @@ int		set_height_color(double norm);
 int		set_pixel_opacity(int old_color, double intensity);
 int		get_pixel_color(t_color color, double inter);
 t_color	init_t_color(t_point *p0, t_point *p1);
-int		handle_color_code(char *str, t_data *data);
+int		handle_color_code(char *str);
 
 //Hooks
 int		key_press(int keycode, t_data *data);
@@ -184,5 +198,12 @@ int		key_release(int keycode, t_data *data);
 void	handle_changes(t_data *data);
 void	clear_image(t_data *data);
 void	handle_boundaries(t_data *data);
+void	handle_rotations(t_data *data);
+
+int		check_sep_fdf(char const c, char *sep);
+int		atoi_base_fdf(char *str, char *base);
+
+//BONUS
+int		handle_multiple_maps(int ac, char **av);
 
 #endif
