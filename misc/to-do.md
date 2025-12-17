@@ -1,11 +1,45 @@
 # to-do
 
+## 25/11/2025
+
+- colors were fucked because I was not parsing hex code correctly on `handle_color_code()`
+    - fixed black artifacts by changing the hardcoded str + 3 logic 
+    - fixed new colors on colored maps (like julia) by creating a new atoi base for fdf
+
+only things missing is:
+- [ ] put rotations on mult_maps
+- [ ] deal with black shadow that appears on some maps maybe?
+- [X] norm correct everything
+
+## 20/11/2025
+
+- [X] colors are fucked
+- [X] then do norm
+- [X] then rotations
+- [X] then it's done
+
+## 19/11/2025
+
+- [X] fix arrow hooks behaviour
+- [X] try floats instead of doubles, this will make the fractols more clear (it didnt)
+
+## 18/11/2025
+
+- [X] on error like file not found I should free everything before (or not even malloc) and exit
+    - I'm not freeing memory from previously created maps
+    - see `valgrind --leak-check=full --show-leak-kinds=all ./fdf test_maps/elem.fdf test_maps/basictest.fdf test_maps/10-2` <- lacks `.fdf`
+- [X] solved still reachable in fdf_dlist_clear (init_data_array ptr)
+
+
+## 14/11/2025
+
+- [X] BONUS: list are implemented but hooks are not working properly,  ~~and there are two windows being opened~~
 
 ## 12/11/2025
 
-- [ ] check if map is .fdf
-- [ ] check all the maps
-- [ ] create bonus branch
+- [X] check if map is .fdf
+- [X] check all the maps
+- [X] create bonus branch
 
 ## 11/11/2025
 
@@ -19,11 +53,12 @@
 ## 10/11/2025
 
 - for bonus:
-    - [ ] rotations
+    - [X] rotations
     - [ ] change colors
     - [ ] draw on the opposite side when map goes out of bounds
     - [ ] flinging map with mouse
-    - [ ] loading more maps in the same window
+    - [X] zoom
+    - [X] loading multiple maps in the same window
 
 - [X] check if exits are returning the correct number
 
